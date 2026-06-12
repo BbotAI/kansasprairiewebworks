@@ -3157,3 +3157,210 @@ p {
 .pricing-section {
   background: var(--dark-mid) !important;
 }
+
+/* ============================================================
+   FIX V4 — WATERMARK SUPPRESSION (defensive)
+   ============================================================ */
+
+.hero__watermark,
+.hero-watermark,
+.page-hero__watermark,
+.bg-text,
+[class*="watermark"] {
+  display: none !important;
+}
+
+/* ============================================================
+   FIX V4 — SERVICE PAGE HERO CTA BUTTONS — ORANGE
+   ============================================================ */
+
+.page-hero .btn,
+.page-hero a[href^="tel"],
+.page-hero a[href^="#"] {
+  background: var(--primary) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 20px rgba(230,126,34,0.4) !important;
+}
+.page-hero .btn:hover,
+.page-hero a[href^="tel"]:hover {
+  background: #d35400 !important;
+  box-shadow: 0 6px 28px rgba(230,126,34,0.6) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ============================================================
+   FIX V4 — POSTING SERVICE CARDS (Three Services section)
+   ============================================================ */
+
+.posting-tabs {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+  gap: 1.5rem !important;
+}
+
+.posting-tab {
+  background: linear-gradient(135deg,
+    rgba(44,62,80,0.95) 0%,
+    rgba(26,37,47,0.98) 100%) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-top: 3px solid var(--primary) !important;
+  border-radius: 16px !important;
+  padding: 2rem !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3),
+              0 2px 8px rgba(230,126,34,0.1) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+.posting-tab:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4),
+              0 4px 16px rgba(230,126,34,0.2) !important;
+}
+.posting-tab__header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+.posting-tab__icon,
+.posting-tab__icon i {
+  color: var(--primary) !important;
+  font-size: 2rem !important;
+}
+.posting-tab__title {
+  color: #FFFFFF !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
+  margin-bottom: 0.25rem !important;
+}
+.posting-tab__price {
+  color: var(--secondary) !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 800 !important;
+  font-size: 1.4rem !important;
+}
+.posting-tab__price span {
+  color: var(--text-muted) !important;
+  font-size: 0.85rem !important;
+  font-weight: 400 !important;
+}
+.posting-tab__desc {
+  color: #B0C4D8 !important;
+  line-height: 1.7 !important;
+  margin-bottom: 1rem !important;
+}
+.posting-tab__list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.posting-tab__list li {
+  color: #B0C4D8 !important;
+  line-height: 1.9 !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 0.5rem !important;
+}
+.posting-tab__list li i {
+  color: var(--primary) !important;
+  margin-top: 0.3rem !important;
+  flex-shrink: 0 !important;
+}
+
+/* ============================================================
+   FIX V4 — BLOG CARDS SECTION (dark background + dark cards)
+   ============================================================ */
+
+.blog-cards-section {
+  background: var(--dark) !important;
+  padding: 60px 0 !important;
+}
+.blog-cards-section h2 {
+  color: #FFFFFF !important;
+}
+.blog-cards-section > .container > p,
+.blog-cards-section .section__header p {
+  color: var(--text-muted) !important;
+}
+.blog-cards-section .glass-card {
+  background: linear-gradient(135deg,
+    rgba(44,62,80,0.95) 0%,
+    rgba(26,37,47,0.98) 100%) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-top: 3px solid var(--primary) !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3) !important;
+  padding: 0 !important;
+  transition: transform 0.25s ease !important;
+}
+.blog-cards-section .glass-card:hover {
+  transform: translateY(-4px) !important;
+}
+.blog-cards-section .glass-card img {
+  border-radius: 0 !important;
+  margin-bottom: 0 !important;
+  width: 100% !important;
+  display: block !important;
+}
+.blog-cards-section .glass-card h3 {
+  color: #FFFFFF !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 1.05rem !important;
+  padding: 1.25rem 1.5rem 0 !important;
+  margin: 0 !important;
+}
+.blog-cards-section .glass-card p {
+  color: #B0C4D8 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.65 !important;
+  padding: 0.75rem 1.5rem 0 !important;
+  margin: 0 !important;
+}
+.blog-cards-section .glass-card .btn {
+  margin: 1rem 1.5rem 1.5rem !important;
+  display: inline-flex !important;
+}
+
+/* ============================================================
+   FIX V4 — UNIVERSAL SERVICE PAGE READABILITY
+   ============================================================ */
+
+.service-detail__content h2,
+.service-detail__content h3,
+.two-paths h3,
+.path-card h3,
+.path-card__title {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+
+.service-detail__content p,
+.two-paths p,
+.path-card p,
+.path-card__desc {
+  color: #B0C4D8 !important;
+}
+
+.service-detail__content li,
+.two-paths li,
+.path-card li,
+.path-card__list li {
+  color: #B0C4D8 !important;
+}
+
+.section--light .service-detail__content h2,
+.section--light .service-detail__content h3 {
+  color: var(--dark-mid) !important;
+}
+.section--light .service-detail__content p,
+.section--light .service-detail__content li {
+  color: #4A4A4A !important;
+}
+
+@media (max-width: 768px) {
+  .posting-tabs { grid-template-columns: 1fr !important; }
+}
