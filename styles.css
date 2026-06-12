@@ -1886,7 +1886,7 @@ p {
   color: var(--white);
 }
 
-.footer__col h4 {
+.footer__col h3 {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 0.875rem;
