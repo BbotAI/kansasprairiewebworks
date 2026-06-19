@@ -465,3 +465,18 @@ document.addEventListener('DOMContentLoaded', function () {
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
+
+/* ── Blog thumbnail loader ───────────────────────
+   Swaps placeholder src for Blogger thumbnail URL.
+   Fails silently if attribute missing or image 404s.
+──────────────────────────────────────────────────*/
+(function () {
+  var PLACEHOLDER = 'images/blog-placeholder.webp';
+  var cards = document.querySelectorAll('[data-thumbnail]');
+  cards.forEach(function (img) {
+    var url = (img.getAttribute('data-thumbnail') || '').trim();
+    if (!url) return;
+    img.onerror = function () { this.src = PLACEHOLDER; this.onerror = null; };
+    img.src = url;
+  });
+}());

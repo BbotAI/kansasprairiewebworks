@@ -3697,3 +3697,70 @@ section.service-faq .section__header h2 {
   [class*="faq-item"] h3 { font-size: 0.97rem !important; }
   [class*="faq-item"] p { font-size: 0.92rem !important; }
 }
+
+/* ============================================================
+   FIX 2 — Button overflow prevention
+   ============================================================ */
+
+.btn { max-width: 100%; }
+
+/* ============================================================
+   FIX 3 — Pricing section: reduce top gap
+   ============================================================ */
+
+.pricing-section { padding-top: 3rem !important; }
+
+/* ============================================================
+   FIX 7 — Blog Grid
+   ============================================================ */
+
+.blog-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.blog-card { padding: 0; overflow: hidden; }
+.blog-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+.card-body {
+  padding: 16px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.card-body .btn { margin-top: auto; align-self: flex-start; }
+.blog-date {
+  font-size: 0.82rem;
+  color: var(--muted, #888);
+  margin-bottom: 0.4rem;
+  font-weight: 400;
+}
+.blog-card--placeholder { opacity: 0.55; }
+
+.blog-card h3 { color: var(--white) !important; }
+.blog-card .blog-date { color: var(--text-muted) !important; }
+
+.btn-outline {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+.btn-outline:hover {
+  background: var(--primary);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   FIX 13 — Footer bottom row mobile stacking
+   ============================================================ */
+
+@media (max-width: 599px) {
+  .footer__bottom .flex-between {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+    padding: 0 1rem;
+  }
+}
