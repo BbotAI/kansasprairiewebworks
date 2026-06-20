@@ -386,6 +386,8 @@ p {
   align-items: center;
   gap: 0.25rem;
   list-style: none;
+  min-height: 0;
+  contain: layout;
 }
 
 .navbar__links a {
@@ -586,6 +588,7 @@ p {
 .hero {
   position: relative;
   min-height: 100vh;
+  min-height: 420px;
   display: flex;
   align-items: center;
   justify-content: center;
