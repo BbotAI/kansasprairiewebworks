@@ -3876,4 +3876,5 @@ section.service-faq .section__header h2 {
 .blog-callout a {
   color: var(--accent, #E67E22);
   font-weight: 700;
+  touch-action: manipulation;
 }
