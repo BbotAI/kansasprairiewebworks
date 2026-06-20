@@ -302,8 +302,12 @@ p {
 
 .btn--large {
   font-size: 1.125rem;
-  padding: 1.125rem 2.5rem;
+  padding: 14px 20px;
   border-radius: 10px;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.3;
+  word-break: break-word;
 }
 
 .btn--sm {
@@ -3855,4 +3859,18 @@ section.service-faq .section__header h2 {
   border: none !important;
   border-radius: 0 !important;
   box-shadow: none !important;
+}
+
+/* ============================================================
+   BLOG CALLOUT — SERVICE PAGE VISIBILITY
+   ============================================================ */
+
+.blog-callout {
+  color: #ffffff;
+  opacity: 1 !important;
+}
+
+.blog-callout a {
+  color: var(--accent, #E67E22);
+  font-weight: 700;
 }
