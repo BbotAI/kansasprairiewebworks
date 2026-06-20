@@ -3764,3 +3764,95 @@ section.service-faq .section__header h2 {
     padding: 0 1rem;
   }
 }
+
+/* ============================================================
+   FIX V7 — MOBILE NAV SUB-ITEMS READABILITY
+   ============================================================ */
+
+.navbar__mobile-submenu li a {
+  color: #ffffff !important;
+  font-weight: 500 !important;
+  font-size: 0.95rem !important;
+  padding-left: 2.5rem !important;
+  border-left: 3px solid var(--primary) !important;
+  margin-left: 0 !important;
+}
+
+.navbar__mobile-submenu li a:hover {
+  color: var(--primary) !important;
+}
+
+/* ============================================================
+   FIX V7 — BLOG PLACEHOLDER CARDS
+   ============================================================ */
+
+.blog-card--placeholder img {
+  display: none !important;
+}
+
+.blog-card--placeholder .card-body {
+  padding-top: 24px !important;
+}
+
+.blog-card--placeholder {
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+/* ============================================================
+   FIX V7 — BLOG FAQ SECTION SPACING
+   ============================================================ */
+
+#blog-list + .section,
+.blog-faq-section {
+  padding-top: 2rem !important;
+}
+
+/* ============================================================
+   FIX V7 — FAQ CARD QUESTION POSITION
+   ============================================================ */
+
+.faq-item,
+[class*="faq-item"],
+[class*="faq-card"] {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.faq-item__question,
+.faq-item h3,
+[class*="faq-item"] h3,
+[class*="faq-question"] {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  margin: 0 0 12px 0 !important;
+  padding: 0 !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  background: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.faq-item__answer,
+.faq-item p,
+[class*="faq-item"] p,
+[class*="faq-answer"] {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.7 !important;
+  color: #B0C4D8 !important;
+  background: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
