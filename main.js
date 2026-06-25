@@ -432,6 +432,92 @@ document.addEventListener('DOMContentLoaded', function () {
 })();
 
 /* ============================================================
+   10B. BLOG CARD TOGGLE — 2 posts $50 / 4 posts $100
+   ============================================================ */
+(function initBlogToggle() {
+  var blogBtns = document.querySelectorAll('[data-blog-tier]');
+  if (!blogBtns.length) return;
+
+  blogBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var card = btn.closest('.pricing-card');
+      if (!card) return;
+
+      var tier = btn.getAttribute('data-blog-tier');
+      var priceEl = card.querySelector('.blog-card-price');
+      var labelEl = card.querySelector('.blog-monthly-label');
+      var ctaEl   = card.querySelector('.blog-cta');
+
+      if (tier === 'blog-2') {
+        if (priceEl) priceEl.innerHTML = '<sup>$</sup>50';
+        if (labelEl) labelEl.textContent = '2 AI-SEO-optimized posts per month';
+        if (ctaEl)   { ctaEl.textContent = 'Get Started — $50/month'; ctaEl.setAttribute('data-service', 'blog-2-50'); }
+        try { localStorage.setItem('kpw_service', 'blog-2-50'); } catch (e) {}
+      } else if (tier === 'blog-4') {
+        if (priceEl) priceEl.innerHTML = '<sup>$</sup>100';
+        if (labelEl) labelEl.textContent = '4 AI-SEO-optimized posts per month';
+        if (ctaEl)   { ctaEl.textContent = 'Get Started — $100/month'; ctaEl.setAttribute('data-service', 'blog-4-100'); }
+        try { localStorage.setItem('kpw_service', 'blog-4-100'); } catch (e) {}
+      }
+    });
+  });
+})();
+
+/* ============================================================
+   10C. SERVICE SELECTION TRACKING + INTAKE FORM PRE-POPULATION
+   ============================================================ */
+(function initServiceTracking() {
+  var LABELS = {
+    'fb-100':       'Facebook Posting — 8 posts/month — $100/month',
+    'gb-100':       'Google Business Posting — 8 posts/month — $100/month',
+    'combined-150': 'Facebook + Google Combined — $150/month',
+    'blog-2-50':    'Blog Writing — 2 posts/month — $50/month',
+    'blog-4-100':   'Blog Writing — 4 posts/month — $100/month'
+  };
+
+  // Store service when any card CTA is clicked
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-service]');
+    if (!btn) return;
+    var svc = btn.getAttribute('data-service');
+    if (svc) { try { localStorage.setItem('kpw_service', svc); } catch (e) {} }
+  });
+
+  // Push stored selection into the intake form
+  function syncForm() {
+    var displayEl = document.getElementById('kpw-service-text');
+    var hiddenEl  = document.getElementById('kpw-service-hidden');
+    var manualEl  = document.getElementById('kpw-service-manual');
+    if (!displayEl || !hiddenEl) return;
+    var svc;
+    try { svc = localStorage.getItem('kpw_service'); } catch (e) {}
+    if (svc && LABELS[svc]) {
+      displayEl.textContent = LABELS[svc];
+      hiddenEl.value = svc;
+      if (manualEl) manualEl.value = svc;
+    }
+  }
+
+  syncForm();
+  window.addEventListener('hashchange', function () {
+    if (window.location.hash === '#blog-intake') syncForm();
+  });
+
+  // Keep manual dropdown synced back to hidden field and display
+  var manualEl = document.getElementById('kpw-service-manual');
+  if (manualEl) {
+    manualEl.addEventListener('change', function () {
+      var svc = this.value;
+      var displayEl = document.getElementById('kpw-service-text');
+      var hiddenEl  = document.getElementById('kpw-service-hidden');
+      if (displayEl) displayEl.textContent = svc ? (LABELS[svc] || svc) : 'Choose a service above to auto-fill, or select below.';
+      if (hiddenEl)  hiddenEl.value = svc;
+      try { localStorage.setItem('kpw_service', svc); } catch (e) {}
+    });
+  }
+})();
+
+/* ============================================================
    11. PORTFOLIO FILTER
    ============================================================ */
 (function initPortfolioFilter() {

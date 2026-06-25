@@ -97,7 +97,7 @@
             <li><span class="check-icon" aria-hidden="true">&#10003;</span> Blog posts shared to Facebook on publish day</li>
             <li><span class="check-icon" aria-hidden="true">&#10003;</span> Monthly content calendar sent to you</li>
           </ul>
-          <a href="contact.html" class="btn btn--outline-orange" style="width:100%;justify-content:center;">Get Started</a>
+          <a href="#blog-intake" class="btn btn--outline-orange" data-service="fb-100" style="width:100%;justify-content:center;">Get Started</a>
         </div>
         <div class="pricing-card card-elevated animate-on-scroll animate-delay-2">
           <div class="pricing-card__tier"><i class="fab fa-google" style="color:var(--primary);margin-right:0.5rem;" aria-hidden="true"></i> Google Business Posting</div>
@@ -112,7 +112,7 @@
             <li><span class="check-icon" aria-hidden="true">&#10003;</span> Blog posts shared to Google Business on publish day</li>
             <li><span class="check-icon" aria-hidden="true">&#10003;</span> Signals ongoing activity to Google&rsquo;s algorithm</li>
           </ul>
-          <a href="contact.html" class="btn btn--outline-orange" style="width:100%;justify-content:center;">Get Started</a>
+          <a href="#blog-intake" class="btn btn--outline-orange" data-service="gb-100" style="width:100%;justify-content:center;">Get Started</a>
         </div>
         <div class="pricing-card pricing-card--featured animate-on-scroll animate-delay-3">
           <span class="pricing-card__badge">&#128293; Best Value &mdash; Save $50/mo</span>
@@ -128,22 +128,25 @@
             <li><span class="check-icon" aria-hidden="true">&#10003;</span> Unified content strategy across both platforms</li>
             <li><span class="check-icon" aria-hidden="true">&#10003;</span> Best value for full local business visibility</li>
           </ul>
-          <a href="contact.html" class="btn btn--primary" style="width:100%;justify-content:center;">Get Started</a>
+          <a href="#blog-intake" class="btn btn--primary" data-service="combined-150" style="width:100%;justify-content:center;">Get Started</a>
         </div>
         <div class="pricing-card card-elevated animate-on-scroll animate-delay-4">
           <div class="pricing-card__tier"><i class="fas fa-pen-nib" style="color:var(--primary);margin-right:0.5rem;" aria-hidden="true"></i> Blog Writing Add-On</div>
-          <div class="pricing-card__price"><sup>$</sup>50</div>
-          <div class="pricing-card__monthly">or $100/month</div>
+          <div class="pricing-card__price blog-card-price"><sup>$</sup>50</div>
+          <div class="pricing-toggle" role="group" aria-label="Blog plan options" style="margin:0.5rem 0 0.75rem;">
+            <button class="pricing-toggle__btn active" data-blog-tier="blog-2" aria-pressed="true">2 Posts &mdash; $50/mo</button>
+            <button class="pricing-toggle__btn" data-blog-tier="blog-4" aria-pressed="false">4 Posts &mdash; $100/mo</button>
+          </div>
+          <p class="blog-monthly-label" style="font-size:0.85rem;color:var(--text-muted);margin-bottom:0.75rem;">2 AI-SEO-optimized posts per month</p>
           <hr class="pricing-card__divider">
           <ul class="pricing-card__features">
-            <li><span class="check-icon" aria-hidden="true">&#10003;</span> <strong>Option A &mdash; $50/mo:</strong> 2 AI-SEO posts/month</li>
-            <li><span class="check-icon" aria-hidden="true">&#10003;</span> <strong>Option B &mdash; $100/mo:</strong> 4 AI-SEO posts/month</li>
             <li><span class="check-icon" aria-hidden="true">&#10003;</span> Written for your specific business &amp; services</li>
             <li><span class="check-icon" aria-hidden="true">&#10003;</span> Local keyword targeting</li>
             <li><span class="check-icon" aria-hidden="true">&#10003;</span> Published directly to your website</li>
             <li><span class="check-icon" aria-hidden="true">&#10003;</span> Shared to Google Business &amp; Facebook on publish day</li>
+            <li><span class="check-icon" aria-hidden="true">&#10003;</span> You review and approve before publish</li>
           </ul>
-          <a href="#blog-intake" class="btn btn--outline-orange" style="width:100%;justify-content:center;">Get Started &mdash; From $50/month</a>
+          <a href="#blog-intake" class="btn btn--outline-orange blog-cta" data-service="blog-2-50" style="width:100%;justify-content:center;">Get Started &mdash; $50/month</a>
         </div>
       </div>
       <p style="text-align:center;font-size:0.85rem;color:var(--text-muted);margin-top:1.5rem;" class="animate-on-scroll">All posting services require a short content intake form. Available standalone or added to any existing tier.</p>
@@ -153,11 +156,28 @@
   <section class="section" id="blog-intake" style="background:var(--section-alt);" aria-labelledby="intake-heading">
     <div class="container" style="max-width:760px;">
       <div class="section__header animate-on-scroll">
-        <h2 id="intake-heading" style="color:var(--dark);">Blog Intake <span class="text-pop">Form</span></h2>
-        <p>Start your first blog post. Fill this out and we'll handle the rest.</p>
+        <h2 id="intake-heading" style="color:var(--dark);">Posting Services <span class="text-pop">Intake Form</span></h2>
+        <p>Tell us which services you&rsquo;re starting with. We&rsquo;ll review and reach out within 1 business day.</p>
       </div>
       <form class="contact-form" id="blogIntakeForm" action="https://formspree.io/f/xdavwdpq" method="POST" novalidate>
-        <input type="hidden" name="_subject" value="New Inquiry — Kansas Prairie Webworks">
+        <input type="hidden" name="_subject" value="New Posting Services Inquiry — Kansas Prairie Webworks">
+        <input type="hidden" name="selected_service" id="kpw-service-hidden" value="">
+        <div style="background:var(--white);border:2px solid var(--primary);border-radius:8px;padding:1rem;margin-bottom:0.75rem;">
+          <div style="font-size:0.72rem;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.35rem;">Selected Service</div>
+          <div id="kpw-service-text" style="font-size:1rem;font-weight:600;color:var(--dark);">Choose a service above to auto-fill, or select below.</div>
+        </div>
+        <div class="form-group" style="margin-bottom:1.5rem;">
+          <label for="kpw-service-manual">Service Selection *</label>
+          <select id="kpw-service-manual" name="service_selection" required>
+            <option value="">-- Select a service --</option>
+            <option value="fb-100">Facebook Posting &mdash; 8 posts/month &mdash; $100/month</option>
+            <option value="gb-100">Google Business Posting &mdash; 8 posts/month &mdash; $100/month</option>
+            <option value="combined-150">Facebook + Google Combined &mdash; $150/month</option>
+            <option value="blog-2-50">Blog Writing &mdash; 2 posts/month &mdash; $50/month</option>
+            <option value="blog-4-100">Blog Writing &mdash; 4 posts/month &mdash; $100/month</option>
+          </select>
+          <span class="form-error" id="serviceError" role="alert"></span>
+        </div>
         <div class="form-group--row">
           <div class="form-group">
             <label for="blogName">Your Name *</label>
@@ -221,9 +241,9 @@
           <textarea id="blogNotes" name="notes" placeholder="Anything else we should know about your business, your customers, or your content goals?"></textarea>
         </div>
         <button type="submit" class="btn btn--primary btn--large" style="width:100%;justify-content:center;">
-          <i class="fas fa-paper-plane" aria-hidden="true"></i> Submit Blog Intake Form
+          <i class="fas fa-paper-plane" aria-hidden="true"></i> Submit Intake Form
         </button>
-        <div class="form-success" role="alert">Thank you! We'll reach out within 1 business day to confirm your first post topic.</div>
+        <div class="form-success" role="alert">Thank you! We&rsquo;ll reach out within 1 business day to confirm your services and get started.</div>
       </form>
     </div>
   </section>
