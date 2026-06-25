@@ -209,10 +209,11 @@
 <main id="main-content">
 
   <!-- ═══ VIDEO INTRO ═══ -->
-  <section style="background:var(--dark);line-height:0;overflow:hidden;" aria-label="AI Services introduction video">
-    <video autoplay muted playsinline style="width:100%;display:block;max-height:90vh;object-fit:cover;" aria-label="Kansas Prairie Webworks AI-powered content pipeline introduction">
+  <section style="background:var(--dark);line-height:0;overflow:hidden;position:relative;" aria-label="AI Services introduction video">
+    <video id="kpw-intro-video" autoplay muted playsinline style="width:100%;display:block;max-height:90vh;object-fit:cover;" aria-label="Kansas Prairie Webworks AI-powered content pipeline introduction">
       <source src="ai-services-intro.mp4" type="video/mp4">
     </video>
+    <button id="kpw-unmute-btn" onclick="var v=document.getElementById('kpw-intro-video');v.muted=false;v.currentTime=0;v.play();this.style.display='none';" aria-label="Unmute video" style="position:absolute;bottom:28px;right:28px;background:rgba(0,0,0,0.65);border:2px solid rgba(255,255,255,0.7);color:#fff;border-radius:50%;width:56px;height:56px;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);transition:transform 0.15s;">&#x1F507;</button>
   </section>
 
   <!-- ═══ SECTION 1 — HERO ═══ -->
