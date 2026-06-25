@@ -451,12 +451,12 @@ document.addEventListener('DOMContentLoaded', function () {
       if (tier === 'blog-2') {
         if (priceEl) priceEl.innerHTML = '<sup>$</sup>50';
         if (labelEl) labelEl.textContent = '2 AI-SEO-optimized posts per month';
-        if (ctaEl)   { ctaEl.textContent = 'Get Started — $50/month'; ctaEl.setAttribute('data-service', 'blog-2-50'); }
+        if (ctaEl)   { ctaEl.textContent = 'Get Started'; ctaEl.setAttribute('data-service', 'blog-2-50'); }
         try { localStorage.setItem('kpw_service', 'blog-2-50'); } catch (e) {}
       } else if (tier === 'blog-4') {
         if (priceEl) priceEl.innerHTML = '<sup>$</sup>100';
         if (labelEl) labelEl.textContent = '4 AI-SEO-optimized posts per month';
-        if (ctaEl)   { ctaEl.textContent = 'Get Started — $100/month'; ctaEl.setAttribute('data-service', 'blog-4-100'); }
+        if (ctaEl)   { ctaEl.textContent = 'Get Started'; ctaEl.setAttribute('data-service', 'blog-4-100'); }
         try { localStorage.setItem('kpw_service', 'blog-4-100'); } catch (e) {}
       }
     });
