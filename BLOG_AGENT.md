@@ -27,11 +27,13 @@ Open Claude Code in the kpw-build folder and type:
 Slot 1: LIVE — Do You Need a Website in 2026?
 Slot 2: LIVE — Meet Kaleb — Your Local Web Designer in Salina KS
 Slot 3: LIVE — How AI Is Changing What Small Businesses Can Do Online
-Slot 4: LIVE — Single Page vs Multi-Page Website
+Slot 4: LIVE — Single Page vs Multi-Page Website — Which Do You Need?
 Slot 5: LIVE — Does My Small Business Need a Website?
 Slot 6: PLACEHOLDER
 Slot 7: PLACEHOLDER
 Slot 8: PLACEHOLDER
+
+Last updated: 2026-06-25
 
 ## SITE STRUCTURE
 Blog page:    blog.html
