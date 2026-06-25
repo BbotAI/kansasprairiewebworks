@@ -362,49 +362,67 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /* ============================================================
-   10. PRICING TOGGLE — Tier 4: $150 maintenance / $350 active
+   10. PRICING TOGGLE — Top Tier: $150 maintenance / $350 active
    ============================================================ */
 (function initPricingToggle() {
-  const toggleBtns = document.querySelectorAll('.pricing-toggle__btn');
+  var MAINTENANCE_BULLETS = [
+    'Full multi-page website — Home, About, Services, Service Area, Contact',
+    'Google Business Profile — setup, verification &amp; optimization',
+    'Facebook Business Page — setup, branding &amp; optimization',
+    'Business directory listings (Yelp, Bing, Apple Maps &amp; more)',
+    'Monthly website maintenance — service updates, images, hours, page edits',
+    'One client communication update per month (add/remove services, update info)',
+    'SSL, hosting, domain management handled by KPW',
+    'Website files provided on request if you cancel'
+  ];
+
+  var ACTIVE_BULLETS = [
+    'Everything in the $150/mo plan',
+    '4 Google Business posts per week — offers, updates, events, photos',
+    '4–8 Facebook posts per week — local content, seasonal, engagement prompts',
+    '2–4 blog posts per month published to your website',
+    'All content generated from your AI intake form — your services, images, voice',
+    'Geographic SEO keyword research — 25 topics generated, top 3 used each cycle',
+    'Client image portal — upload photos by service category, our system indexes and uses them',
+    'KPW Legacy Brain — your business data retained and used for every post, forever',
+    'Content calendar sent monthly',
+    'Website files provided on request if you cancel'
+  ];
+
+  function renderBullets(list, bullets) {
+    list.innerHTML = bullets.map(function (text) {
+      return '<li><span class="check-icon" aria-hidden="true">&#10003;</span> ' + text + '</li>';
+    }).join('');
+  }
+
+  var toggleBtns = document.querySelectorAll('.pricing-toggle__btn');
   if (!toggleBtns.length) return;
 
   toggleBtns.forEach(function (btn) {
     btn.addEventListener('click', function () {
-      const group = btn.closest('.pricing-card') || btn.closest('.pricing-toggle-group');
+      var group = btn.closest('.pricing-card') || btn.closest('.pricing-toggle-group');
       if (!group) return;
 
       group.querySelectorAll('.pricing-toggle__btn').forEach(function (b) {
         b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
       });
       btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
 
-      const tier = btn.getAttribute('data-tier');
-      const priceEl = group.querySelector('.tier4-price');
-      const monthlyEl = group.querySelector('.tier4-monthly-label');
-      const featuresList = group.querySelector('.tier4-features');
+      var tier = btn.getAttribute('data-tier');
+      var priceEl = group.querySelector('.pricing-card__price');
+      var monthlyEl = group.querySelector('.tier4-monthly-label');
+      var featuresList = group.querySelector('.tier4-features');
 
       if (tier === 'maintenance') {
-        if (priceEl) priceEl.textContent = '$150';
+        if (priceEl) priceEl.innerHTML = '<sup>$</sup>1,200';
         if (monthlyEl) monthlyEl.textContent = '/month — Maintenance';
-        if (featuresList) {
-          featuresList.querySelectorAll('.active-content-only').forEach(function (li) {
-            li.style.display = 'none';
-          });
-          featuresList.querySelectorAll('.maintenance-only').forEach(function (li) {
-            li.style.display = '';
-          });
-        }
+        if (featuresList) renderBullets(featuresList, MAINTENANCE_BULLETS);
       } else if (tier === 'active') {
-        if (priceEl) priceEl.textContent = '$350';
+        if (priceEl) priceEl.innerHTML = '<sup>$</sup>800';
         if (monthlyEl) monthlyEl.textContent = '/month — Active Content';
-        if (featuresList) {
-          featuresList.querySelectorAll('.active-content-only').forEach(function (li) {
-            li.style.display = '';
-          });
-          featuresList.querySelectorAll('.maintenance-only').forEach(function (li) {
-            li.style.display = 'none';
-          });
-        }
+        if (featuresList) renderBullets(featuresList, ACTIVE_BULLETS);
       }
     });
   });
