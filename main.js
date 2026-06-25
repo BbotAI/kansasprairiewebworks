@@ -414,15 +414,18 @@ document.addEventListener('DOMContentLoaded', function () {
       var priceEl = group.querySelector('.pricing-card__price');
       var monthlyEl = group.querySelector('.tier4-monthly-label');
       var featuresList = group.querySelector('.tier4-features');
+      var noteEl = group.querySelector('.tier4-note');
 
       if (tier === 'maintenance') {
         if (priceEl) priceEl.innerHTML = '<sup>$</sup>1,200';
         if (monthlyEl) monthlyEl.textContent = '/month — Maintenance';
         if (featuresList) renderBullets(featuresList, MAINTENANCE_BULLETS);
+        if (noteEl) noteEl.textContent = '$1,200 setup + 3 months at $150/month covers your complete build and onboarding. Then $150/month ongoing.';
       } else if (tier === 'active') {
         if (priceEl) priceEl.innerHTML = '<sup>$</sup>800';
         if (monthlyEl) monthlyEl.textContent = '/month — Active Content';
         if (featuresList) renderBullets(featuresList, ACTIVE_BULLETS);
+        if (noteEl) noteEl.textContent = '$800 setup covers startup and first month. $350/month billed 30 days after start date — continues until written cancellation per terms.';
       }
     });
   });
