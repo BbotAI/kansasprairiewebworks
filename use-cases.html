@@ -151,11 +151,18 @@
       border-radius: 50%;
       position: relative;
       overflow: hidden;
-      background: radial-gradient(circle at 35% 30%, #F1C40F 0%, #E67E22 55%, #B85C0F 100%);
+      background:
+        radial-gradient(circle at 28% 38%, #00D4FF 0%, #3B82F6 30%, #1E3A8A 55%, transparent 75%),
+        radial-gradient(circle at 72% 38%, #F1C40F 0%, #E67E22 30%, #7C2D12 55%, transparent 75%),
+        radial-gradient(circle at 50% 60%, #1A252F 0%, #10171F 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 0 1px rgba(241,196,15,0.25), 0 0 40px rgba(230,126,34,0.35);
+      box-shadow:
+        -8px 0 30px rgba(0,212,255,0.4),
+        8px 0 30px rgba(230,126,34,0.45),
+        0 0 15px rgba(224,64,251,0.3),
+        0 0 0 1px rgba(255,255,255,0.08);
     }
     .uc-hub-inner {
       position: relative;
@@ -163,11 +170,13 @@
       text-align: center;
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
-      color: #10171F;
-      font-size: 13px;
-      line-height: 1.25;
+      color: #F4F1EA;
+      font-size: 12px;
+      line-height: 1.3;
+      text-shadow: 0 0 6px rgba(0,0,0,0.6);
     }
-    /* --- brain/circuit hub visual (shared by top hub + Loop Closed ring) --- */
+    /* --- brain/circuit hub visual: hologram color-fusion (shared by top hub + Loop Closed ring) --- */
+    /* left hemisphere = blue/cyan, right hemisphere = orange/gold, center seam = magenta */
     .uc-brain-svg {
       position: absolute;
       inset: 0;
@@ -180,21 +189,26 @@
       fill: none;
       stroke-width: 1;
       stroke-linecap: round;
-      opacity: 0.85;
-      filter: drop-shadow(0 0 1px rgba(26,37,47,0.6));
+      opacity: 0.95;
     }
+    .uc-brain-svg .uc-brain-line--blue   { filter: drop-shadow(0 0 1.5px rgba(59,130,246,0.95)) drop-shadow(0 0 4px rgba(0,212,255,0.6)); }
+    .uc-brain-svg .uc-brain-line--orange { filter: drop-shadow(0 0 1.5px rgba(230,126,34,0.95)) drop-shadow(0 0 4px rgba(241,196,15,0.6)); }
+    .uc-brain-svg .uc-brain-line--seam   { stroke: #E040FB; stroke-width: 1.3; filter: drop-shadow(0 0 2px rgba(224,64,251,1)) drop-shadow(0 0 6px rgba(224,64,251,0.7)); }
+    .uc-brain-svg .uc-brain-line--cross  { filter: drop-shadow(0 0 2px rgba(224,64,251,0.7)); }
+    .uc-brain-svg .uc-wisp { filter: blur(1.6px); }
     .uc-brain-svg .uc-brain-node {
-      filter: drop-shadow(0 0 2.5px rgba(241,196,15,0.95));
-      animation: uc-node-pulse 2.6s ease-in-out infinite;
+      animation: uc-node-pulse 2.4s ease-in-out infinite;
     }
-    .uc-brain-svg .uc-brain-node-core { fill: #FFF8E7; opacity: 0.9; }
-    .uc-brain-svg .uc-brain-node:nth-of-type(2) { animation-delay: 0.25s; }
-    .uc-brain-svg .uc-brain-node:nth-of-type(3) { animation-delay: 0.5s; }
-    .uc-brain-svg .uc-brain-node:nth-of-type(4) { animation-delay: 0.75s; }
-    .uc-brain-svg .uc-brain-node:nth-of-type(5) { animation-delay: 1s; }
-    .uc-brain-svg .uc-brain-node:nth-of-type(6) { animation-delay: 1.25s; }
-    .uc-brain-svg .uc-brain-node:nth-of-type(7) { animation-delay: 1.5s; }
-    @keyframes uc-node-pulse { 0%, 100% { opacity: 0.65; } 50% { opacity: 1; } }
+    .uc-brain-svg .uc-brain-node--blue   { filter: drop-shadow(0 0 1.5px rgba(255,255,255,0.95)) drop-shadow(0 0 6px rgba(0,212,255,0.9)); }
+    .uc-brain-svg .uc-brain-node--orange { filter: drop-shadow(0 0 1.5px rgba(255,255,255,0.95)) drop-shadow(0 0 6px rgba(241,196,15,0.9)); }
+    .uc-brain-svg .uc-brain-node--seam   { filter: drop-shadow(0 0 1.5px rgba(255,255,255,0.95)) drop-shadow(0 0 6px rgba(224,64,251,0.9)); }
+    .uc-brain-svg .uc-brain-node:nth-of-type(2) { animation-delay: 0.3s; }
+    .uc-brain-svg .uc-brain-node:nth-of-type(3) { animation-delay: 0.6s; }
+    .uc-brain-svg .uc-brain-node:nth-of-type(4) { animation-delay: 0.9s; }
+    .uc-brain-svg .uc-brain-node:nth-of-type(5) { animation-delay: 1.2s; }
+    .uc-brain-svg .uc-brain-node:nth-of-type(6) { animation-delay: 1.5s; }
+    .uc-brain-svg .uc-brain-node:nth-of-type(7) { animation-delay: 1.8s; }
+    @keyframes uc-node-pulse { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
     .uc-hub-label {
       text-align: center;
       font-family: 'JetBrains Mono', monospace;
@@ -309,20 +323,34 @@
       border-radius: 50%;
       position: relative;
       overflow: hidden;
-      background: radial-gradient(circle at 35% 30%, #F1C40F, #E67E22 60%, #B85C0F 100%);
+      background:
+        radial-gradient(circle at 28% 38%, #00D4FF 0%, #3B82F6 30%, #1E3A8A 55%, transparent 75%),
+        radial-gradient(circle at 72% 38%, #F1C40F 0%, #E67E22 30%, #7C2D12 55%, transparent 75%),
+        radial-gradient(circle at 50% 60%, #1A252F 0%, #10171F 100%);
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
-      color: #10171F;
-      font-size: 11px;
-      box-shadow: 0 0 30px rgba(230,126,34,0.3);
+      color: #F4F1EA;
+      font-size: 10.5px;
+      box-shadow:
+        -6px 0 22px rgba(0,212,255,0.45),
+        6px 0 22px rgba(230,126,34,0.5),
+        0 0 12px rgba(224,64,251,0.3),
+        0 0 0 1px rgba(255,255,255,0.08);
       opacity: 0.25;
       transition: opacity 0.6s ease, box-shadow 0.6s ease;
     }
-    .uc-footer-hub .uc-ring.lit { opacity: 1; box-shadow: 0 0 45px rgba(230,126,34,0.55); }
-    .uc-ring-label { position: relative; z-index: 1; }
+    .uc-footer-hub .uc-ring.lit {
+      opacity: 1;
+      box-shadow:
+        -8px 0 28px rgba(0,212,255,0.55),
+        8px 0 28px rgba(230,126,34,0.6),
+        0 0 16px rgba(224,64,251,0.4),
+        0 0 0 1px rgba(255,255,255,0.1);
+    }
+    .uc-ring-label { position: relative; z-index: 1; text-shadow: 0 0 6px rgba(0,0,0,0.6); }
     .uc-footer-note { text-align: center; font-size: 13px; color: #8B96A2; max-width: 420px; margin: 0 auto; line-height: 1.5; }
     .uc-human-tag {
       display: inline-block;
@@ -575,41 +603,58 @@
         <div class="uc-hub">
           <svg class="uc-brain-svg" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
             <defs>
-              <linearGradient id="uc-brain-grad-hub" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#1A252F"/>
-                <stop offset="50%" stop-color="#E67E22"/>
-                <stop offset="100%" stop-color="#F1C40F"/>
+              <linearGradient id="uc-grad-blue-hub" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1E3A8A"/><stop offset="55%" stop-color="#3B82F6"/><stop offset="100%" stop-color="#00D4FF"/>
               </linearGradient>
-              <radialGradient id="uc-node-grad-hub" cx="35%" cy="30%" r="70%">
-                <stop offset="0%" stop-color="#FFF4D6"/>
-                <stop offset="45%" stop-color="#F1C40F"/>
-                <stop offset="100%" stop-color="#E67E22"/>
+              <linearGradient id="uc-grad-orange-hub" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#7C2D12"/><stop offset="55%" stop-color="#E67E22"/><stop offset="100%" stop-color="#F1C40F"/>
+              </linearGradient>
+              <linearGradient id="uc-grad-cross-hub" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#00D4FF"/><stop offset="50%" stop-color="#E040FB"/><stop offset="100%" stop-color="#F1C40F"/>
+              </linearGradient>
+              <radialGradient id="uc-node-white-hub" cx="35%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#FFFFFF"/><stop offset="65%" stop-color="#FDF6E3"/><stop offset="100%" stop-color="#FDF6E3" stop-opacity="0.75"/>
               </radialGradient>
             </defs>
-            <path class="uc-brain-line" style="stroke:url(#uc-brain-grad-hub)" d="M50,9 Q29,17 20,34"/>
-            <path class="uc-brain-line" style="stroke:url(#uc-brain-grad-hub)" d="M50,9 Q71,17 80,34"/>
-            <path class="uc-brain-line" style="stroke:url(#uc-brain-grad-hub)" d="M20,34 Q12,50 20,67"/>
-            <path class="uc-brain-line" style="stroke:url(#uc-brain-grad-hub)" d="M80,34 Q88,50 80,67"/>
-            <path class="uc-brain-line" style="stroke:url(#uc-brain-grad-hub)" d="M20,67 Q29,83 50,91"/>
-            <path class="uc-brain-line" style="stroke:url(#uc-brain-grad-hub)" d="M80,67 Q71,83 50,91"/>
-            <path class="uc-brain-line" style="stroke:url(#uc-brain-grad-hub)" d="M20,34 Q50,43 80,34"/>
-            <path class="uc-brain-line" style="stroke:url(#uc-brain-grad-hub)" d="M20,67 Q50,58 80,67"/>
-            <path class="uc-brain-line" style="stroke:url(#uc-brain-grad-hub)" d="M50,9 L50,32" opacity="0.55"/>
-            <path class="uc-brain-line" style="stroke:url(#uc-brain-grad-hub)" d="M50,68 L50,91" opacity="0.55"/>
-            <path class="uc-brain-line" style="stroke:url(#uc-brain-grad-hub)" d="M50,50 L20,34" opacity="0.6"/>
-            <path class="uc-brain-line" style="stroke:url(#uc-brain-grad-hub)" d="M50,50 L80,34" opacity="0.6"/>
-            <path class="uc-brain-line" style="stroke:url(#uc-brain-grad-hub)" d="M50,50 L20,67" opacity="0.6"/>
-            <path class="uc-brain-line" style="stroke:url(#uc-brain-grad-hub)" d="M50,50 L80,67" opacity="0.6"/>
-            <circle class="uc-brain-node" style="fill:url(#uc-node-grad-hub)" cx="50" cy="9" r="2.6"/>
-            <circle class="uc-brain-node" style="fill:url(#uc-node-grad-hub)" cx="20" cy="34" r="2.1"/>
-            <circle class="uc-brain-node" style="fill:url(#uc-node-grad-hub)" cx="80" cy="34" r="2.1"/>
-            <circle class="uc-brain-node" style="fill:url(#uc-node-grad-hub)" cx="20" cy="67" r="2.1"/>
-            <circle class="uc-brain-node" style="fill:url(#uc-node-grad-hub)" cx="80" cy="67" r="2.1"/>
-            <circle class="uc-brain-node" style="fill:url(#uc-node-grad-hub)" cx="50" cy="91" r="2.6"/>
-            <circle class="uc-brain-node" style="fill:url(#uc-node-grad-hub)" cx="50" cy="50" r="2.2"/>
-            <circle class="uc-brain-node-core" cx="50" cy="9" r="0.9"/>
-            <circle class="uc-brain-node-core" cx="50" cy="91" r="0.9"/>
-            <circle class="uc-brain-node-core" cx="50" cy="50" r="0.8"/>
+
+            <!-- wisps: soft blurred streaks near rim, blue left / orange right -->
+            <path class="uc-wisp" d="M12,28 Q8,24 4,26" stroke="#00D4FF" stroke-width="1.2" fill="none" opacity="0.5" stroke-linecap="round"/>
+            <path class="uc-wisp" d="M10,55 Q4,56 2,60" stroke="#3B82F6" stroke-width="1.2" fill="none" opacity="0.45" stroke-linecap="round"/>
+            <path class="uc-wisp" d="M88,28 Q92,24 96,27" stroke="#F1C40F" stroke-width="1.2" fill="none" opacity="0.5" stroke-linecap="round"/>
+            <path class="uc-wisp" d="M90,55 Q96,57 98,53" stroke="#E67E22" stroke-width="1.2" fill="none" opacity="0.45" stroke-linecap="round"/>
+
+            <!-- left (blue) branch -->
+            <path class="uc-brain-line uc-brain-line--blue" style="stroke:url(#uc-grad-blue-hub)" d="M50,9 Q29,17 20,34"/>
+            <path class="uc-brain-line uc-brain-line--blue" style="stroke:url(#uc-grad-blue-hub)" d="M20,34 Q12,50 20,67"/>
+            <path class="uc-brain-line uc-brain-line--blue" style="stroke:url(#uc-grad-blue-hub)" d="M20,67 Q29,83 50,91"/>
+
+            <!-- right (orange) branch -->
+            <path class="uc-brain-line uc-brain-line--orange" style="stroke:url(#uc-grad-orange-hub)" d="M50,9 Q71,17 80,34"/>
+            <path class="uc-brain-line uc-brain-line--orange" style="stroke:url(#uc-grad-orange-hub)" d="M80,34 Q88,50 80,67"/>
+            <path class="uc-brain-line uc-brain-line--orange" style="stroke:url(#uc-grad-orange-hub)" d="M80,67 Q71,83 50,91"/>
+
+            <!-- hemisphere-crossing lines: blue -> magenta -> orange -->
+            <path class="uc-brain-line uc-brain-line--cross" style="stroke:url(#uc-grad-cross-hub)" d="M20,34 Q50,43 80,34"/>
+            <path class="uc-brain-line uc-brain-line--cross" style="stroke:url(#uc-grad-cross-hub)" d="M20,67 Q50,58 80,67"/>
+
+            <!-- vertical seam -->
+            <path class="uc-brain-line uc-brain-line--seam" d="M50,9 L50,32"/>
+            <path class="uc-brain-line uc-brain-line--seam" d="M50,68 L50,91"/>
+
+            <!-- center spokes -->
+            <path class="uc-brain-line uc-brain-line--blue" style="stroke:url(#uc-grad-blue-hub)" d="M50,50 L20,34"/>
+            <path class="uc-brain-line uc-brain-line--orange" style="stroke:url(#uc-grad-orange-hub)" d="M50,50 L80,34"/>
+            <path class="uc-brain-line uc-brain-line--blue" style="stroke:url(#uc-grad-blue-hub)" d="M50,50 L20,67"/>
+            <path class="uc-brain-line uc-brain-line--orange" style="stroke:url(#uc-grad-orange-hub)" d="M50,50 L80,67"/>
+
+            <!-- nodes: white-hot core, glow halo colored by hemisphere -->
+            <circle class="uc-brain-node uc-brain-node--seam" style="fill:url(#uc-node-white-hub)" cx="50" cy="9" r="2.7"/>
+            <circle class="uc-brain-node uc-brain-node--blue" style="fill:url(#uc-node-white-hub)" cx="20" cy="34" r="2.1"/>
+            <circle class="uc-brain-node uc-brain-node--orange" style="fill:url(#uc-node-white-hub)" cx="80" cy="34" r="2.1"/>
+            <circle class="uc-brain-node uc-brain-node--blue" style="fill:url(#uc-node-white-hub)" cx="20" cy="67" r="2.1"/>
+            <circle class="uc-brain-node uc-brain-node--orange" style="fill:url(#uc-node-white-hub)" cx="80" cy="67" r="2.1"/>
+            <circle class="uc-brain-node uc-brain-node--seam" style="fill:url(#uc-node-white-hub)" cx="50" cy="91" r="2.7"/>
+            <circle class="uc-brain-node uc-brain-node--seam" style="fill:url(#uc-node-white-hub)" cx="50" cy="50" r="2.3"/>
           </svg>
           <div class="uc-hub-inner">KPW<br>AGENCY<br>BRAIN</div>
         </div>
@@ -723,33 +768,36 @@
           <div class="uc-ring" id="ucLoopRing">
             <svg class="uc-brain-svg" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
               <defs>
-                <linearGradient id="uc-brain-grad-ring" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#1A252F"/>
-                  <stop offset="50%" stop-color="#E67E22"/>
-                  <stop offset="100%" stop-color="#F1C40F"/>
+                <linearGradient id="uc-grad-blue-ring" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#1E3A8A"/><stop offset="55%" stop-color="#3B82F6"/><stop offset="100%" stop-color="#00D4FF"/>
                 </linearGradient>
-                <radialGradient id="uc-node-grad-ring" cx="35%" cy="30%" r="70%">
-                  <stop offset="0%" stop-color="#FFF4D6"/>
-                  <stop offset="45%" stop-color="#F1C40F"/>
-                  <stop offset="100%" stop-color="#E67E22"/>
+                <linearGradient id="uc-grad-orange-ring" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#7C2D12"/><stop offset="55%" stop-color="#E67E22"/><stop offset="100%" stop-color="#F1C40F"/>
+                </linearGradient>
+                <radialGradient id="uc-node-white-ring" cx="35%" cy="30%" r="70%">
+                  <stop offset="0%" stop-color="#FFFFFF"/><stop offset="65%" stop-color="#FDF6E3"/><stop offset="100%" stop-color="#FDF6E3" stop-opacity="0.75"/>
                 </radialGradient>
               </defs>
-              <path class="uc-brain-line" style="stroke:url(#uc-brain-grad-ring)" d="M50,13 Q22,20 18,50"/>
-              <path class="uc-brain-line" style="stroke:url(#uc-brain-grad-ring)" d="M50,13 Q78,20 82,50"/>
-              <path class="uc-brain-line" style="stroke:url(#uc-brain-grad-ring)" d="M18,50 Q22,80 50,87"/>
-              <path class="uc-brain-line" style="stroke:url(#uc-brain-grad-ring)" d="M82,50 Q78,80 50,87"/>
-              <path class="uc-brain-line" style="stroke:url(#uc-brain-grad-ring)" d="M50,50 L50,13" opacity="0.6"/>
-              <path class="uc-brain-line" style="stroke:url(#uc-brain-grad-ring)" d="M50,50 L18,50" opacity="0.6"/>
-              <path class="uc-brain-line" style="stroke:url(#uc-brain-grad-ring)" d="M50,50 L82,50" opacity="0.6"/>
-              <path class="uc-brain-line" style="stroke:url(#uc-brain-grad-ring)" d="M50,50 L50,87" opacity="0.6"/>
-              <circle class="uc-brain-node" style="fill:url(#uc-node-grad-ring)" cx="50" cy="13" r="3.2"/>
-              <circle class="uc-brain-node" style="fill:url(#uc-node-grad-ring)" cx="18" cy="50" r="2.8"/>
-              <circle class="uc-brain-node" style="fill:url(#uc-node-grad-ring)" cx="82" cy="50" r="2.8"/>
-              <circle class="uc-brain-node" style="fill:url(#uc-node-grad-ring)" cx="50" cy="87" r="3.2"/>
-              <circle class="uc-brain-node" style="fill:url(#uc-node-grad-ring)" cx="50" cy="50" r="2.6"/>
-              <circle class="uc-brain-node-core" cx="50" cy="13" r="1.1"/>
-              <circle class="uc-brain-node-core" cx="50" cy="87" r="1.1"/>
-              <circle class="uc-brain-node-core" cx="50" cy="50" r="1"/>
+
+              <!-- wisps -->
+              <path class="uc-wisp" d="M8,38 Q3,35 1,39" stroke="#00D4FF" stroke-width="1.1" fill="none" opacity="0.5" stroke-linecap="round"/>
+              <path class="uc-wisp" d="M92,38 Q97,35 99,39" stroke="#F1C40F" stroke-width="1.1" fill="none" opacity="0.5" stroke-linecap="round"/>
+
+              <!-- simplified pattern: left(blue)/right(orange) arcs + seam, fewer nodes than the hub -->
+              <path class="uc-brain-line uc-brain-line--blue" style="stroke:url(#uc-grad-blue-ring)" d="M50,13 Q22,20 18,50"/>
+              <path class="uc-brain-line uc-brain-line--blue" style="stroke:url(#uc-grad-blue-ring)" d="M18,50 Q22,80 50,87"/>
+              <path class="uc-brain-line uc-brain-line--orange" style="stroke:url(#uc-grad-orange-ring)" d="M50,13 Q78,20 82,50"/>
+              <path class="uc-brain-line uc-brain-line--orange" style="stroke:url(#uc-grad-orange-ring)" d="M82,50 Q78,80 50,87"/>
+              <path class="uc-brain-line uc-brain-line--seam" d="M50,13 L50,50"/>
+              <path class="uc-brain-line uc-brain-line--seam" d="M50,50 L50,87"/>
+              <path class="uc-brain-line uc-brain-line--blue" style="stroke:url(#uc-grad-blue-ring)" d="M50,50 L18,50"/>
+              <path class="uc-brain-line uc-brain-line--orange" style="stroke:url(#uc-grad-orange-ring)" d="M50,50 L82,50"/>
+
+              <circle class="uc-brain-node uc-brain-node--seam" style="fill:url(#uc-node-white-ring)" cx="50" cy="13" r="3.3"/>
+              <circle class="uc-brain-node uc-brain-node--blue" style="fill:url(#uc-node-white-ring)" cx="18" cy="50" r="2.8"/>
+              <circle class="uc-brain-node uc-brain-node--orange" style="fill:url(#uc-node-white-ring)" cx="82" cy="50" r="2.8"/>
+              <circle class="uc-brain-node uc-brain-node--seam" style="fill:url(#uc-node-white-ring)" cx="50" cy="87" r="3.3"/>
+              <circle class="uc-brain-node uc-brain-node--seam" style="fill:url(#uc-node-white-ring)" cx="50" cy="50" r="2.6"/>
             </svg>
             <span class="uc-ring-label">LOOP<br>CLOSED</span>
           </div>
