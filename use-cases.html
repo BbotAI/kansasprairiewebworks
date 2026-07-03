@@ -346,6 +346,70 @@
       overflow: hidden;
     }
     .uc-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 7px; }
+    .uc-card-media--zoomable { position: relative; cursor: pointer; }
+    .uc-zoom-hint {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(16,23,31,0.7);
+      border: 1px solid rgba(244,241,234,0.25);
+      color: #F4F1EA;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      opacity: 0.8;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      pointer-events: none;
+    }
+    .uc-card-media--zoomable:hover .uc-zoom-hint { opacity: 1; transform: scale(1.08); }
+
+    /* --- lightbox --- */
+    .uc-lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(8,10,13,0.93);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 48px 20px;
+      cursor: zoom-out;
+    }
+    .uc-lightbox.is-open { display: flex; }
+    .uc-lightbox__img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      cursor: default;
+    }
+    .uc-lightbox__close {
+      position: fixed;
+      top: 16px;
+      right: 18px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(244,241,234,0.25);
+      background: rgba(16,23,31,0.8);
+      color: #F4F1EA;
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+    .uc-lightbox__close:hover { background: rgba(230,126,34,0.6); }
+    @media (prefers-reduced-motion: reduce) {
+      .uc-zoom-hint { transition: none !important; }
+    }
     .uc-card-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
     .uc-card-link { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #F1C40F; text-decoration: none; border-bottom: 1px solid transparent; }
     .uc-card-link:hover { border-bottom-color: #F1C40F; }
@@ -603,8 +667,9 @@
         <!-- CARD 1: MIKE'S SERVICES -->
         <div class="uc-card">
           <span class="uc-card-badge">Full Online Presence Build</span>
-          <div class="uc-card-media">
+          <div class="uc-card-media uc-card-media--zoomable">
             <img src="images/mikes-services-septic-install.jpg" alt="Mike's Services LLC septic system installation, Central Kansas" width="1200" height="675" loading="lazy">
+            <span class="uc-zoom-hint" aria-hidden="true">&#128269;</span>
           </div>
           <h3 class="uc-card-title">Mike&rsquo;s Services LLC</h3>
           <p class="uc-card-desc">Zero online presence to a fully optimized Google Business Profile, Facebook Page, website, and blog &mdash; each one linking back to the others so customers move naturally between service info and real proof of work.</p>
@@ -639,8 +704,9 @@
         -->
         <div class="uc-card">
           <span class="uc-card-badge orange">Live Data Synthesis</span>
-          <div class="uc-card-media">
+          <div class="uc-card-media uc-card-media--zoomable">
             <img src="images/data-images.jpg" alt="BbotAI Macro Tripwire dashboard showing 12 weighted market signals" width="694" height="505" loading="lazy">
+            <span class="uc-zoom-hint" aria-hidden="true">&#128269;</span>
           </div>
           <h3 class="uc-card-title">BbotAI Macro Tripwire</h3>
           <p class="uc-card-desc">Months of live use, not a demo. Pulls real-time data from five-plus sources &mdash; CoinGecko, Deribit options data, DexScreener, on-chain metrics, macro news &mdash; and synthesizes 12 weighted signals into one plain-English read. Built for personal use, shared informally with a small circle who check it daily.</p>
@@ -660,8 +726,9 @@
         <!-- CARD 3: DOGEBEATS -->
         <div class="uc-card">
           <span class="uc-card-badge">Custom Web App</span>
-          <div class="uc-card-media">
+          <div class="uc-card-media uc-card-media--zoomable">
             <img src="images/dogebeats-screenshot.jpg" alt="DogeBeats.com AI-autonomous music marketplace platform" width="1200" height="675" loading="lazy">
+            <span class="uc-zoom-hint" aria-hidden="true">&#128269;</span>
           </div>
           <h3 class="uc-card-title">DogeBeats &mdash; AI-Autonomous Platform</h3>
           <p class="uc-card-desc">Not every build is a small-business page. DogeBeats is a live AI-powered music marketplace on the Dogecoin ecosystem, processing payments 24/7 with minimal human intervention &mdash; proof this shop can build far beyond a website when a project calls for it.</p>
@@ -758,6 +825,12 @@
 </footer>
 <div class="mobile-sticky" role="navigation" aria-label="Quick actions"><a href="tel:7855777695" class="mobile-sticky__btn" aria-label="Call us"><i class="fas fa-phone" aria-hidden="true"></i><span>Call</span></a><a href="sms:7855777695" class="mobile-sticky__btn" aria-label="Text us"><i class="fas fa-comment-sms" aria-hidden="true"></i><span>Text</span></a><a href="https://www.facebook.com/kansasprairiewebworks" target="_blank" rel="noopener" class="mobile-sticky__btn" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i><span>Facebook</span></a></div>
 <div class="fb-float" id="fbFloat"><button class="fb-float__close" onclick="dismissFbFloat()" aria-label="Close">&#10005;</button><a href="https://m.me/kansasprairiewebworks" target="_blank" rel="noopener" class="fb-float__btn" aria-label="Message us on Facebook Messenger"><i class="fab fa-facebook-messenger" aria-hidden="true"></i><span class="fb-float__label">Message Us</span></a></div>
+
+<div class="uc-lightbox" id="ucLightbox" role="dialog" aria-modal="true" aria-label="Enlarged image viewer" aria-hidden="true">
+  <button class="uc-lightbox__close" id="ucLightboxClose" aria-label="Close enlarged image">&times;</button>
+  <img class="uc-lightbox__img" id="ucLightboxImg" src="" alt="">
+</div>
+
 <script src="main.js?v=2" defer></script>
 <script>
 (function() {
@@ -831,6 +904,51 @@
   } else {
     runCycle();
   }
+})();
+
+/* ═══ CARD IMAGE LIGHTBOX ═══ */
+(function() {
+  var lightbox = document.getElementById('ucLightbox');
+  var lightboxImg = document.getElementById('ucLightboxImg');
+  var closeBtn = document.getElementById('ucLightboxClose');
+  if (!lightbox || !lightboxImg || !closeBtn) return;
+
+  var triggers = document.querySelectorAll('.uc-card-media--zoomable img');
+
+  function openLightbox(src, alt) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '';
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    lightboxImg.src = '';
+  }
+
+  triggers.forEach(function(img) {
+    img.addEventListener('click', function() {
+      openLightbox(img.currentSrc || img.src, img.alt);
+    });
+  });
+
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  lightboxImg.addEventListener('click', function(e) {
+    e.stopPropagation();
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+  });
 })();
 </script>
 </body>
