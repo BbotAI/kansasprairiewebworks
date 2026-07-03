@@ -1,0 +1,9 @@
+{
+  "name": "run-kpw-build-skill",
+  "private": true,
+  "description": "Playwright driver for visual QA of the kpw-build static site (screenshots, mobile viewport emulation, interaction testing). Not part of the deployed site — agent tooling only.",
+  "type": "module",
+  "dependencies": {
+    "playwright": "1.61.1"
+  }
+}
