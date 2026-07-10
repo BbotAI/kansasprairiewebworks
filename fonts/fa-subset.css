@@ -1,0 +1,88 @@
+/*!
+ * Font Awesome 6.5.0 subset — self-hosted, 52 icons actually used on this site
+ * Source: Font Awesome Free (https://fontawesome.com)
+ * License: Icons CC BY 4.0, Fonts SIL OFL 1.1, Code MIT — https://fontawesome.com/license/free
+ * Subset generated 2026-07-10 — replaces the ~400KB CDN bundle
+ */
+
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: url("fa-solid-900.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Font Awesome 6 Brands";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("fa-brands-400.woff2") format("woff2");
+}
+
+.fa, .fas, .fa-solid, .fab, .fa-brands {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: var(--fa-display, inline-block);
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-rendering: auto;
+}
+
+.fas, .fa-solid { font-family: "Font Awesome 6 Free"; font-weight: 900; }
+.fab, .fa-brands { font-family: "Font Awesome 6 Brands"; font-weight: 400; }
+
+.fa-arrow-right:before { content: "\f061"; }
+.fa-bolt:before { content: "\f0e7"; }
+.fa-brain:before { content: "\f5dc"; }
+.fa-briefcase:before { content: "\f0b1"; }
+.fa-broadcast-tower:before { content: "\f519"; }
+.fa-calendar-days:before { content: "\f073"; }
+.fa-chart-line:before { content: "\f201"; }
+.fa-check:before { content: "\f00c"; }
+.fa-check-circle:before { content: "\f058"; }
+.fa-circle-check:before { content: "\f058"; }
+.fa-code:before { content: "\f121"; }
+.fa-comment-sms:before { content: "\f7cd"; }
+.fa-comments:before { content: "\f086"; }
+.fa-credit-card:before { content: "\f09d"; }
+.fa-database:before { content: "\f1c0"; }
+.fa-dollar-sign:before { content: "\24"; }
+.fa-envelope:before { content: "\f0e0"; }
+.fa-external-link-alt:before { content: "\f35d"; }
+.fa-facebook-f:before { content: "\f39e"; }
+.fa-facebook-messenger:before { content: "\f39f"; }
+.fa-facebook-square:before { content: "\f082"; }
+.fa-file-alt:before { content: "\f15c"; }
+.fa-file-contract:before { content: "\f56c"; }
+.fa-file-lines:before { content: "\f15c"; }
+.fa-fire:before { content: "\f06d"; }
+.fa-google:before { content: "\f1a0"; }
+.fa-hammer:before { content: "\f6e3"; }
+.fa-hands-helping:before { content: "\f4c4"; }
+.fa-hard-hat:before { content: "\f807"; }
+.fa-headset:before { content: "\f590"; }
+.fa-images:before { content: "\f302"; }
+.fa-key:before { content: "\f084"; }
+.fa-laptop:before { content: "\f109"; }
+.fa-laptop-code:before { content: "\f5fc"; }
+.fa-lock:before { content: "\f023"; }
+.fa-magnifying-glass-location:before { content: "\f689"; }
+.fa-map-marker-alt:before { content: "\f3c5"; }
+.fa-mobile-alt:before { content: "\f3cd"; }
+.fa-paper-plane:before { content: "\f1d8"; }
+.fa-pen-nib:before { content: "\f5ad"; }
+.fa-pen-to-square:before { content: "\f044"; }
+.fa-phone:before { content: "\f095"; }
+.fa-plug:before { content: "\f1e6"; }
+.fa-robot:before { content: "\f544"; }
+.fa-rocket:before { content: "\f135"; }
+.fa-search:before { content: "\f002"; }
+.fa-star:before { content: "\f005"; }
+.fa-store:before { content: "\f54e"; }
+.fa-tags:before { content: "\f02c"; }
+.fa-tools:before { content: "\f7d9"; }
+.fa-user-shield:before { content: "\f505"; }
+.fa-wheat-awn:before { content: "\e2cd"; }

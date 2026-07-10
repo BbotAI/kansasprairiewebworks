@@ -2448,6 +2448,11 @@ p {
 @media (max-width: 768px) {
   :root { --nav-height: 64px; }
 
+  /* Reduce hero (LCP element) footprint on mobile — 100vh on a tall
+     narrow viewport forces cover-fit to demand an oversized source
+     image; 65vh cuts both the render size and the effective crop. */
+  .hero { min-height: 65vh; }
+
   .navbar__links, .navbar__cta { display: none; }
   .navbar__hamburger { display: flex; }
 
