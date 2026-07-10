@@ -176,6 +176,14 @@ p {
   gap: 2rem;
 }
 
+/* Grid items default to min-width:auto, which lets unbreakable content
+   (long emails/URLs) force a track wider than its 1fr share — this is
+   what was pushing the contact page's form/info columns past the mobile
+   viewport, clipped invisibly by overflow-x:hidden further up the tree. */
+.grid-2 > * {
+  min-width: 0;
+}
+
 .grid-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1831,9 +1839,16 @@ p {
   border-bottom: 1px solid var(--glass-border);
 }
 
+/* Same min-width:auto default as the grid fix above, one level deeper —
+   the text wrapper is a flex item too, so it also needs permission to
+   shrink below the unbroken URL/email's intrinsic width. */
+.contact-info-item > div {
+  min-width: 0;
+}
+
 .contact-info-item:last-child { border-bottom: none; }
 .contact-info-item i { font-size: 1.25rem; color: var(--primary); width: 28px; flex-shrink: 0; text-align: center; }
-.contact-info-item a { color: var(--text-light); font-size: 0.975rem; transition: color 0.2s; }
+.contact-info-item a { color: var(--text-light); font-size: 0.975rem; transition: color 0.2s; overflow-wrap: break-word; }
 .contact-info-item a:hover { color: var(--primary); }
 
 /* ============================================================
