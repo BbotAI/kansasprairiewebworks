@@ -1,0 +1,83 @@
+# Kansas Prairie Webworks — LLM Access File
+# Web design and AI automation agency
+# Salina, Kansas
+
+> Kansas Prairie Webworks is a web design and AI automation agency
+serving small businesses across Central Kansas. Owner Kaleb Diehl
+builds fast-loading websites, sets up Google Business Profiles and
+Facebook pages, and runs AI-powered monthly content pipelines for
+local contractors, cleaners, and service businesses in Saline,
+Ottawa, Lincoln, Dickinson, Ellsworth, and Cloud counties.
+Phone: 785-577-7695
+Website: https://kansasprairiewebworks.com
+
+## Pages
+
+/ — Homepage. Web design, Google Business Profile, and Facebook
+  setup for Central Kansas small businesses. Salina, KS.
+
+/about.html — About Kansas Prairie Webworks, locally owned in
+  Salina Kansas, and owner Kaleb Diehl's story.
+
+/services.html — Overview of all services: web design, Google
+  Business Profile, Facebook Business Page, Local SEO.
+
+/service-web-design.html — Website design packages for Kansas
+  small businesses, starting at $450 one-time or $25/month.
+
+/service-google-profile.html — Google Business Profile setup and
+  optimization so businesses show up in local search in Salina
+  and Central Kansas.
+
+/service-facebook-page.html — Facebook Business Page setup,
+  branding, and first posts for Kansas small businesses.
+
+/service-local-seo.html — Local SEO services to get found across
+  Salina, McPherson, Abilene, Concordia, Junction City, Bennington,
+  and Manhattan, Kansas.
+
+/service-monthly-posting.html — Monthly blog writing, Facebook
+  posting, and Google Business post management pricing and intake.
+
+/service-web-app.html — Custom web application and AI-autonomous
+  platform development starting at $2,500.
+
+/ai-services.html — AI-powered content and posting pipeline:
+  weekly Google Business and Facebook posts, monthly blog content,
+  geographic SEO. $350/month.
+
+/use-cases.html — Real systems Kansas Prairie Webworks has built
+  and run: full digital presence builds, lead generation engines,
+  and live AI-autonomous web apps.
+
+/pricing.html — Pricing tiers from $450 setup to Top Tier plans.
+  No hidden fees, no contracts.
+
+/portfolio.html — Websites, Google listings, and Facebook pages
+  built for Central Kansas small businesses.
+
+/service-areas.html — Service area coverage across Central Kansas:
+  Salina, McPherson, Abilene, Concordia, and more.
+
+/faq.html — Frequently asked questions about pricing, contracts,
+  account ownership, and timelines.
+
+/contact.html — Free consultation booking, phone 785-577-7695,
+  Salina Kansas.
+
+/blog.html — Blog posts about web design, local SEO, Google
+  Business Profile, and AI automation for Kansas small businesses.
+
+/terms.html — Terms of Service.
+
+/privacy.html — Privacy Policy.
+
+/disclaimer.html — Disclaimer, no guarantees of specific results.
+
+## Service Area
+Salina KS, Saline County, Ottawa County, Lincoln County,
+Dickinson County, Ellsworth County, Cloud County, Central Kansas
+
+## Contact
+Phone: 785-577-7695
+Email: kansasprairiewebworks@gmail.com

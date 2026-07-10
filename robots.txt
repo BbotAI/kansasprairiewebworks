@@ -1,46 +1,22 @@
 User-agent: *
 Allow: /
 
-# Block loose build/intake files from indexing
-Disallow: /INTAKE_FROM_BUILD.md
-Disallow: /KPW_PRICING_UPDATE_PROMPT.md
-Disallow: /TEMPLATE_GUIDE.md
-
-# AI crawlers — explicitly allowed to index and cite KPW content
 User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
 Allow: /
 
 User-agent: Google-Extended
 Allow: /
 
-User-agent: ClaudeBot
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: anthropic-ai
 Allow: /
 
+User-agent: ClaudeBot
+Allow: /
+
 User-agent: PerplexityBot
-Allow: /
-
-User-agent: Bytespider
-Allow: /
-
-User-agent: cohere-ai
-Allow: /
-
-User-agent: Diffbot
-Allow: /
-
-User-agent: FacebookBot
-Allow: /
-
-User-agent: Applebot
-Allow: /
-
-User-agent: Applebot-Extended
 Allow: /
 
 Sitemap: https://kansasprairiewebworks.com/sitemap.xml
