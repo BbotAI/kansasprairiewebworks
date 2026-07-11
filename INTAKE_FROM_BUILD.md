@@ -59,7 +59,7 @@ This is the CLIENT_ID you will use to query the Sheet.
 Fetch client data from this Google Sheet via the Apps Script Web App:
 
 ```
-GET https://script.google.com/macros/s/AKfycbwT1ryRjscQw7mr-q-Qnaa0FocB7n9xdRC9HNJ0QYXUWgmmdQPVKzCGDP9NQwGz6qF3/exec?action=getClient&clientId=CLIENT_ID
+GET https://script.google.com/macros/s/AKfycbyOvZLRDDl9uM6zcxA7vHH1VaimiRvttktcgV5MGDAhCc3nAlJQ3kpVk8nSLXQ5wVBt/exec?action=getClient&clientId=CLIENT_ID
 ```
 
 Replace CLIENT_ID with the ID from Step 1.
@@ -81,7 +81,7 @@ Log the fallback in PROGRESS.md and continue.
 ## STEP 3 — PULL SERVICES FROM AGENCY BRAIN
 
 ```
-GET https://script.google.com/macros/s/AKfycbwT1ryRjscQw7mr-q-Qnaa0FocB7n9xdRC9HNJ0QYXUWgmmdQPVKzCGDP9NQwGz6qF3/exec?action=getServices&clientId=CLIENT_ID
+GET https://script.google.com/macros/s/AKfycbyOvZLRDDl9uM6zcxA7vHH1VaimiRvttktcgV5MGDAhCc3nAlJQ3kpVk8nSLXQ5wVBt/exec?action=getServices&clientId=CLIENT_ID
 ```
 
 Returns array of services with:
@@ -99,7 +99,7 @@ Use serviceName to build service page filenames:
 ## STEP 4 — PULL TOP CONTENT IDEAS
 
 ```
-GET https://script.google.com/macros/s/AKfycbwT1ryRjscQw7mr-q-Qnaa0FocB7n9xdRC9HNJ0QYXUWgmmdQPVKzCGDP9NQwGz6qF3/exec?action=getTopIdeas&clientId=CLIENT_ID&limit=5
+GET https://script.google.com/macros/s/AKfycbyOvZLRDDl9uM6zcxA7vHH1VaimiRvttktcgV5MGDAhCc3nAlJQ3kpVk8nSLXQ5wVBt/exec?action=getTopIdeas&clientId=CLIENT_ID&limit=5
 ```
 
 Returns top 5 scored Content_Ideas per service.
@@ -606,7 +606,7 @@ Tell Kaleb:
 
 When Kaleb returns with Blog ID and URL, POST:
 ```
-POST https://script.google.com/macros/s/AKfycbwT1ryRjscQw7mr-q-Qnaa0FocB7n9xdRC9HNJ0QYXUWgmmdQPVKzCGDP9NQwGz6qF3/exec
+POST https://script.google.com/macros/s/AKfycbyOvZLRDDl9uM6zcxA7vHH1VaimiRvttktcgV5MGDAhCc3nAlJQ3kpVk8nSLXQ5wVBt/exec
 {
   "action": "updateClientBlogger",
   "clientId": "[CLIENT_ID]",
@@ -933,7 +933,7 @@ Extensions → Apps Script → select function → Run
 ## AGENCY BRAIN CONNECTION
 
 Spreadsheet ID: 11ymcRP9tAdF9Fch5uzNLHMNS0oHvcsPYGZIQDGkM0AI
-Web App URL v31: https://script.google.com/macros/s/AKfycbwT1ryRjscQw7mr-q-Qnaa0FocB7n9xdRC9HNJ0QYXUWgmmdQPVKzCGDP9NQwGz6qF3/exec
+Web App URL v38: https://script.google.com/macros/s/AKfycbyOvZLRDDl9uM6zcxA7vHH1VaimiRvttktcgV5MGDAhCc3nAlJQ3kpVk8nSLXQ5wVBt/exec
 Cloudinary: dxqhuoxzn
 Cloudinary Preset: kpw-unsigned
 Cloudinary Folder: kpw-clients/{client-slug}/
