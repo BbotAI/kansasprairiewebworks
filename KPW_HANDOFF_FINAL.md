@@ -1,5 +1,24 @@
 # KPW Agency Brain — Handoff (2026-07-11)
 
+## kpw-build site content pass — 2026-07-17
+
+Two autonomous content passes on the kpw-build marketing site (kansasprairiewebworks.com), both committed and pushed to `main`.
+
+**Commit `acdb807`** — portal screenshots wired, HITL language, geo SEO anchoring:
+- Added "How It Starts" / "Your Client Portal" sections to `service-monthly-posting.html`, wiring in `images/kpw-intake-form-screenshot.jpg` and `images/kpw-portal-upload-screenshot.jpg` (renamed from erroneous `.jpg.jpg` filenames found on disk).
+- Added human-in-the-loop approval language across `service-monthly-posting.html`, `services.html`, `index.html`, `pricing.html`; updated `about.html` process steps to reflect intake → auto-build → portal sequence.
+- Added 4 new FAQ entries to `faq.html`'s visible accordion only (schema left untouched that pass per explicit instruction).
+- Strengthened Central Kansas geographic anchoring in body copy (`index.html` hero, `service-web-design.html`, `service-web-app.html`, `service-areas.html` — added Ellsworth, Lindsborg, Beloit, Wilson, Minneapolis town cards) and clarified `service-web-app.html` is not mobile app development (Search Console signal fix).
+
+**Commit `0fe8f4a`** — pricing restructure, form fixes, FAQ schema:
+- Split `pricing.html`'s double-sided Top Tier toggle card into two standalone cards: **Active Content** ($800 setup / $350/mo, shown first) and **Maintenance** ($1,200 setup / $150/mo). All prior feature bullets carried forward and merged with new ones; added Stripe trust-language section and a transparency line.
+- Expanded the service-selection dropdowns on `service-monthly-posting.html` and `contact.html` to a full smorgasbord list (single services / bundles / full packages), reframed form headers, CTA labels, and submit-button copy to lower commitment friction ("No payment. No commitment.").
+- Added the 4 FAQ entries from the prior pass into `faq.html`'s JSON-LD `FAQPage` schema (explicit permission granted that pass) — schema now has 30 `mainEntity` questions total, validated as parseable JSON.
+
+**Deviation flagged:** the driving prompt specified $350/month for standalone Google/Facebook monthly-posting dropdown options — that's the full Top Tier Active Content package rate, not the standalone add-on rate. The site's actual established pricing for those exact standalone services (shown in cards elsewhere on the same pages) is $100/month single-platform, $150/month combined. Used the correct existing figures instead to avoid an on-page contradiction.
+
+`ai-services.html` and `use-cases.html` were not touched in either pass, per explicit instruction.
+
 ## Current Apps Script deployment — CONFIRMED LIVE
 
 - **Live Web App URL (v39):**

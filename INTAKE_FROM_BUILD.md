@@ -10,6 +10,17 @@
 
 ---
 
+## RECENT SITE UPDATES — kpw-build marketing site (2026-07-17)
+
+Two autonomous content passes landed on the live kpw-build site since this template was last updated — not part of the Tier 4 build process below, but relevant context if you're pulling reference copy from the live site.
+
+- **Commit `acdb807`**: portal screenshots wired into `service-monthly-posting.html`, human-in-the-loop approval language added sitewide, geographic SEO anchoring strengthened (Central Kansas town names in body copy), `service-web-app.html` clarified as not mobile app development.
+- **Commit `0fe8f4a`**: `pricing.html`'s Top Tier toggle card split into two standalone cards (Active Content $800/$350mo, Maintenance $1,200/$150mo), service-selection dropdowns expanded to a full smorgasbord list on `service-monthly-posting.html` and `contact.html`, Stripe trust language added, 4 new FAQ entries added to `faq.html`'s JSON-LD schema.
+
+See `KPW_HANDOFF_FINAL.md` for full detail. `ai-services.html` and `use-cases.html` were not touched.
+
+---
+
 ## YOUR MISSION
 
 You are building a complete Tier 4 local business website
