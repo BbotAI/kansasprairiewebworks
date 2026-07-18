@@ -158,14 +158,25 @@
               <label for="contactService">Service I'm Interested In</label>
               <select id="contactService" name="service">
                 <option value="">Select a service...</option>
-                <option value="website-design">Website Design</option>
-                <option value="google-profile">Google Business Profile</option>
-                <option value="facebook-page">Facebook Business Page</option>
-                <option value="local-seo">Local SEO</option>
-                <option value="monthly-posting">Monthly Posting</option>
-                <option value="web-app">Web App / Custom Build</option>
-                <option value="complete-package">Complete Online Presence Package</option>
-                <option value="not-sure">Not sure yet</option>
+                <optgroup label="Single Services">
+                  <option value="website-only">Website Design Only</option>
+                  <option value="google-profile-only">Google Business Profile Setup Only</option>
+                  <option value="facebook-page-only">Facebook Business Page Setup Only</option>
+                  <option value="local-seo-only">Local SEO &amp; Directory Listings Only</option>
+                  <option value="blog-addon">Monthly Blog Writing Add-On</option>
+                </optgroup>
+                <optgroup label="Bundled Options">
+                  <option value="website-google">Website + Google Business Profile</option>
+                  <option value="website-facebook">Website + Facebook Business Page</option>
+                  <option value="website-google-facebook">Website + Google + Facebook</option>
+                  <option value="monthly-posting-combined">Monthly Content Posting &mdash; Google + Facebook ($150/month)</option>
+                </optgroup>
+                <optgroup label="Full Packages">
+                  <option value="top-tier-active-800">Top Tier &mdash; Active Content Package ($800 + $350/month)</option>
+                  <option value="top-tier-maintenance-1200">Top Tier &mdash; Maintenance Package ($1,200 + $150/month)</option>
+                  <option value="web-app">Web App / Custom Build</option>
+                  <option value="not-sure">Not Sure &mdash; Help Me Figure Out What I Need</option>
+                </optgroup>
               </select>
             </div>
             <div class="form-group">
@@ -173,8 +184,9 @@
               <textarea id="contactMessage" name="message" placeholder="Tell us about your business and what you're looking to accomplish online..." required></textarea>
               <span class="form-error" id="messageError" role="alert"></span>
             </div>
+            <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:0.75rem;">Invoicing handled securely through Stripe when you're ready. No payment today &mdash; this is just a conversation starter.</p>
             <button type="submit" class="btn btn--primary btn--large" style="width:100%;justify-content:center;">
-              <i class="fas fa-paper-plane" aria-hidden="true"></i> Send My Message
+              <i class="fas fa-paper-plane" aria-hidden="true"></i> Send My Message &mdash; We&rsquo;ll Be In Touch Within 24 Hours
             </button>
             <div class="form-success" role="alert">Thank you! We'll be in touch within 1 business day.</div>
           </form>

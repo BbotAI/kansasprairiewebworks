@@ -163,7 +163,7 @@
       <h1>Done-For-You Monthly <span class="text-pop">Content</span></h1>
       <p>Blog posts. Facebook posts. Google Business updates. We write it, we post it, you focus on running your business.</p>
       <div class="btn-group">
-        <a href="#blog-intake" class="btn btn--primary btn--large"><i class="fas fa-file-alt" aria-hidden="true"></i> Blog Intake Form</a>
+        <a href="#blog-intake" class="btn btn--primary btn--large"><i class="fas fa-file-alt" aria-hidden="true"></i> Get Started &mdash; Tell Us About Your Business</a>
         
       </div>
     </div>
@@ -302,8 +302,8 @@
   <section class="section" id="blog-intake" style="background:var(--section-alt);" aria-labelledby="intake-heading">
     <div class="container" style="max-width:760px;">
       <div class="section__header animate-on-scroll">
-        <h2 id="intake-heading" style="color:var(--dark);">Posting Services <span class="text-pop">Intake Form</span></h2>
-        <p>Tell us which services you&rsquo;re starting with. We&rsquo;ll review and reach out within 1 business day.</p>
+        <h2 id="intake-heading" style="color:var(--dark);">Tell Us About <span class="text-pop">Your Business</span></h2>
+        <p>Takes 2 minutes. No payment. No commitment. Just a conversation &mdash; we&rsquo;ll be in touch within 24 hours.</p>
       </div>
       <form class="contact-form" id="blogIntakeForm" action="https://formspree.io/f/xdavwdpq" method="POST" novalidate>
         <input type="hidden" name="_subject" value="New Posting Services Inquiry — Kansas Prairie Webworks">
@@ -316,11 +316,28 @@
           <label for="kpw-service-manual">Service Selection *</label>
           <select id="kpw-service-manual" name="service_selection" required>
             <option value="">-- Select a service --</option>
-            <option value="fb-100">Facebook Posting &mdash; 8 posts/month &mdash; $100/month</option>
-            <option value="gb-100">Google Business Posting &mdash; 8 posts/month &mdash; $100/month</option>
-            <option value="combined-150">Facebook + Google Combined &mdash; $150/month</option>
-            <option value="blog-2-50">Blog Writing &mdash; 2 posts/month &mdash; $50/month</option>
-            <option value="blog-4-100">Blog Writing &mdash; 4 posts/month &mdash; $100/month</option>
+            <optgroup label="Single Services">
+              <option value="website-only">Website Design Only</option>
+              <option value="google-profile-only">Google Business Profile Setup Only</option>
+              <option value="facebook-page-only">Facebook Business Page Setup Only</option>
+              <option value="local-seo-only">Local SEO &amp; Directory Listings Only</option>
+              <option value="blog-2-50">Monthly Blog Writing &mdash; 2 posts/month &mdash; $50/month</option>
+              <option value="blog-4-100">Monthly Blog Writing &mdash; 4 posts/month &mdash; $100/month</option>
+            </optgroup>
+            <optgroup label="Bundled Options">
+              <option value="website-google">Website + Google Business Profile &mdash; $600</option>
+              <option value="website-facebook">Website + Facebook Business Page &mdash; $600</option>
+              <option value="website-google-facebook">Website + Google + Facebook (Standard Bundle)</option>
+              <option value="gb-100">Monthly Content Posting &mdash; Google Business Posts &mdash; $100/month</option>
+              <option value="fb-100">Monthly Content Posting &mdash; Facebook Posts &mdash; $100/month</option>
+              <option value="combined-150">Monthly Content Posting &mdash; Google + Facebook Combined &mdash; $150/month</option>
+            </optgroup>
+            <optgroup label="Full Packages">
+              <option value="top-tier-active-800">Top Tier &mdash; Active Content Package &mdash; $800 setup + $350/month</option>
+              <option value="top-tier-maintenance-1200">Top Tier &mdash; Maintenance Package &mdash; $1,200 setup + $150/month</option>
+              <option value="web-app">Web App / Custom Build &mdash; Discovery call required</option>
+              <option value="not-sure">Not Sure &mdash; Help Me Figure Out What I Need</option>
+            </optgroup>
           </select>
           <span class="form-error" id="serviceError" role="alert"></span>
         </div>
@@ -386,8 +403,9 @@
           <label for="blogNotes">Additional Notes</label>
           <textarea id="blogNotes" name="notes" placeholder="Anything else we should know about your business, your customers, or your content goals?"></textarea>
         </div>
+        <p style="font-size:0.85rem;color:var(--text-muted);text-align:center;margin-bottom:0.75rem;">No payment. No commitment. This goes straight to Kaleb &mdash; not an automated system.</p>
         <button type="submit" class="btn btn--primary btn--large" style="width:100%;justify-content:center;">
-          <i class="fas fa-paper-plane" aria-hidden="true"></i> Submit Intake Form
+          <i class="fas fa-paper-plane" aria-hidden="true"></i> Send My Info &mdash; We&rsquo;ll Be In Touch Within 24 Hours
         </button>
         <div class="form-success" role="alert">Thank you! We&rsquo;ll reach out within 1 business day to confirm your services and get started.</div>
       </form>
