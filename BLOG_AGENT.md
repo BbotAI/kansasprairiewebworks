@@ -179,19 +179,23 @@ Schema:       `BlogPosting` JSON-LD blocks in `<head>`, one per live post,
               same order as the cards
 
 ## CURRENT BLOG CARD COUNT
-Slot 1:  LIVE — Web Development vs Website Design — What's the Difference for a Small Business in Kansas? (July 14, 2026)
-Slot 2:  LIVE — Do You Need a Mobile App or Just a Better Website for Your Kansas Business? (July 14, 2026)
-Slot 3:  LIVE — Beginner's Guide: Using Claude and Perplexity to Market Your Salina Small Business Safely (July 13, 2026)
-Slot 4:  LIVE — Human-in-the-Loop AI Marketing for Salina & Central Kansas Small Businesses (July 11, 2026)
-Slot 5:  LIVE — How Much Does AI-Powered Marketing Cost for a Small Business in Kansas? (July 10, 2026)
-Slot 6:  LIVE — AI-Powered Content and Posting — How Kansas Prairie Webworks Keeps Your Business Visible While You Work (July 5, 2026)
-Slot 7:  LIVE — What Is Google Business Profile and Why Every Central Kansas Business Needs One (June 24, 2026)
-Slot 8:  LIVE — How AI Is Changing What Small Businesses Can Do Online (June 11, 2026)
-Slot 9:  LIVE — Meet Kaleb — Your Local Web Designer in Salina KS (June 11, 2026)
-Slot 10: LIVE — Single Page vs Multi-Page Website — Which Do You Need? (June 11, 2026)
-Slot 11: LIVE — Does My Small Business Need a Website? (June 2026)
+Slot 1:  LIVE — Local SEO in the Age of AI: What Salina and Central Kansas Businesses Must Do Now (July 18, 2026)
+Slot 2:  LIVE — What Does Web Design Actually Cost for a Small Business in Salina Kansas? (July 18, 2026)
+Slot 3:  LIVE — Why Your Facebook Business Page and Website Need to Work Together — A Guide for Central Kansas Small Businesses (July 18, 2026)
+Slot 4:  LIVE — Custom Website Design for Contractors and Trade Businesses in Central Kansas (July 18, 2026)
+Slot 5:  LIVE — Web Development vs Website Design — What's the Difference for a Small Business in Kansas? (July 14, 2026)
+Slot 6:  LIVE — Do You Need a Mobile App or Just a Better Website for Your Kansas Business? (July 14, 2026)
+Slot 7:  LIVE — Beginner's Guide: Using Claude and Perplexity to Market Your Salina Small Business Safely (July 13, 2026)
+Slot 8:  LIVE — Human-in-the-Loop AI Marketing for Salina & Central Kansas Small Businesses (July 11, 2026)
+Slot 9:  LIVE — How Much Does AI-Powered Marketing Cost for a Small Business in Kansas? (July 10, 2026)
+Slot 10: LIVE — AI-Powered Content and Posting — How Kansas Prairie Webworks Keeps Your Business Visible While You Work (July 5, 2026)
+Slot 11: LIVE — What Is Google Business Profile and Why Every Central Kansas Business Needs One (June 24, 2026)
+Slot 12: LIVE — How AI Is Changing What Small Businesses Can Do Online (June 11, 2026)
+Slot 13: LIVE — Meet Kaleb — Your Local Web Designer in Salina KS (June 11, 2026)
+Slot 14: LIVE — Single Page vs Multi-Page Website — Which Do You Need? (June 11, 2026)
+Slot 15: LIVE — Does My Small Business Need a Website? (June 2026)
 
 0 placeholders remaining. Next new post found becomes Slot 1; everything
 below shifts down.
 
-Last updated: 2026-07-14
+Last updated: 2026-07-18
