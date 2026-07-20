@@ -217,8 +217,9 @@ Use these exact prices in every build. Do not deviate.
 TIER 1 — STARTER
   Setup:    $450 one-time
   Monthly:  $25/month hosting
-  Pages:    3 — Home, About, Contact
-  Includes: SSL, domain mgmt, hosting handled by KPW
+  Pages:    4 — Home, About, Contact, Blog
+  Includes: SSL, domain mgmt, hosting handled by KPW,
+            3 starter blog posts (one per service, up to 3)
 
 MONTHLY POSTING — STANDALONE ADD-ONS
   Facebook Posting:           $100/month
