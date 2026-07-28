@@ -74,6 +74,9 @@ Website: https://kansasprairiewebworks.com
 
 /disclaimer.html — Disclaimer, no guarantees of specific results.
 
+/sms-signup.html — SMS opt-in signup page for occasional text message
+  updates about web design tips and Kansas Prairie Webworks services.
+
 ## Service Area
 Salina KS, Saline County, Ottawa County, Lincoln County,
 Dickinson County, Ellsworth County, Cloud County, Central Kansas

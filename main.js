@@ -567,6 +567,55 @@ document.addEventListener('DOMContentLoaded', function () {
 })();
 
 /* ============================================================
+   13. SMS SIGNUP FORM VALIDATION — client-side only, no backend yet
+   ============================================================ */
+(function initSmsSignupForm() {
+  const form = document.getElementById('smsSignupForm');
+  if (!form) return;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    let valid = true;
+
+    form.querySelectorAll('.form-error').forEach(function (el) { el.textContent = ''; });
+
+    const phone = form.querySelector('#smsPhone');
+    const consent = form.querySelector('#smsConsent');
+
+    if (phone && !isValidPhone(phone.value.trim())) {
+      showSmsError(phone, 'Please enter a valid phone number.');
+      valid = false;
+    }
+
+    if (consent && !consent.checked) {
+      showSmsError(consent, 'Please agree to receive SMS messages to continue.');
+      valid = false;
+    }
+
+    if (!valid) return;
+
+    const successEl = form.querySelector('.form-success');
+    if (successEl) {
+      form.reset();
+      successEl.classList.add('visible');
+      successEl.textContent = 'Thanks! You\'re signed up for SMS updates from Kansas Prairie Webworks.';
+    }
+  });
+
+  function showSmsError(field, message) {
+    const group = field.closest('.form-group');
+    const err = group ? group.querySelector('.form-error') : null;
+    if (err) err.textContent = message;
+    field.focus();
+  }
+
+  function isValidPhone(value) {
+    const digits = value.replace(/\D/g, '');
+    return digits.length === 10 || (digits.length === 11 && digits.charAt(0) === '1');
+  }
+})();
+
+/* ============================================================
    UTILITY
    ============================================================ */
 function isValidEmail(email) {
