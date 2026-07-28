@@ -19,8 +19,14 @@ const successHiddenAfterEmpty = !(await page.isVisible('.form-success.visible'))
 console.log('Success message stayed hidden on empty submit:', successHiddenAfterEmpty);
 
 // 2. Valid submit — should show success, clear the form
+// NOTE: use a raw .click() on the checkbox, not page.check() — page.check()
+// on this label-wrapped checkbox reliably breaks the *next* click's ability
+// to reach the submit handler (confirmed via requestSubmit()/dispatchEvent
+// working fine while .check()-then-.click() silently no-ops with a native
+// page reload). Real user clicks behave like locator.click(), not
+// page.check(), so this is a Playwright API quirk, not an app bug.
 await page.fill('#smsPhone', '785-555-1234');
-await page.check('#smsConsent');
+await page.locator('#smsConsent').click();
 await page.click('#smsSignupForm button[type="submit"]');
 await waitForVisible(page, '.form-success.visible');
 const successText = (await page.textContent('.form-success')).trim();

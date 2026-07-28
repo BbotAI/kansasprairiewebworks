@@ -574,39 +574,31 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!form) return;
 
   form.addEventListener('submit', function (e) {
-    console.log('[sms-debug] handler entered, isTrusted=', e.isTrusted);
     e.preventDefault();
-    console.log('[sms-debug] defaultPrevented=', e.defaultPrevented);
     let valid = true;
 
     form.querySelectorAll('.form-error').forEach(function (el) { el.textContent = ''; });
 
     const phone = form.querySelector('#smsPhone');
     const consent = form.querySelector('#smsConsent');
-    console.log('[sms-debug] phone value=', phone && phone.value, 'consent checked=', consent && consent.checked);
 
     if (phone && !isValidPhone(phone.value.trim())) {
-      console.log('[sms-debug] phone failed validation');
       showSmsError(phone, 'Please enter a valid phone number.');
       valid = false;
     }
 
     if (consent && !consent.checked) {
-      console.log('[sms-debug] consent failed validation');
       showSmsError(consent, 'Please agree to receive SMS messages to continue.');
       valid = false;
     }
 
-    console.log('[sms-debug] valid=', valid);
     if (!valid) return;
 
     const successEl = form.querySelector('.form-success');
-    console.log('[sms-debug] successEl found=', !!successEl);
     if (successEl) {
       form.reset();
       successEl.classList.add('visible');
       successEl.textContent = 'Thanks! You\'re signed up for SMS updates from Kansas Prairie Webworks.';
-      console.log('[sms-debug] success shown, final class=', successEl.className);
     }
   });
 
