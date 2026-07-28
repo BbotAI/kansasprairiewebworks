@@ -40,6 +40,7 @@ This repository contains the complete website for Kansas Prairie Webworks, a loc
 | sitemap.xml | XML sitemap for search engines |
 | robots.txt | Robots crawl directives |
 | CNAME | GitHub Pages custom domain |
+| BLOGGER_CANONICAL_FIX.md | Manual steps to fix blog.kansasprairiewebworks.com ?m=1 canonical duplicates in Blogger dashboard (GSC fix — not automatable from this repo) |
 
 ---
 

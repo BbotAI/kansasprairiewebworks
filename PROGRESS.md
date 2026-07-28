@@ -254,6 +254,24 @@
 
 ---
 
+### SESSION — 2026-07-28 — GSC Canonical Tag Audit (KPW_CANONICAL_FIX_SKILL)
+
+**Status:** [x] COMPLETE — no code changes required, one gap closed
+
+Ran the canonical-tag audit skill (targets GSC "Alternate page with proper canonical tag" errors) against this repo.
+
+1. **HTML canonical tags** — checked all 20 `.html` files. Every page already had a correct, self-referencing `<link rel="canonical">`; `index.html` correctly pointed to `https://kansasprairiewebworks.com/` (not `/index.html`). No changes needed — this was already fixed in the earlier 2026-06-11 fix pass.
+2. **sitemap.xml** — all 20 pages present, all `<loc>` URLs clean (no `/index.html`, correct domain). No changes needed.
+3. **robots.txt** — present, `Allow: /` for all listed user-agents, correct `Sitemap:` reference. No changes needed.
+4. **Blogger `?m=1` duplicate fix** — `BLOGGER_CANONICAL_FIX.md` did **not** exist in this repo. Created it with the manual Blogger-theme steps for `blog.kansasprairiewebworks.com` (confirmed this domain's blog is Blogger-hosted via the post URLs embedded in blog.html's JSON-LD). **This still requires a manual step in the Blogger dashboard — cannot be automated from the repo.**
+5. Added `BLOGGER_CANONICAL_FIX.md` to the README.md file table.
+
+**Note:** internal `href="index.html"` links in nav/footer (relative links between local pages) are correct as-is and out of scope — the skill only targets `<link rel="canonical">` and sitemap `<loc>` entries pointing at `/index.html`, not ordinary internal navigation links.
+
+**Next:** validate the canonical fix in Google Search Console once Google recrawls; complete the Blogger dashboard step per `BLOGGER_CANONICAL_FIX.md`; repeat this skill in mikes_services_llc, pro_cleaning_services, and KPW-TIER4-TEMPLATE repos.
+
+---
+
 ## DECISIONS LOG
 > Claude Code logs any build decisions made that were not in AGENT_BRIEF.md
 
