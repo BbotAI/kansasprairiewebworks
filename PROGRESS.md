@@ -272,6 +272,28 @@ Ran the canonical-tag audit skill (targets GSC "Alternate page with proper canon
 
 ---
 
+### SESSION — 2026-07-28 (cont.) — GSC Full Cleanup, All 3 Sites + Blogger Post Duplicate Found
+
+**Status:** [x] COMPLETE except one item needs Kaleb's decision (see below)
+
+Follow-up pass covering all three KPW client properties in one run, correcting a wrong assumption from earlier the same day.
+
+**Correction to the prior session entry above:** point 4 ("Blogger fix requires a manual dashboard step") was never actually verified — it was written from the skill template's default assumption. Live-checked this time via curl (plain URL + `?m=1`) against all three blogs (blog.kansasprairiewebworks.com, blog.mikeservicesllc.com, blog.procleaningsalinaks.com): **all three already emit correct self-referencing canonical tags, no manual theme edit needed anywhere.** Updated all three `BLOGGER_CANONICAL_FIX.md` files (and KPW-TIER4-TEMPLATE's build instructions) to say so. Also confirmed the Blogger API v3 has no `themes`/`templates` resource at all (checked Google's live discovery doc) — theme HTML can only ever be edited through the Blogger dashboard UI, never automated via API, so this was never a "just call the API" fix regardless of credentials.
+
+**Real bug found and fixed:** `pro_cleaning_services/index.html`'s canonical pointed to `https://procleaningsalinaks.com/index.html` instead of `/` — this was the actual live instance of the GSC "alternate page with proper canonical tag" issue. Fixed and pushed (commit in that repo).
+
+**Template gap found and fixed:** KPW-TIER4-TEMPLATE's `BUILD_COMMAND_TEMPLATE.md` step 4j-1 never special-cased index.html in its canonical instruction — it's what produced the procleaningsalinaks.com bug in the first place. Added the exception, a checklist item, and a new step (4f-1b) requiring `BLOGGER_CANONICAL_FIX.md` on every future build with a Blogger blog, with instructions to verify live before claiming a manual fix is needed.
+
+**Redirect-error investigation (GSC-reported) on blog.kansasprairiewebworks.com — 4 URLs:**
+- `web-development-vs-website-design-kansas-small-business_0431377441.html` — **confirmed genuine duplicate post.** Different postId (448614953153943322) than the clean URL's postId (7394745673266303196); clean version published 2026-07-14, duplicate published 2026-07-21 (7 days apart, not a double-click). blog.html only links the clean version. **Not deleted yet** — no OAuth-level Blogger write credentials exist locally (only an API key is stored, in Apps Script Script Properties, not locally; real write access lives inside kpw-agency-brain's own Apps Script authorization). Flagged for Kaleb to either delete manually in the Blogger dashboard (fastest) or have it done via a `clasp run` call into kpw-agency-brain (touches production automation code for a one-off task — bigger ask). **Also worth checking:** whether Publish_Queue/Content_Ideas in Agency Brain queued this topic twice — if so this could recur.
+- The other 3 URLs — all live, single post, HTTP 200, no redirect, no duplicate. Likely stale GSC entries; safe to validate directly.
+
+Full breakdown in `GSC_VALIDATION_STEPS.md`.
+
+**Not done — explicitly deferred, needs Kaleb's call:** deleting the duplicate Blogger post above. This is a live, indexed, production content deletion with no easy undo — did not do this without explicit confirmation, even though it was part of the original ask.
+
+---
+
 ## DECISIONS LOG
 > Claude Code logs any build decisions made that were not in AGENT_BRIEF.md
 
