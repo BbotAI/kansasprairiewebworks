@@ -23,7 +23,7 @@ Website: https://kansasprairiewebworks.com
   Business Profile, Facebook Business Page, Local SEO.
 
 /service-web-design.html — Website design packages for Kansas
-  small businesses, starting at $450 one-time or $25/month.
+  small businesses, starting at $450 one-time or $50/month.
 
 /service-google-profile.html — Google Business Profile setup and
   optimization so businesses show up in local search in Salina
@@ -42,16 +42,16 @@ Website: https://kansasprairiewebworks.com
 /service-web-app.html — Custom web application and AI-autonomous
   platform development starting at $2,500.
 
-/ai-services.html — AI-powered content and posting pipeline:
-  weekly Google Business and Facebook posts, monthly blog content,
-  geographic SEO. $350/month.
+/ai-services.html — AI-powered content and posting pipeline: daily
+  Google Business and Facebook posts, monthly blog content,
+  geographic SEO. Part of the $1,200 setup + $350/month Top Tier.
 
 /use-cases.html — Real systems Kansas Prairie Webworks has built
   and run: full digital presence builds, lead generation engines,
   and live AI-autonomous web apps.
 
-/pricing.html — Pricing tiers from $450 setup to Top Tier plans.
-  No hidden fees, no contracts.
+/pricing.html — Pricing tiers from $450 setup to the $1,200 Top
+  Tier complete AI pipeline plan. No hidden fees, no contracts.
 
 /portfolio.html — Websites, Google listings, and Facebook pages
   built for Central Kansas small businesses.

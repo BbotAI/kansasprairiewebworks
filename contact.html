@@ -58,26 +58,6 @@
       ]
     }
   }
-  </script>
-  <script type="application/ld+json">
-  {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-          {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Home",
-              "item": "https://kansasprairiewebworks.com"
-          },
-          {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Contact",
-              "item": "https://kansasprairiewebworks.com/contact.html"
-          }
-      ]
-  }
   </script></head>
 <body>
 
@@ -181,26 +161,30 @@
               <label for="contactService">Service I'm Interested In</label>
               <select id="contactService" name="service">
                 <option value="">Select a service...</option>
-                <optgroup label="Single Services">
-                  <option value="website-only">Website Design Only ($450 setup + $25/month, 4-page site with blog)</option>
-                  <option value="google-profile-only">Google Business Profile Setup Only</option>
-                  <option value="facebook-page-only">Facebook Business Page Setup Only</option>
-                  <option value="local-seo-only">Local SEO &amp; Directory Listings Only</option>
-                  <option value="blog-addon">Monthly Blog Writing Add-On</option>
+                <optgroup label="Websites">
+                  <option value="website-starter">Starter Website ($450 setup + $50/month)</option>
+                  <option value="website-standard">Standard Website ($600 setup + $50/month)</option>
                 </optgroup>
-                <optgroup label="Bundled Options">
-                  <option value="website-google">Website + Google Business Profile</option>
-                  <option value="website-facebook">Website + Facebook Business Page</option>
-                  <option value="website-google-facebook">Website + Google + Facebook (bundle pricing &mdash; ask us)</option>
-                  <option value="monthly-posting-combined">Monthly Content Posting &mdash; Google + Facebook ($150/month)</option>
+                <optgroup label="Monthly Posting Services">
+                  <option value="gbp-posting">Google Business Profile Posting ($250/month)</option>
+                  <option value="fb-posting">Facebook Page Posting ($250/month)</option>
+                  <option value="blog-2">Blog Writing &mdash; 2 posts/month ($100/month)</option>
+                  <option value="blog-4">Blog Writing &mdash; 4 posts/month ($200/month)</option>
                 </optgroup>
-                <optgroup label="Full Packages">
-                  <option value="top-tier-active-800">Top Tier &mdash; Active Content Package ($800 + $350/month)</option>
-                  <option value="top-tier-maintenance-1200">Top Tier &mdash; Maintenance Package ($1,200 + $150/month)</option>
+                <optgroup label="Individual Setup Services">
+                  <option value="gbp-setup-only">Google Business Profile Setup Only ($150)</option>
+                  <option value="fb-setup-only">Facebook Business Page Setup Only ($150)</option>
+                  <option value="local-seo-only">Local SEO + Directory Listings ($200)</option>
+                </optgroup>
+                <optgroup label="Complete Pipeline">
+                  <option value="top-tier">Top Tier &mdash; Full AI Pipeline ($1,200 setup + $350/month)</option>
+                </optgroup>
+                <optgroup label="Other">
                   <option value="web-app">Web App / Custom Build</option>
                   <option value="not-sure">Not Sure &mdash; Help Me Figure Out What I Need</option>
                 </optgroup>
               </select>
+              <p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.5rem;">Select the service you're interested in &mdash; or choose "Not Sure" and we'll figure it out together on a free call.</p>
             </div>
             <div class="form-group">
               <label for="contactMessage">Your Message *</label>
@@ -209,8 +193,9 @@
             </div>
             <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:0.75rem;">Invoicing handled securely through Stripe when you're ready. No payment today &mdash; this is just a conversation starter.</p>
             <button type="submit" class="btn btn--primary btn--large" style="width:100%;justify-content:center;">
-              <i class="fas fa-paper-plane" aria-hidden="true"></i> Send My Message &mdash; We&rsquo;ll Be In Touch Within 24 Hours
+              <i class="fas fa-paper-plane" aria-hidden="true"></i> Send My Info &mdash; We&rsquo;ll Be In Touch Within 24 Hours
             </button>
+            <p style="font-size:0.8rem;color:var(--text-muted);text-align:center;margin-top:0.75rem;">No payment. No commitment. This goes straight to Kaleb.</p>
             <div class="form-success" role="alert">Thank you! We'll be in touch within 1 business day.</div>
           </form>
         </div>

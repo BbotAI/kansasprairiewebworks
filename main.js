@@ -449,15 +449,15 @@ document.addEventListener('DOMContentLoaded', function () {
       var ctaEl   = card.querySelector('.blog-cta');
 
       if (tier === 'blog-2') {
-        if (priceEl) priceEl.innerHTML = '<sup>$</sup>50';
-        if (labelEl) labelEl.textContent = '2 AI-SEO-optimized posts per month';
-        if (ctaEl)   { ctaEl.textContent = 'Get Started'; ctaEl.setAttribute('data-service', 'blog-2-50'); }
-        try { localStorage.setItem('kpw_service', 'blog-2-50'); } catch (e) {}
-      } else if (tier === 'blog-4') {
         if (priceEl) priceEl.innerHTML = '<sup>$</sup>100';
+        if (labelEl) labelEl.textContent = '2 AI-SEO-optimized posts per month';
+        if (ctaEl)   { ctaEl.textContent = 'Get Started'; ctaEl.setAttribute('data-service', 'blog-2'); }
+        try { localStorage.setItem('kpw_service', 'blog-2'); } catch (e) {}
+      } else if (tier === 'blog-4') {
+        if (priceEl) priceEl.innerHTML = '<sup>$</sup>200';
         if (labelEl) labelEl.textContent = '4 AI-SEO-optimized posts per month';
-        if (ctaEl)   { ctaEl.textContent = 'Get Started'; ctaEl.setAttribute('data-service', 'blog-4-100'); }
-        try { localStorage.setItem('kpw_service', 'blog-4-100'); } catch (e) {}
+        if (ctaEl)   { ctaEl.textContent = 'Get Started'; ctaEl.setAttribute('data-service', 'blog-4'); }
+        try { localStorage.setItem('kpw_service', 'blog-4'); } catch (e) {}
       }
     });
   });
@@ -468,11 +468,18 @@ document.addEventListener('DOMContentLoaded', function () {
    ============================================================ */
 (function initServiceTracking() {
   var LABELS = {
-    'fb-100':       'Facebook Posting — 8 posts/month — $100/month',
-    'gb-100':       'Google Business Posting — 8 posts/month — $100/month',
-    'combined-150': 'Facebook + Google Combined — $150/month',
-    'blog-2-50':    'Blog Writing — 2 posts/month — $50/month',
-    'blog-4-100':   'Blog Writing — 4 posts/month — $100/month'
+    'website-starter':  'Starter Website — $450 setup + $50/month',
+    'website-standard': 'Standard Website — $600 setup + $50/month',
+    'gbp-posting':      'Google Business Profile Posting — $250/month',
+    'fb-posting':       'Facebook Page Posting — $250/month',
+    'blog-2':           'Blog Writing — 2 posts/month — $100/month',
+    'blog-4':           'Blog Writing — 4 posts/month — $200/month',
+    'gbp-setup-only':   'Google Business Profile Setup Only — $150',
+    'fb-setup-only':    'Facebook Business Page Setup Only — $150',
+    'local-seo-only':   'Local SEO + Directory Listings — $200',
+    'top-tier':         'Top Tier — Full AI Pipeline — $1,200 setup + $350/month',
+    'web-app':          'Web App / Custom Build — Discovery call required',
+    'not-sure':         'Not Sure — Help Me Figure Out What I Need'
   };
 
   // Store service when any card CTA is clicked

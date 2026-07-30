@@ -29,6 +29,11 @@
   <link rel="stylesheet" href="fonts/fa-subset.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="author" href="https://blog.kansasprairiewebworks.com">
+  <style>
+    .light-cards .service-card{background:#fff;border:1px solid rgba(0,0,0,0.08);box-shadow:0 4px 16px rgba(0,0,0,0.06);}
+    .light-cards .service-card__title{color:var(--dark);}
+    .light-cards .service-card__desc{color:var(--text)!important;}
+  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -44,26 +49,6 @@
         {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://kansasprairiewebworks.com/services.html"}
       ]
     }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-          {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Home",
-              "item": "https://kansasprairiewebworks.com"
-          },
-          {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Services",
-              "item": "https://kansasprairiewebworks.com/services.html"
-          }
-      ]
   }
   </script></head>
 <body>
@@ -134,7 +119,7 @@
         <a href="service-web-design.html" class="service-card animate-on-scroll animate-delay-1">
           <div class="service-card__icon" aria-hidden="true"><i class="fas fa-laptop-code"></i></div>
           <div class="service-card__title">Website Design</div>
-          <p class="service-card__desc">Mobile-ready, fast-loading websites that look great on every device. From simple single-page sites to full multi-page builds. Starting at $450 setup.</p>
+          <p class="service-card__desc">Mobile-ready, fast-loading websites that look great on every device. From simple single-page sites to full multi-page builds. Starting at $450 setup + $50/month.</p>
           <span class="service-card__link">View service <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
         </a>
         <a href="service-google-profile.html" class="service-card animate-on-scroll animate-delay-2">
@@ -158,13 +143,60 @@
         <a href="service-monthly-posting.html" class="service-card animate-on-scroll animate-delay-2">
           <div class="service-card__icon" aria-hidden="true"><i class="fas fa-pen-to-square"></i></div>
           <div class="service-card__title">Monthly Posting</div>
-          <p class="service-card__desc">AI-powered content pipeline &mdash; Google Business posts, Facebook content, monthly blog articles. You upload project photos from the job. We draft. You approve. It posts. $350/month. Nothing goes live without your sign-off.</p>
+          <p class="service-card__desc">AI-powered content pipeline &mdash; Google Business posts, Facebook posts, monthly blog articles. Snap a photo on the job, add a description, submit. We draft, you approve, it posts. From $100/month per service &mdash; nothing goes live without your sign-off.</p>
           <span class="service-card__link">View service <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
         </a>
         <a href="service-web-app.html" class="service-card animate-on-scroll animate-delay-3">
           <div class="service-card__icon" aria-hidden="true"><i class="fas fa-robot"></i></div>
           <div class="service-card__title">Web App / Custom Build</div>
           <p class="service-card__desc">Beyond a brochure website &mdash; AI platforms, e-commerce, booking systems, autonomous tools. Starting at $2,500. Discovery call required.</p>
+          <span class="service-card__link">View service <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--sm" style="background:var(--section-alt);" aria-labelledby="individual-services-heading">
+    <div class="container">
+      <div class="section__header animate-on-scroll">
+        <h2 id="individual-services-heading">Need Just <span class="text-pop">One Piece</span>?</h2>
+        <p>Already have a website or social accounts? Add exactly what's missing &mdash; no full package required.</p>
+      </div>
+      <div class="grid-3 light-cards">
+        <a href="service-monthly-posting.html" class="service-card animate-on-scroll animate-delay-1">
+          <div class="service-card__icon" aria-hidden="true"><i class="fab fa-google"></i></div>
+          <div class="service-card__title">GBP Monthly Posting</div>
+          <p class="service-card__desc">2 posts a day to Google Business Profile &mdash; $250/month.</p>
+          <span class="service-card__link">View service <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+        <a href="service-monthly-posting.html" class="service-card animate-on-scroll animate-delay-2">
+          <div class="service-card__icon" aria-hidden="true"><i class="fab fa-facebook-square"></i></div>
+          <div class="service-card__title">Facebook Monthly Posting</div>
+          <p class="service-card__desc">2 posts a day to your Facebook Page &mdash; $250/month.</p>
+          <span class="service-card__link">View service <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+        <a href="service-monthly-posting.html" class="service-card animate-on-scroll animate-delay-3">
+          <div class="service-card__icon" aria-hidden="true"><i class="fas fa-pen-nib"></i></div>
+          <div class="service-card__title">Blog Writing</div>
+          <p class="service-card__desc">2 posts/month for $100, or 4 posts/month for $200 &mdash; published to your site.</p>
+          <span class="service-card__link">View service <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+        <a href="service-google-profile.html" class="service-card animate-on-scroll animate-delay-1">
+          <div class="service-card__icon" aria-hidden="true"><i class="fas fa-map-pin"></i></div>
+          <div class="service-card__title">GBP Setup Only</div>
+          <p class="service-card__desc">Full Google Business Profile setup &amp; verification &mdash; $150 one-time.</p>
+          <span class="service-card__link">View service <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+        <a href="service-facebook-page.html" class="service-card animate-on-scroll animate-delay-2">
+          <div class="service-card__icon" aria-hidden="true"><i class="fas fa-flag"></i></div>
+          <div class="service-card__title">Facebook Setup Only</div>
+          <p class="service-card__desc">Full Facebook Business Page setup &amp; branding &mdash; $150 one-time.</p>
+          <span class="service-card__link">View service <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+        <a href="service-local-seo.html" class="service-card animate-on-scroll animate-delay-3">
+          <div class="service-card__icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="service-card__title">Local SEO + Directory Listings</div>
+          <p class="service-card__desc">Google, Bing, Yelp, Apple Maps listings + schema markup &mdash; $200 one-time.</p>
           <span class="service-card__link">View service <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
         </a>
       </div>
@@ -230,14 +262,14 @@
   <section class="section" style="background:var(--grad-orange);clip-path:polygon(0 5%,100% 0,100% 95%,0 100%);padding:7rem 0;margin:-2rem 0;" aria-labelledby="complete-pkg-heading">
     <div class="container">
       <div class="section__header animate-on-scroll" style="color:var(--white);">
-        <h2 id="complete-pkg-heading" style="color:var(--white);">The <span class="text-gold">Top Tier Package</span></h2>
-        <p style="color:rgba(255,255,255,0.9);">Get everything at once with the Top Tier &mdash; website, Google, Facebook, SEO, directory listings. One setup fee. One monthly rate.</p>
+        <h2 id="complete-pkg-heading" style="color:var(--white);">The <span class="text-gold">Complete AI Pipeline</span></h2>
+        <p style="color:rgba(255,255,255,0.9);">Everything at once &mdash; website, Google, Facebook, directory listings, local SEO, and 60+ posts a month written from your real job site photos. One setup fee. One monthly rate. Nothing posts without your approval.</p>
       </div>
       <div style="text-align:center;" class="animate-on-scroll">
-        <div class="featured-package__price"><sup>$</sup>800 <span class="featured-package__price-sub">setup &bull; then $150/mo hosting or $350/mo with social media</span></div>
+        <div class="featured-package__price"><sup>$</sup>1,200 <span class="featured-package__price-sub">setup &bull; then $350/month, everything included</span></div>
         <div class="btn-group" style="justify-content:center;margin-top:1.5rem;">
           <a href="pricing.html" class="btn btn--secondary btn--large">See Full Pricing Details</a>
-          
+
         </div>
       </div>
     </div>
