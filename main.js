@@ -580,6 +580,16 @@ document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('smsSignupForm');
   if (!form) return;
 
+  const closeBtn = document.getElementById('smsSignupClose');
+  const skippedEl = document.getElementById('smsSignupSkipped');
+  if (closeBtn && skippedEl) {
+    closeBtn.addEventListener('click', function () {
+      form.style.display = 'none';
+      closeBtn.style.display = 'none';
+      skippedEl.style.display = 'block';
+    });
+  }
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     let valid = true;

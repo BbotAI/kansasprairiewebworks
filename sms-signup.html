@@ -98,25 +98,39 @@
   <section class="contact-form-section section" aria-labelledby="sms-signup-heading">
     <div class="container">
       <h2 id="sms-signup-heading" class="sr-only">SMS Signup Form</h2>
-      <form class="contact-form" id="smsSignupForm" novalidate>
-        <div class="form-group">
-          <label for="smsPhone">Phone Number *</label>
-          <input type="tel" id="smsPhone" name="phone" placeholder="785-555-1234" required autocomplete="tel">
-          <span class="form-error" id="smsPhoneError" role="alert"></span>
+      <div class="contact-form" id="smsSignupCard" style="position:relative;">
+        <button type="button" id="smsSignupClose" aria-label="No thanks — skip SMS signup" title="No thanks, skip this" style="position:absolute;top:0.5rem;right:0.5rem;width:36px;height:36px;border:none;background:transparent;color:var(--text-muted);font-size:1.4rem;line-height:1;cursor:pointer;border-radius:50%;">&times;</button>
+
+        <form id="smsSignupForm" novalidate>
+          <div class="form-group">
+            <label for="smsPhone">Phone Number</label>
+            <input type="tel" id="smsPhone" name="phone" placeholder="785-555-1234" autocomplete="tel">
+            <span class="form-error" id="smsPhoneError" role="alert"></span>
+          </div>
+          <div class="form-group">
+            <label class="checkbox-label" for="smsConsent" style="align-items:flex-start;">
+              <input type="checkbox" id="smsConsent" name="sms_consent" style="margin-top:0.2rem;">
+              <span>I agree to receive SMS messages from Kansas Prairie Webworks. Message frequency varies. Message and data rates may apply. See our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Service</a>.</span>
+            </label>
+            <span class="form-error" id="smsConsentError" role="alert"></span>
+          </div>
+          <button type="submit" class="btn btn--primary btn--large" style="width:100%;justify-content:center;">
+            <i class="fas fa-comment-sms" aria-hidden="true"></i> Sign Up for SMS Updates
+          </button>
+          <div class="form-success" role="alert">Thanks! You're signed up for SMS updates from Kansas Prairie Webworks.</div>
+          <p style="font-size:0.85rem;color:var(--text-muted);margin-top:1.25rem;text-align:center;">Reply STOP at any time to opt out. For help reply HELP.<br>Privacy Policy: <a href="https://kansasprairiewebworks.com/privacy.html">kansasprairiewebworks.com/privacy.html</a></p>
+          <p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.75rem;text-align:center;">Prefer not to get texts? No problem — <a href="tel:7855777695">call us</a>, <a href="mailto:kansasprairiewebworks@gmail.com">email us</a>, or <a href="contact.html">reach out here</a> instead. SMS signup is entirely optional.</p>
+        </form>
+
+        <div id="smsSignupSkipped" style="display:none;text-align:center;padding:1.5rem 0;">
+          <p style="color:var(--text);font-size:1.05rem;margin-bottom:1rem;">No problem at all. Here's how to reach us instead:</p>
+          <div class="btn-group" style="justify-content:center;flex-wrap:wrap;">
+            <a href="tel:7855777695" class="btn btn--primary"><i class="fas fa-phone" aria-hidden="true"></i> Call 785-577-7695</a>
+            <a href="mailto:kansasprairiewebworks@gmail.com" class="btn btn--outline-orange"><i class="fas fa-envelope" aria-hidden="true"></i> Email Us</a>
+            <a href="contact.html" class="btn btn--outline-orange">Contact Page</a>
+          </div>
         </div>
-        <div class="form-group">
-          <label class="checkbox-label" for="smsConsent" style="align-items:flex-start;">
-            <input type="checkbox" id="smsConsent" name="sms_consent" required style="margin-top:0.2rem;">
-            <span>I agree to receive SMS messages from Kansas Prairie Webworks. Message frequency varies. Message and data rates may apply. See our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Service</a>.</span>
-          </label>
-          <span class="form-error" id="smsConsentError" role="alert"></span>
-        </div>
-        <button type="submit" class="btn btn--primary btn--large" style="width:100%;justify-content:center;">
-          <i class="fas fa-comment-sms" aria-hidden="true"></i> Sign Up for SMS Updates
-        </button>
-        <div class="form-success" role="alert">Thanks! You're signed up for SMS updates from Kansas Prairie Webworks.</div>
-        <p style="font-size:0.85rem;color:var(--text-muted);margin-top:1.25rem;text-align:center;">Reply STOP at any time to opt out. For help reply HELP.<br>Privacy Policy: <a href="https://kansasprairiewebworks.com/privacy.html">kansasprairiewebworks.com/privacy.html</a></p>
-      </form>
+      </div>
     </div>
   </section>
 
