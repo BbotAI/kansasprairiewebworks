@@ -574,11 +574,23 @@ document.addEventListener('DOMContentLoaded', function () {
 })();
 
 /* ============================================================
-   13. SMS SIGNUP FORM VALIDATION — client-side only, no backend yet
+   13. SMS SIGNUP FORM — validates client-side, then POSTs to the KPW Lead
+   Machine's Apps Script webhook (doPost's handleSmsConsentSubmission_),
+   which writes a CONSENTED row with a timestamp and the exact consent text
+   shown here. text/plain avoids a CORS preflight against Apps Script Web
+   Apps, same pattern used by kpw-agency-brain's client-facing pages.
    ============================================================ */
 (function initSmsSignupForm() {
   const form = document.getElementById('smsSignupForm');
   if (!form) return;
+
+  // Deployed as a fixed Web App deployment ID that clasp redeploys in
+  // place on every release (this project's standing pattern — see
+  // KPW-LEAD-MACHINE's skills/DEPLOYMENT.md) — the URL itself does not
+  // change across deploys. If a future session ever cuts a brand new
+  // deployment instead of redeploying this one in place, update this URL
+  // to match.
+  const LEAD_MACHINE_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbyHAAl0zX78-GoCYzz8k5ekVw3dNM4WnBtV0iPHmodmrHW7N34FjQZMT3CPANRF92pA/exec';
 
   const closeBtn = document.getElementById('smsSignupClose');
   const skippedEl = document.getElementById('smsSignupSkipped');
@@ -611,12 +623,38 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!valid) return;
 
-    const successEl = form.querySelector('.form-success');
-    if (successEl) {
-      form.reset();
-      successEl.classList.add('visible');
-      successEl.textContent = 'Thanks! You\'re signed up for SMS updates from Kansas Prairie Webworks.';
-    }
+    const submitBtn = form.querySelector('button[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
+
+    const consentLabel = consent && consent.closest('label') ? consent.closest('label').textContent.trim() : '';
+
+    fetch(LEAD_MACHINE_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({
+        action: 'smsConsent',
+        phone: phone.value.trim(),
+        consentText: consentLabel
+      })
+    })
+      .then(function (resp) { return resp.json(); })
+      .then(function (result) {
+        if (submitBtn) submitBtn.disabled = false;
+        if (result && result.success) {
+          const successEl = form.querySelector('.form-success');
+          if (successEl) {
+            form.reset();
+            successEl.classList.add('visible');
+            successEl.textContent = 'Thanks! You\'re signed up for SMS updates from Kansas Prairie Webworks.';
+          }
+        } else {
+          showSmsError(phone, 'Something went wrong on our end — please call or text us instead (see below).');
+        }
+      })
+      .catch(function () {
+        if (submitBtn) submitBtn.disabled = false;
+        showSmsError(phone, 'Something went wrong on our end — please call or text us instead (see below).');
+      });
   });
 
   function showSmsError(field, message) {
