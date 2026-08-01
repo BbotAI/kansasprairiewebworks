@@ -294,7 +294,29 @@ Full breakdown in `GSC_VALIDATION_STEPS.md`.
 
 ---
 
-## DECISIONS LOG
+### SESSION — 2026-07-31 — Full Site Audit + Homepage "Web Development" GSC Gap Fix
+
+**Status:** [x] COMPLETE (1 fix shipped, 2 items identified and deliberately deferred)
+
+Ran the site-audit skill against kansasprairiewebworks.com, reconciled against live `node kpw_seo_check.js kansasprairiewebworks.com` output (GSC + PageSpeed), and verified rendering claims in headless Chrome (Playwright) rather than trusting static file reads alone.
+
+**1. Confirmed the 2026-07-28 known-open items' current state:**
+- Duplicate Blogger post (`web-development-vs-website-design-kansas-small-business_0431377441.html`) — **now 404, confirmed deleted** by Kaleb directly in the Blogger dashboard on 2026-07-30. Closed out.
+- ai-services.html Phase 3 backend-detail trim — still explicitly deferred, no change.
+- GSC Coverage API reporting 0 indexed pages despite 491 impressions/13 clicks this period — reconfirmed as the known false-reading pattern on these sites; not a real issue.
+
+**2. Fix shipped — homepage never said "web development":** GSC opportunity scan flagged `"web development kansas"` at position 1.9 (near top of page 1!) with 19 impressions / 0 clicks over 28 days, and `"web development"` at position 6.2 with 85 impressions / 0 clicks. `service-web-design.html` was already thoroughly optimized for that phrase (title, meta, keywords, schema all say it repeatedly) — but `index.html`'s title, meta description, keywords, OG tags, and LocalBusiness JSON-LD description only ever said "web design," never "development." Since the homepage is the domain's highest-authority page and the most likely candidate actually earning that ranking, added "Web Design & Development" throughout its `<head>` metadata and bumped its sitemap `lastmod` to 2026-07-31. No visible layout change; JSON-LD re-validated after edit. Pushed as commit `b4a9325`.
+
+**3. Found, visually confirmed, but NOT fixed — blurry portfolio screenshot:** `images/screenshot_complete_online.jpg` (used on both index.html and portfolio.html for the "Complete Online Presence — Top Tier" card) is only 206×206px, stretched to `width:100%;height:220px` in the portfolio grid. Confirmed visibly blurry vs. a sharp neighbor card via a headless-Chrome element screenshot comparison. **Blocked on a higher-resolution source image from Kaleb** — cannot manufacture pixels from a small file. Flagged, not resolved.
+
+**4. Found, deliberately NOT touched — dead-looking pricing-toggle code in main.js:** `initPricingToggle()` (main.js ~L367-432) still references `data-tier="maintenance"`/`"active"` and the old $1,200/$800 split pricing removed in the 2026-07-29 overhaul (`312fb32`). No HTML element anywhere carries a `data-tier` attribute (grep-confirmed), so the price-injection branches never fire. **But** the surrounding click-handler — which toggles `.active`/`aria-pressed` on `.pricing-toggle__btn` elements — is the *same* shared handler the live blog-post-count toggle (2 posts/4 posts, service-monthly-posting.html) depends on for its own active-state styling, since that toggle's own handler (`initBlogToggle`) never sets those classes itself. A naive "delete the whole dead function" cleanup would have silently broken the live blog toggle's visual state. Left alone; flagged for a dedicated untangling pass if ever prioritized.
+
+**5. Method note for future sessions:** a first-pass `driver.mjs shot --full-page` screenshot of portfolio.html appeared to show only 3 of 7 portfolio cards rendering — looked like a serious missing-content bug. A follow-up test that scrolled the page incrementally (like a real user) instead of a single full-page capture showed all 7 cards render correctly (`opacity:1`, `.visible` class present). Playwright's full-page capture resizes the viewport and grabs one shot without incrementally triggering scroll-based `IntersectionObserver` animations — **don't trust `--full-page` alone for anything gated by `.animate-on-scroll`; scroll it in steps first.**
+
+**Not fixed this session, not blocked — bigger scope, deferred by choice:**
+- Mobile LCP 3.2s on the homepage (threshold 2.5s, measured via kpw_seo_check.js). Hero image preload is already correctly in place (`fetchpriority="high"`, correct `media` breakpoints) — the remaining cause needs a render-blocking-resource waterfall trace, not a quick metadata edit. Scoped as its own session.
+
+
 > Claude Code logs any build decisions made that were not in AGENT_BRIEF.md
 
 | Phase | Decision | Reason |
