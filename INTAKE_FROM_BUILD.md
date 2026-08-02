@@ -753,8 +753,8 @@ NEXT ACTIONS FOR KALEB:
 PHASE 1 — CLOSE THE DEAL
 Meet client → seal the deal
 Send two links:
-  bbotai.github.io/kpw-intake
-  bbotai.github.io/kpw-client-portal
+  intake.kansasprairiewebworks.com
+  portal.kansasprairiewebworks.com
 Client fills intake → saves to Agency Brain
 Client uploads photos per service → Cloudinary
 Welcome email fires automatically
@@ -819,7 +819,7 @@ System runs autonomously
 ## CLIENT PORTAL SYSTEM (v30+)
 
 Upload flow:
-1. bbotai.github.io/kpw-client-portal
+1. portal.kansasprairiewebworks.com
 2. Login: business name + email
 3. Service selector loads from Agency Brain
 4. Pick ONE service at a time
@@ -950,9 +950,9 @@ Cloudinary: dxqhuoxzn
 Cloudinary Preset: kpw-unsigned
 Cloudinary Folder: kpw-clients/{client-slug}/
 GitHub: github.com/BbotAI
-Client Portal: bbotai.github.io/kpw-client-portal
+Client Portal: portal.kansasprairiewebworks.com
 Photo Curator: bbotai.github.io/kpw-photo-curator (PIN: 336677)
-Intake Form: bbotai.github.io/kpw-intake
+Intake Form: intake.kansasprairiewebworks.com
 
 ---
 
