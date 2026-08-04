@@ -211,7 +211,14 @@
 
   <section class="hero" aria-label="Hero">
     <div class="hero__bg" aria-hidden="true"></div>
-    <div class="hero__image" style="background-image:url('images/kpw-hero-storm.webp');" aria-hidden="true"></div>
+    <!-- Background image lives in styles.css behind media queries, NOT inline.
+         As an inline style it was applied the moment this element was parsed,
+         so mobile started downloading the 154 KB DESKTOP hero before
+         styles.css arrived with its max-width:768px override. Confirmed in a
+         PageSpeed network trace: the desktop webp began at 338ms, styles.css
+         finished at 341ms — too late to stop it. Mobile therefore fetched the
+         55 KB preloaded mobile hero AND the 154 KB desktop one. -->
+    <div class="hero__image" aria-hidden="true"></div>
     <div class="hero__overlay" aria-hidden="true"></div>
     <div class="hero__content">
       <h1>Web Design &amp; Online Marketing for <span class="text-pop">Salina, Kansas</span> Small Businesses</h1>
