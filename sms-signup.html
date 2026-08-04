@@ -109,8 +109,6 @@
     <div class="container">
       <h2 id="sms-signup-heading" class="sr-only">SMS Signup Form</h2>
       <div class="contact-form" id="smsSignupCard" style="position:relative;">
-        <button type="button" id="smsSignupClose" aria-label="No thanks — skip SMS signup" title="No thanks, skip this" style="position:absolute;top:0.5rem;right:0.5rem;width:36px;height:36px;border:none;background:transparent;color:var(--text-muted);font-size:1.4rem;line-height:1;cursor:pointer;border-radius:50%;">&times;</button>
-
         <form id="smsSignupForm" novalidate>
           <div class="form-group">
             <label for="smsPhone">Phone Number</label>
@@ -126,6 +124,15 @@
           </div>
           <button type="submit" class="btn btn--primary btn--large" style="width:100%;justify-content:center;">
             <i class="fas fa-comment-sms" aria-hidden="true"></i> Sign Up for SMS Updates
+          </button>
+          <!-- Explicit, visible skip control. This was previously an unlabelled
+               "x" in the card corner whose "No thanks" wording lived only in
+               aria-label/title, so a sighted A2P 10DLC reviewer looking for an
+               opt-out path would not have seen one. Carrier reviewers require
+               an explicit skip option or a separate checkbox; keep this visible
+               and worded in plain text. type="button" so it never submits. -->
+          <button type="button" id="smsSignupClose" aria-label="No thanks, skip SMS signup" style="width:100%;justify-content:center;margin-top:0.75rem;background:transparent;border:1px solid var(--border,#d4d4d4);color:var(--text-muted);padding:0.75rem 1rem;border-radius:6px;font-size:0.95rem;font-weight:600;cursor:pointer;">
+            No thanks, skip this
           </button>
           <div class="form-success" role="alert">Thanks! You're signed up for SMS updates from Kansas Prairie Webworks.</div>
           <p style="font-size:0.85rem;color:var(--text-muted);margin-top:1.25rem;text-align:center;">Reply STOP at any time to opt out. For help reply HELP.<br>Privacy Policy: <a href="https://kansasprairiewebworks.com/privacy.html">kansasprairiewebworks.com/privacy.html</a></p>
