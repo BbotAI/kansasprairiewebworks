@@ -103,6 +103,87 @@ visitors, not the score.
 
 ---
 
+## FIXED 2026-08-05 — the SEO check script's false alarms
+
+`kpw_credentials/kpw_seo_check.js` — **not a git repo.** Backed up before
+editing as `kpw_seo_check.js.backup-<timestamp>`, and the corrected version
+snapshotted as `kpw_seo_check.js.fixed-<timestamp>`. Note the file is now
+CRLF; diff old against new with `diff --strip-trailing-cr` or every line
+looks changed (137 real changes, not 3519).
+
+All three original false alarms fixed, **plus a fourth found while testing
+that was worse than the three**:
+
+### 1. "Indexed: 0 pages" — fixed
+
+Read the Search Console `sitemaps.list` `indexed` field, which Google
+deprecated and now always returns 0. Now only printed when non-zero;
+otherwise it infers from search performance, which is authoritative:
+`Indexed: yes — 515 impressions in the last 28 days`.
+
+### 2. "TOP QUERIES: (none)" — fixed
+
+The filter was `clicks > 0`, and Google **anonymises query strings on
+low-volume searches** — so a site with real clicks in its totals can have no
+individual query row reporting any. Now falls back to the highest-impression
+queries and labels which view is shown.
+
+### 3. LCP lab data judged against a field threshold — fixed
+
+2.5s is the Core Web Vitals **field** threshold. The script compared
+PageSpeed's *simulated* lab number to it, which fires on nearly every small
+site. LCP is now flagged on **CrUX field data only**, and lab/field are
+printed on separate labelled lines. **No site has field data, so Core Web
+Vitals are not affecting any KPW site's rankings right now.**
+
+### 4. PageSpeed rate-limiting returns GOOGLE.COM's metrics — found and fixed
+
+The one that mattered most, and it only surfaced because the fix for #3 made
+field data visible. When PageSpeed is rate-limited it follows a redirect to
+`https://www.google.com/sorry/index` and **returns CrUX data for
+google.com**. Two unrelated client blogs both reported LCP 2.759s / INP
+335ms — identical, because both were really reading Google.
+
+Without a guard, the "fix" for #3 would have confidently attributed Google's
+metrics to a client and sent someone optimising a page that was never
+measured. **Field data is now validated against the requested hostname
+before it is trusted**, for both LCP and INP, and a mismatch prints:
+
+```
+LCP (real visitors): DISCARDED — PageSpeed was redirected to https://www.google.com/sorry/index
+```
+
+**Rule: never trust a third-party API's payload without checking it describes
+the thing you asked about.** This one was only caught because two different
+sites returned suspiciously identical numbers.
+
+---
+
+## All-client run, 2026-08-05
+
+| Site | Clicks (28d) | Impressions | Mobile | Real issues |
+|---|---|---|---|---|
+| kansasprairiewebworks.com | 14 (+133%) | 515 | 70 | mobile score |
+| mikeservicesllc.com | 13 (+44%) | 584 | 72 | mobile score |
+| blog.mikeservicesllc.com | 1 (new) | 102 | 99 | none |
+| procleaningsalinaks.com | 1 (new) | 137 | 64 | mobile score, **lab LCP 17.0s** |
+| blog.procleaningsalinaks.com | — | — | 94 | none |
+
+Both main client sites are growing. **procleaningsalinaks.com is the outlier
+worth a look** — a 17.0s lab LCP is extreme even allowing for throttling, and
+the mobile score of 64 is the lowest of the set. No CrUX data yet, so it isn't
+hurting rankings, but it will when traffic arrives.
+
+**Mike's opportunities are a different shape from KPW's.** KPW ranks well and
+isn't clicked (positions 2-6, a title/meta problem). Mike's sits at positions
+41-86 on real commercial queries — `pole barn pad site preparation service`,
+`trenching companies near me`, `crawl space encapsulation salina ks`. That is
+page 5-9, effectively invisible; it needs content and links, not title tweaks.
+
+---
+
+## SUPERSEDED — original note on the three false alarms
+
 ## The SEO check script reports three things that aren't real
 
 `kpw_credentials/kpw_seo_check.js` — **not a git repo, so changes there are not
