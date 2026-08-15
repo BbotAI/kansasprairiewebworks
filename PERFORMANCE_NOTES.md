@@ -222,3 +222,60 @@ at rankings. `mobile app development` is the biggest single impression driver
 and the script calls it a "wrong signal" — but the contact form does sell
 *"Web App / Custom Build"*, so that's a business decision (build a page for it,
 or narrow the copy), not a technical defect.
+
+---
+
+## 2026-08-15 — the mobile score flag keeps firing; the 2026-08-04 decision stands
+
+`kpw_seo_check.js` reported **mobile 65** (was 70 on 08-04, 70 on 07-31). The
+score is drifting down and the script raises "⚠️ Mobile score 65 — below 80
+threshold" every run.
+
+**No action taken, deliberately.** Same reasoning as 2026-08-04, re-verified
+on 08-15: the script's *own output* still prints
+
+> LCP (real visitors): no CrUX field data — too little traffic, so Core Web
+> Vitals are not affecting rankings
+
+so the flag and the explanation contradict each other in the same report. The
+explanation is the correct one. Nothing here is a ranking problem yet.
+
+**What would change this:** CrUX field data appearing for the origin. Check
+`loadingExperience` / `originLoadingExperience` in the PageSpeed response —
+both empty today. When they populate, re-read this file and act on the field
+numbers, not the lab ones.
+
+**Contrast — mikeservicesllc.com, same week.** That site's mobile score got
+real work (images 1556KB → 566KB, TBT 140ms → 20ms) because it has actual
+search traffic and the images were genuinely oversized: portrait photos served
+into a landscape 180px box, ~9× more pixels than were ever displayed. The
+distinction is not "chase scores" vs "ignore scores" — it is whether there is
+a real user-facing problem underneath the number. On Mike's there was. Here,
+so far, there isn't.
+
+---
+
+## 2026-08-15 — SEO: the ranking page is not the page named after the topic
+
+Not a performance note, but it belongs next to the "don't chase the number"
+rule because it is the same failure mode: acting on a label instead of data.
+
+The 2026-08-05 fix prompt flagged `"mobile app development"` as a wrong
+signal. The disambiguating copy was added to `service-web-app.html` — the
+page *about* app development, and the obvious guess.
+
+**GSC says the homepage is what ranks for that query.** `service-web-app.html`
+has never drawn an impression for it. Ten days later the wrong signal was
+stronger (position 11.3 → 8.9), because the page that actually ranks was never
+touched.
+
+Before editing any page a fix prompt tells you to "review":
+
+```bash
+cd ../kpw_credentials
+node kpw_seo_check.js kansasprairiewebworks.com --which-page
+```
+
+That flag was added on 2026-08-15 specifically so this cannot recur. It also
+shows the prior 28-day window, which separates "the same page moved" from
+"Google swapped which page it ranks."
