@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-14W9B5KVEE"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-14W9B5KVEE');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Methodology — KPW Tech Brief | Kansas Prairie Webworks</title>
+  <meta name="description" content="How the KPW Tech Brief is researched and written: source hierarchy, verification, correction policy, update policy, and AI use disclosure.">
+  <meta name="author" content="Kansas Prairie Webworks">
+  <meta name="google-site-verification" content="FD8kVhaCPINbkF9oLR6JCPulRQ7zuqvG9ZMBSihcf_k" />
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Methodology — KPW Tech Brief | Kansas Prairie Webworks">
+  <meta property="og:description" content="How the KPW Tech Brief is researched and written: source hierarchy, verification, correction policy, update policy, and AI use disclosure.">
+  <meta property="og:url" content="https://kansasprairiewebworks.com/insights/methodology.html">
+  <meta property="og:site_name" content="Kansas Prairie Webworks">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="canonical" href="https://kansasprairiewebworks.com/insights/methodology.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/fonts/fa-subset.css">
+  <link rel="stylesheet" href="/styles.css">
+
+  <style>
+    .hub-section{background:#FBF8F1}
+    .hub-wrap{max-width:1100px;margin:0 auto;padding:0 1.25rem}
+    .tv-strip{background:var(--dark);border-bottom:1px solid rgba(255,255,255,.08)}
+    .tv-strip__label{max-width:1100px;margin:0 auto;padding:.45rem 1.25rem 0;color:var(--text-muted);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;font-family:Poppins,sans-serif}
+    .tv-strip__label a{color:var(--secondary);text-decoration:underline}
+    .tv-panel{background:var(--dark);border-radius:10px;padding:1.5rem;margin:3rem 0}
+    .tv-panel h2{color:var(--white);margin:0 0 .4rem;font-size:1.35rem}
+    .tv-maps{display:grid;gap:1.5rem}
+    .tv-map{margin:0}
+    .tv-map figcaption{color:var(--text-light);font-size:.92rem;line-height:1.6;margin:0 0 .75rem}
+    .tv-map figcaption strong{display:block;color:var(--secondary);font-family:Poppins,sans-serif;font-size:1rem;margin-bottom:.2rem}
+    .tv-strip tv-tickers{display:block;width:100%}
+    @media(min-width:1000px){.tv-maps{grid-template-columns:1fr 1fr}}
+    .tv-panel p.note{color:var(--text-muted);font-size:.9rem;line-height:1.6;margin:0 0 1.25rem}
+    .rwa{margin:3rem 0}
+    .rwa>h2{color:var(--primary);border-left:4px solid var(--secondary);padding-left:.85rem;margin:0 0 .75rem}
+    .rwa>p.intro{color:var(--text);line-height:1.8;max-width:70ch}
+    .rwa-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;margin:1.5rem 0}
+    .rwa-card{background:var(--white);border:1px solid rgba(26,37,47,.14);border-top:4px solid var(--secondary);border-radius:8px;padding:1.25rem;display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(26,37,47,.05)}
+    .rwa-card h3{font-size:1.05rem;margin:0 0 .5rem}
+    .rwa-card h3 a{color:var(--text)}
+    .rwa-card .what{color:var(--text);font-size:.92rem;line-height:1.65;margin:0 0 .65rem}
+    .rwa-card .why{color:var(--text-muted);font-size:.88rem;line-height:1.6;font-style:italic;flex:1}
+    .rwa-card .go{margin-top:.9rem;font-size:.88rem;color:var(--primary);font-weight:600}
+    .rwa-caveat{background:#F2EADA;border:1px solid rgba(230,126,34,.35);border-radius:6px;padding:1rem 1.25rem;color:var(--text);font-size:.92rem;line-height:1.7}
+    .hub-eyebrow{color:var(--secondary);letter-spacing:.08em;text-transform:uppercase;font-size:.85rem;font-family:Poppins,sans-serif;font-weight:600}
+    .hub-featured{display:grid;grid-template-columns:1.15fr .85fr;gap:2.5rem;align-items:center;background:var(--dark);border-radius:10px;overflow:hidden;margin:0 0 3rem}
+    .hub-featured__body{padding:2.5rem}
+    .hub-featured h2{color:var(--white);margin:.5rem 0 1rem;font-size:clamp(1.5rem,3vw,2.2rem)}
+    .hub-featured p{color:var(--text-light);line-height:1.75}
+    .hub-featured img{width:100%;height:100%;object-fit:cover;min-height:280px}
+    .hub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.75rem}
+    .hub-card{background:var(--white);border:1px solid rgba(0,0,0,.1);border-top:4px solid var(--primary);border-radius:8px;padding:1.5rem;display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease}
+    .hub-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(12,30,50,.12)}
+    .hub-card h3{margin:.4rem 0 .6rem;font-size:1.2rem}
+    .hub-card h3 a{color:var(--text)}
+    .hub-card p{color:var(--text);font-size:.96rem;line-height:1.7;flex:1}
+    .hub-meta{color:var(--text-muted);font-size:.82rem;letter-spacing:.03em;text-transform:uppercase;font-family:Poppins,sans-serif}
+    .hub-topics{display:flex;flex-wrap:wrap;gap:.6rem;margin:0 0 2.5rem}
+    .hub-topics a{background:var(--section-alt);border:1px solid rgba(0,0,0,.1);border-radius:999px;padding:.5rem 1rem;font-size:.9rem;color:var(--text);font-family:Poppins,sans-serif;font-weight:500}
+    .hub-topics a:hover{border-color:var(--primary);color:var(--primary)}
+    .hub-note{background:var(--section-alt);border-left:4px solid var(--primary);border-radius:6px;padding:1.5rem 1.75rem;margin:3rem 0}
+    .meth-wrap{max-width:800px;margin:0 auto;padding:0 1.25rem}
+    .meth-wrap h2{color:var(--primary);border-left:4px solid var(--secondary);padding-left:.85rem;margin:2.5rem 0 1rem}
+    .meth-wrap p,.meth-wrap li{line-height:1.8;color:var(--text)}
+    .meth-wrap ul{margin:1rem 0 1rem 1.25rem;list-style:disc}
+    .meth-tier{background:var(--white);border:1px solid rgba(0,0,0,.12);border-left:4px solid var(--primary);border-radius:6px;padding:1rem 1.25rem;margin:.75rem 0}
+    .meth-tier strong{font-family:Poppins,sans-serif;display:block;margin-bottom:.25rem}
+    @media(max-width:860px){.hub-featured{grid-template-columns:1fr}.hub-featured img{min-height:200px}}
+  </style>
+</head>
+<body>
+<a class="skip-nav" href="#main-content">Skip to main content</a>
+
+<nav class="navbar scrolled" role="navigation" aria-label="Main navigation">
+  <div class="navbar__inner">
+    <a href="/index.html" class="navbar__logo" aria-label="Kansas Prairie Webworks Home"><img src="/images/kpw-logo-badge.jpg" alt="KPW" class="navbar__logo-badge" width="44" height="44"><div><span class="navbar__logo-text">Kansas Prairie Webworks</span><span class="navbar__logo-sub">Salina, Kansas</span></div></a>
+    <ul class="navbar__links" role="list">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/services.html">Services</a></li>
+      <li><a href="/ai-services.html">AI Services</a></li>
+      <li><a href="/portfolio.html">Portfolio</a></li>
+      <li><a href="/pricing.html">Pricing</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+      <li><a href="/insights/index.html">Tech Brief</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+    <a href="tel:7855777695" class="btn btn--primary navbar__cta">&#128222; Call Now</a>
+    <button class="navbar__hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="navbar__mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+    <ul role="list">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/services.html">Services</a></li>
+      <li><a href="/ai-services.html">AI Services</a></li>
+      <li><a href="/portfolio.html">Portfolio</a></li>
+      <li><a href="/pricing.html">Pricing</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+      <li><a href="/insights/index.html">Tech Brief</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+    <div class="navbar__mobile-actions"><a href="tel:7855777695" class="btn btn--primary">Call Now</a></div>
+  </div>
+</nav>
+<main id="main-content">
+
+  <section class="page-hero" aria-label="Methodology">
+    <div class="page-hero__bg" aria-hidden="true"></div>
+    <div class="page-hero__overlay" aria-hidden="true"></div>
+    <div class="container page-hero__content">
+      <p class="hub-eyebrow">KPW Tech Brief</p>
+      <h1>Methodology</h1>
+      <p class="lead">How these briefs are researched, sourced, corrected, and updated.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="meth-wrap">
+
+      <h2>What this is, and is not</h2>
+      <p>The KPW Tech Brief is educational technology commentary. It is <strong>not</strong> investment, financial, legal, or tax advice, and it never recommends buying, selling, or holding anything. Where a topic touches regulated markets, we describe what the rules and filings actually say, and stop there.</p>
+
+      <h2>Source hierarchy</h2>
+      <p>Every brief is written from the highest tier that can answer the question. Each published article lists its sources with tier, publisher, date, and the specific claim each one supports.</p>
+
+      <div class="meth-tier"><strong>Tier 1 — Primary and official</strong>Government, regulators, legislation, official filings. SEC releases and approval orders, the Federal Register, Congress.gov bill records, Federal Reserve publications, exchange rule filings.</div>
+      <div class="meth-tier"><strong>Tier 2 — Direct participants</strong>Exchanges, issuers, transfer agents, custodians, and official platform documentation.</div>
+      <div class="meth-tier"><strong>Tier 3 — Research and data platforms</strong>Named institutional research and data platforms such as RWA.xyz, always with an as-of date.</div>
+      <div class="meth-tier"><strong>Tier 4 — Contextual reporting</strong>Used for background only. Never the sole support for a material claim.</div>
+
+      <p>Never used as primary evidence: social posts, influencer claims, anonymous sources, press releases restating someone else's claim, or another AI's summary.</p>
+
+      <h2>Verification rules</h2>
+      <ul>
+        <li>Every dynamic figure carries its source, a link, and an explicit "as of" date.</li>
+        <li>A claim that cannot be verified against a primary source is removed, not softened into a hedge.</li>
+        <li>Legislation is described by its actual procedural posture. Filing cloture, committee passage, and a scheduled vote are not passage.</li>
+        <li>Approved-and-operating is distinguished from proposed-or-piloted.</li>
+        <li>Dashboard data is never described as audited.</li>
+        <li>We do not invent numbers, quotations, citations, or images.</li>
+      </ul>
+
+      <h2>Corrections</h2>
+      <p>Errors are corrected in place, and the correction is noted in the article with its date. We do not quietly edit a claim out of existence. If you find something wrong, <a href="/contact.html">tell us</a> and we will check it against the source.</p>
+
+      <h2>Updates and data freshness</h2>
+      <p>Briefs carry dated data that goes stale. Each article shows when its data was last checked. When a figure or a legal status changes materially, we update the article, update <code>dateModified</code>, and note what changed. We do not silently refresh numbers underneath a conclusion that depended on the old ones.</p>
+
+      <h2>AI use disclosure</h2>
+      <p>We use AI tools to help scan primary sources and produce first drafts. Every published brief is reviewed by a human before it goes out, every source is checked, and nothing publishes automatically on a schedule. The judgments, the framing, and the responsibility are ours.</p>
+
+      <h2>Who writes this</h2>
+      <p>Kansas Prairie Webworks is a web design, local SEO, and AI automation studio in Salina, Kansas. We build and operate the kinds of systems these briefs describe, for small businesses across Central Kansas. <a href="/about.html">More about us</a>.</p>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="/index.html" class="footer__brand-logo" aria-label="Kansas Prairie Webworks"><img src="/images/kpw-logo-badge.jpg" alt="KPW" width="44" height="44" loading="lazy"><span>Kansas Prairie Webworks</span></a>
+        <p>Your complete online presence &mdash; Website, Google, Facebook. Locally owned in Salina, Kansas.</p>
+      </div>
+      <div class="footer__col"><h3>Services</h3><ul role="list"><li><a href="/service-web-design.html">Website Design</a></li><li><a href="/service-google-profile.html">Google Business Profile</a></li><li><a href="/service-local-seo.html">Local SEO</a></li><li><a href="/ai-services.html">AI Automation</a></li></ul></div>
+      <div class="footer__col"><h3>Tech Brief</h3><ul role="list"><li><a href="/insights/index.html">All briefs</a></li><li><a href="/insights/methodology.html">Methodology</a></li><li><a href="/blog.html">Local business blog</a></li></ul></div>
+      <div class="footer__col"><h3>Contact</h3><div class="footer__contact-item"><a href="tel:7855777695">785-577-7695</a></div><div class="footer__contact-item"><a href="mailto:kansasprairiewebworks@gmail.com">kansasprairiewebworks@gmail.com</a></div><div class="footer__contact-item"><span>Salina, Kansas</span></div></div>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="container flex-between">
+      <p class="footer__copyright">&copy; 2026 Kansas Prairie Webworks. All rights reserved.</p>
+      <div class="footer__legal">
+        <a href="/terms.html">Terms</a><span class="footer__legal-sep">|</span>
+        <a href="/privacy.html">Privacy</a><span class="footer__legal-sep">|</span>
+        <a href="/disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/main.js?v=4" defer></script>
+</body>
+</html>
