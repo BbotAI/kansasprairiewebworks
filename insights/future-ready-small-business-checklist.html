@@ -177,9 +177,12 @@
     .brief-wrap>p,.brief-wrap>ul,.brief-wrap>h2,.brief-wrap>h3{background:transparent}
     .brief-meta{color:var(--text-muted);font-size:.95rem;margin-bottom:1.5rem}
     .brief-summary{background:var(--dark);border-left:5px solid var(--primary);border-radius:6px;padding:1.5rem 1.75rem;margin:0 0 2rem}
-    .brief-summary p{color:var(--text-light);font-size:1.05rem;line-height:1.75;margin:0}
-    .brief-summary strong.lbl{color:var(--secondary);font-family:Poppins,sans-serif;display:block;margin-bottom:.75rem;font-size:1rem}
-    .brief-summary p+p{margin-top:1rem}
+    /* Two-class selector on purpose. .brief-wrap p sets dark ink at the same
+       specificity and is declared later, so a plain .brief-summary p loses the
+       tie and paints near-black text on the navy panel. */
+    .brief-wrap .brief-summary,.brief-wrap .brief-summary p{color:var(--text-light);font-size:1.08rem;line-height:1.8;margin:0}
+    .brief-wrap .brief-summary strong.lbl{color:var(--secondary);font-family:Poppins,sans-serif;display:block;margin-bottom:.75rem;font-size:1rem}
+    .brief-wrap .brief-summary p+p{margin-top:1rem}
     .brief-wrap h2{color:var(--dark);border:0;padding:0;margin:3.25rem 0 1.1rem;font-size:clamp(1.5rem,2.6vw,2rem);letter-spacing:-.01em}
     .brief-wrap h2::before{content:attr(data-n);display:block;font-size:.72rem;letter-spacing:.16em;color:var(--primary);margin-bottom:.5rem;font-weight:700}
     .brief-wrap h2::after{content:"";display:block;width:64px;height:3px;background:linear-gradient(90deg,var(--primary),var(--secondary));margin-top:.7rem;border-radius:2px}
@@ -189,7 +192,7 @@
     .brief-wrap ul{margin:1rem 0 1rem 1.25rem;list-style:disc}
     .brief-wrap li{margin-bottom:.6rem}
     .brief-data{background:var(--dark);border:0;border-radius:8px;padding:1.5rem 1.75rem;margin:2.5rem 0;box-shadow:0 8px 28px rgba(26,37,47,.16)}
-    .brief-data p{color:var(--text-light) !important;font-size:1.02rem}
+    .brief-wrap .brief-data p{color:var(--text-light);font-size:1.02rem}
     .brief-data strong{color:var(--secondary)}
     .brief-data .src{color:rgba(236,240,241,.66)}
     .brief-data .src a{color:var(--secondary)}
@@ -197,11 +200,11 @@
     .brief-takeaway{background:linear-gradient(135deg,#F5EDDD,#F2E6D0);border:1px solid rgba(230,126,34,.4);border-radius:8px;padding:1.5rem 1.75rem;margin:2.5rem 0}
     .brief-takeaway p{color:var(--dark);font-size:1.08rem}
     .brief-bridge{background:var(--dark);border-left:5px solid var(--primary);border-radius:6px;padding:1.5rem 1.75rem;margin:2.5rem 0}
-    .brief-bridge,.brief-bridge p{color:var(--text-light);line-height:1.8;margin:0 0 1rem}
-    .brief-bridge p:last-child{margin-bottom:0}
-    .brief-bridge strong.lbl{color:var(--secondary);font-family:Poppins,sans-serif;display:block;margin-bottom:.75rem;font-size:1rem}
+    .brief-wrap .brief-bridge,.brief-wrap .brief-bridge p{color:var(--text-light);font-size:1.05rem;line-height:1.8;margin:0 0 1rem}
+    .brief-wrap .brief-bridge p:last-child{margin-bottom:0}
+    .brief-wrap .brief-bridge strong.lbl{color:var(--secondary);font-family:Poppins,sans-serif;display:block;margin-bottom:.75rem;font-size:1rem}
     .brief-hublink{background:var(--dark);border-radius:8px;padding:1.35rem 1.6rem;margin:2rem 0}
-    .brief-hublink p{color:var(--text-light);font-size:.98rem;line-height:1.7;margin:0 0 .6rem}
+    .brief-wrap .brief-hublink p{color:var(--text-light);font-size:.98rem;line-height:1.7;margin:0 0 .6rem}
     .brief-hublink p:last-child{margin:0}
     .brief-hublink a{color:var(--secondary);font-weight:700;text-decoration:none}
     .brief-related{background:var(--section-alt);border-radius:6px;padding:1.5rem;margin:2.5rem 0}
