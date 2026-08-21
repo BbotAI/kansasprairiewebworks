@@ -16,8 +16,11 @@
   <meta property="og:url" content="https://kansasprairiewebworks.com/insights/index.html">
   <meta property="og:site_name" content="Kansas Prairie Webworks">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.json">
   <link rel="canonical" href="https://kansasprairiewebworks.com/insights/index.html">
@@ -82,8 +85,17 @@
 }
   </script>
   <style>
-    .hub-section{background:#FBF8F1}
+    /* .navbar is position:fixed at var(--nav-height), so anything at the top
+       of the document sits underneath it. The strip clears it explicitly. */
+    body{background:#F7F3EA}
+    .tv-strip{margin-top:var(--nav-height)}
+    @media(max-width:900px){.tv-strip{margin-top:64px}}
+    .hub-section{background:transparent}
     .hub-wrap{max-width:1100px;margin:0 auto;padding:0 1.25rem}
+    /* Buttons are inline-flex with no margin, so two adjacent ones butt
+       together. A flex row with a real gap fixes the collision and wraps
+       cleanly on narrow screens instead of overlapping. */
+    .kpw-actions{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:1.5rem}
     /* The label had zero bottom padding and the widget no top margin, so
        uppercase letter-spaced text sat flush against the ticker and read as
        overlapping. Both carry explicit spacing now, and the widget reserves a
@@ -92,15 +104,23 @@
     .tv-strip__label{max-width:1100px;margin:0 auto .55rem;padding:.35rem 1.25rem 0;color:var(--text-muted);font-size:.72rem;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;font-family:Poppins,sans-serif}
     .tv-strip__label a{color:var(--secondary);text-decoration:underline}
     .tv-strip__widget{max-width:1100px;margin:0 auto;padding:0 1.25rem;min-height:52px}
-    .tv-panel{background:var(--dark);border-radius:10px;padding:1.5rem;margin:3rem 0}
-    .tv-panel h2{color:var(--white);margin:0 0 .4rem;font-size:1.35rem}
-    .tv-maps{display:grid;gap:1.5rem}
-    .tv-map{margin:0}
-    .tv-map figcaption{color:var(--text-light);font-size:.92rem;line-height:1.6;margin:0 0 1.1rem;padding-bottom:.4rem}
-    .tv-map figcaption strong{display:block;color:var(--secondary);font-family:Poppins,sans-serif;font-size:1rem;margin-bottom:.2rem}
     .tv-strip tv-tickers{display:block;width:100%;min-height:46px}
-    @media(min-width:1000px){.tv-maps{grid-template-columns:1fr 1fr}}
-    .tv-panel p.note{color:var(--text-muted);font-size:.9rem;line-height:1.6;margin:0 0 1.25rem}
+    /* Each widget is its own card rather than two figures crammed into one
+       dark slab. Same treatment as the RWA cards, so the market block reads
+       as one system instead of a bolted-on panel. */
+    .mkt{margin:3.5rem 0}
+    .mkt__head{margin:0 0 1.25rem}
+    .mkt__head h2{color:var(--dark);font-size:1.5rem;margin:0 0 .4rem}
+    .mkt__head p{color:var(--text);font-size:.95rem;line-height:1.7;max-width:72ch;margin:0}
+    .mkt-grid{display:grid;grid-template-columns:1fr;gap:1.5rem}
+    @media(min-width:1000px){.mkt-grid{grid-template-columns:1fr 1fr}}
+    .mkt-card{background:var(--dark);border-radius:10px;padding:1.35rem 1.5rem 1.5rem;display:flex;flex-direction:column;box-shadow:0 10px 30px rgba(26,37,47,.14)}
+    .mkt-card__label{color:var(--secondary);font-family:Poppins,sans-serif;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;margin:0 0 .35rem}
+    .mkt-card h3{color:var(--white);font-size:1.12rem;margin:0 0 .5rem}
+    .mkt-card__why{color:var(--text-muted);font-size:.9rem;line-height:1.65;margin:0 0 1.15rem}
+    .mkt-card__widget{flex:1;min-height:300px}
+    .mkt-card--news .mkt-card__widget{min-height:420px}
+    .mkt-note{color:var(--text-muted);font-size:.86rem;line-height:1.7;margin:1.25rem 0 0;max-width:72ch}
     .rwa{margin:3rem 0}
     .rwa>h2{color:var(--primary);border-left:4px solid var(--secondary);padding-left:.85rem;margin:0 0 .75rem}
     .rwa>p.intro{color:var(--text);line-height:1.8;max-width:70ch}
@@ -273,12 +293,17 @@
         <p class="rwa-caveat"><strong>How to read these.</strong> RWA.xyz is an analytics platform, not an auditor. Totals mix natively issued tokens with synthetic representations, and they change daily. We cite a figure with the date we checked it, and nothing more.</p>
       </div>
 
-      <div class="tv-panel">
-        <h2>Where the money actually sits</h2>
-        <p class="note">Two live views of the conventional market these briefs keep measuring against. Included as context, not as analysis or recommendation. Sector and asset-class weightings are the point — they are what makes a tokenized-market figure legible when you put the two side by side.</p>
-        <div class="tv-maps">
-          <figure class="tv-map">
-            <figcaption><strong>S&amp;P 500 by sector</strong>Block size is market cap, colour is daily change. This is the market a $2.38B tokenized-equity figure has to be read against.</figcaption>
+      <section class="mkt" aria-labelledby="mkt-h">
+        <div class="mkt__head">
+          <h2 id="mkt-h">Where the money actually sits</h2>
+          <p>Two live views of the conventional market these briefs keep measuring against. Included as context, not as analysis or recommendation. Sector and asset-class weightings are the point — they are what makes a tokenized-market figure legible when you put the two side by side.</p>
+        </div>
+        <div class="mkt-grid">
+        <article class="mkt-card">
+          <p class="mkt-card__label">Live market data</p>
+          <h3>S&amp;P 500 by sector</h3>
+          <p class="mkt-card__why">Block size is market cap, colour is daily change. This is the market a $2.38B tokenized-equity figure has to be read against.</p>
+          <div class="mkt-card__widget">
             <div class="tradingview-widget-container" style="height:460px;">
               <div class="tradingview-widget-container__widget" style="height:100%;"></div>
               <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/heatmap/stock/" rel="noopener nofollow" target="_blank"><span class="blue-text">Stock Heatmap</span></a><span class="trademark"> by TradingView</span></div>
@@ -286,9 +311,13 @@
               {"dataSource":"SPX500","blockSize":"market_cap_basic","blockColor":"change","grouping":"sector","locale":"en","symbolUrl":"","colorTheme":"dark","exchanges":[],"hasTopBar":false,"isDataSetEnabled":false,"isZoomEnabled":true,"hasSymbolTooltip":true,"isMonoSize":false,"width":"100%","height":"100%"}
               </script>
             </div>
-          </figure>
-          <figure class="tv-map">
-            <figcaption><strong>US ETFs by asset class</strong>Block size is volume, grouped by asset class. Tokenized Treasuries and tokenized funds are trying to become a slice of this picture.</figcaption>
+          </div>
+        </article>
+        <article class="mkt-card">
+          <p class="mkt-card__label">Live market data</p>
+          <h3>US ETFs by asset class</h3>
+          <p class="mkt-card__why">Block size is volume, grouped by asset class. Tokenized Treasuries and tokenized funds are trying to become a slice of this picture.</p>
+          <div class="mkt-card__widget">
             <div class="tradingview-widget-container" style="height:460px;">
               <div class="tradingview-widget-container__widget" style="height:100%;"></div>
               <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/heatmap/etf/" rel="noopener nofollow" target="_blank"><span class="blue-text">ETF Heatmap</span></a><span class="trademark"> by TradingView</span></div>
@@ -296,21 +325,25 @@
               {"dataSource":"AllUSEtf","blockSize":"volume","blockColor":"change","grouping":"asset_class","locale":"en","symbolUrl":"","colorTheme":"dark","hasTopBar":false,"isDataSetEnabled":false,"isZoomEnabled":true,"hasSymbolTooltip":true,"isMonoSize":false,"width":"100%","height":"100%"}
               </script>
             </div>
-          </figure>
+          </div>
+        </article>
+        <article class="mkt-card mkt-card--news">
+          <p class="mkt-card__label">Headlines</p>
+          <h3>Market headlines</h3>
+          <p class="mkt-card__why">Live headlines from TradingView, unfiltered and unendorsed. Included as context for the briefs above, not as reporting by Kansas Prairie Webworks.</p>
+          <div class="mkt-card__widget">
+            <div class="tradingview-widget-container">
+              <div class="tradingview-widget-container__widget"></div>
+              <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+              {"feedMode":"all_symbols","isTransparent":true,"displayMode":"regular","width":"100%","height":560,"colorTheme":"dark","locale":"en"}
+              </script>
+            </div>
+          </div>
+        </article>
         </div>
-      </div>
-
-      <div class="tv-panel">
-        <h2>Market headlines</h2>
-        <p class="note">Live headlines from TradingView, unfiltered and unendorsed. Included as context for the briefs above, not as reporting by Kansas Prairie Webworks.</p>
-        <div class="tradingview-widget-container">
-          <div class="tradingview-widget-container__widget"></div>
-          <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span>Track all markets on TradingView</span></a></div>
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
-          {"feedMode":"all_symbols","isTransparent":true,"displayMode":"regular","width":"100%","height":560,"colorTheme":"dark","locale":"en"}
-          </script>
-        </div>
-      </div>
+        <p class="mkt-note">Market data is supplied by TradingView and shown for context only. It is not analysis, a recommendation, or a signal, and Kansas Prairie Webworks does not endorse any instrument shown. See our <a href="/insights/methodology.html">methodology</a>.</p>
+      </section>
 
       <div class="hub-note">
         <h2 style="margin-top:0;color:var(--text);font-size:1.3rem;">Why this exists</h2>
