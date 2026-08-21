@@ -84,16 +84,21 @@
   <style>
     .hub-section{background:#FBF8F1}
     .hub-wrap{max-width:1100px;margin:0 auto;padding:0 1.25rem}
-    .tv-strip{background:var(--dark);border-bottom:1px solid rgba(255,255,255,.08)}
-    .tv-strip__label{max-width:1100px;margin:0 auto;padding:.45rem 1.25rem 0;color:var(--text-muted);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;font-family:Poppins,sans-serif}
+    /* The label had zero bottom padding and the widget no top margin, so
+       uppercase letter-spaced text sat flush against the ticker and read as
+       overlapping. Both carry explicit spacing now, and the widget reserves a
+       min-height so it does not shift the page as it loads. */
+    .tv-strip{background:var(--dark);border-bottom:1px solid rgba(255,255,255,.08);padding:.35rem 0 .6rem}
+    .tv-strip__label{max-width:1100px;margin:0 auto .55rem;padding:.35rem 1.25rem 0;color:var(--text-muted);font-size:.72rem;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;font-family:Poppins,sans-serif}
     .tv-strip__label a{color:var(--secondary);text-decoration:underline}
+    .tv-strip__widget{max-width:1100px;margin:0 auto;padding:0 1.25rem;min-height:52px}
     .tv-panel{background:var(--dark);border-radius:10px;padding:1.5rem;margin:3rem 0}
     .tv-panel h2{color:var(--white);margin:0 0 .4rem;font-size:1.35rem}
     .tv-maps{display:grid;gap:1.5rem}
     .tv-map{margin:0}
-    .tv-map figcaption{color:var(--text-light);font-size:.92rem;line-height:1.6;margin:0 0 .75rem}
+    .tv-map figcaption{color:var(--text-light);font-size:.92rem;line-height:1.6;margin:0 0 1.1rem;padding-bottom:.4rem}
     .tv-map figcaption strong{display:block;color:var(--secondary);font-family:Poppins,sans-serif;font-size:1rem;margin-bottom:.2rem}
-    .tv-strip tv-tickers{display:block;width:100%}
+    .tv-strip tv-tickers{display:block;width:100%;min-height:46px}
     @media(min-width:1000px){.tv-maps{grid-template-columns:1fr 1fr}}
     .tv-panel p.note{color:var(--text-muted);font-size:.9rem;line-height:1.6;margin:0 0 1.25rem}
     .rwa{margin:3rem 0}
@@ -171,8 +176,10 @@
 
   <div class="tv-strip">
     <p class="tv-strip__label">Market context — informational only, not investment advice &middot; <a href="/insights/methodology.html">how we use market data</a></p>
-    <script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-tickers.js"></script>
-    <tv-tickers symbols="FOREXCOM:SPXUSD,FOREXCOM:NSXUSD,BITSTAMP:BTCUSD,BITSTAMP:ETHUSD,NASDAQ:TSLA,NASDAQ:NVDA,NASDAQ:SPCX,NASDAQ:MSFT" hide-chart></tv-tickers>
+    <div class="tv-strip__widget">
+      <script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-tickers.js"></script>
+      <tv-tickers symbols="FOREXCOM:SPXUSD,FOREXCOM:NSXUSD,BITSTAMP:BTCUSD,BITSTAMP:ETHUSD,NASDAQ:TSLA,NASDAQ:NVDA,NASDAQ:SPCX,NASDAQ:MSFT" hide-chart></tv-tickers>
+    </div>
   </div>
 <main id="main-content">
 
