@@ -623,7 +623,7 @@ DogeBeats featured example section:
   Label: "AI-Autonomous Music Marketplace — Full Stack Web Application"
   Description: "Built from scratch — AI-powered, runs autonomously,
   processes payments 24/7 with minimal human intervention."
-  Button: "View Live Site →" → https://dogebeats.com
+  Button: "View Live Site →" → https://www.dogebeats.com/
   DO NOT lead with crypto — lead with technical achievement
 Pricing: Starting at $2,500 — custom quote required
 Variable cost disclaimer (hosting/API/storage)
@@ -718,7 +718,7 @@ Filter bar: All | Websites | Google | Facebook | SEO | Web Apps
   DogeBeats: dogebeats-screenshot.jpg
   Label: "AI-Autonomous Music Marketplace"
   Tag: Web Apps
-  Button: "View Live →" → https://dogebeats.com
+  Button: "View Live →" → https://www.dogebeats.com/
 CTA: "Want results like these?" → [KPW_BOOKING_URL]
 
 ---

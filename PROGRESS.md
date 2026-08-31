@@ -316,6 +316,46 @@ Ran the site-audit skill against kansasprairiewebworks.com, reconciled against l
 **Not fixed this session, not blocked — bigger scope, deferred by choice:**
 - Mobile LCP 3.2s on the homepage (threshold 2.5s, measured via kpw_seo_check.js). Hero image preload is already correctly in place (`fetchpriority="high"`, correct `media` breakpoints) — the remaining cause needs a render-blocking-resource waterfall trace, not a quick metadata edit. Scoped as its own session.
 
+---
+
+### SESSION — 2026-08-30 — DogeBeats portfolio links repointed to www (dead apex)
+
+**Status:** [x] COMPLETE
+
+Every "View Live" button for the DogeBeats portfolio piece pointed at
+`https://dogebeats.com`, which returns **403 Forbidden**. Anyone clicking
+through from the KPW site — a prospect looking at our own portfolio — hit a
+Railway error page instead of the product.
+
+**Cause is on the DogeBeats side, not ours.** Railway migrated to a new edge
+network. `www.dogebeats.com` is a CNAME and followed the migration; the bare
+domain is a hardcoded A record on Railway's retired edge and was stranded. The
+fix needs a DNS change at Network Solutions, and Kaleb's login there is
+currently lost, so the apex will stay dead for now. `www` serves the full site
+normally (verified 200).
+
+**Changed** — 5 live links, apex → `https://www.dogebeats.com/`:
+
+| File | Line | Context |
+|---|---|---|
+| `index.html` | 551 | homepage portfolio card, "View Live →" |
+| `portfolio.html` | 210 | portfolio card, "View Live Site →" |
+| `service-web-app.html` | 242 | card image wrapper link |
+| `service-web-app.html` | 258 | "View Live at DogeBeats.com" button |
+| `use-cases.html` | 980 | use-case card link |
+
+`AGENT_BRIEF.md` lines 626 and 721 updated to match so a future rebuild does
+not reintroduce the apex URL.
+
+Visible link text "View Live at DogeBeats.com" was left alone — it reads as a
+brand name, not a URL, and is still accurate.
+
+**Revisit when the apex is fixed:** once Network Solutions access is recovered
+and `dogebeats.com` resolves again, these can go back to the bare domain if
+preferred. They are correct either way — `www` is the canonical host and is not
+going to stop working.
+
+---
 
 > Claude Code logs any build decisions made that were not in AGENT_BRIEF.md
 
@@ -327,6 +367,8 @@ Ran the site-audit skill against kansasprairiewebworks.com, reconciled against l
 | Use Cases Page (2026-07-02) | Used a real Central Kansas septic-install job-site photo for the Mike's Services proof card instead of a screenshot | No actual blog/Facebook screenshot existed locally (only jobsite photos, a logo, and a Search Console screenshot); async clarifying question to Kaleb went unanswered, proceeded with the tool's own recommended option rather than blocking |
 | Use Cases Page (2026-07-02) | Genericized the diagram's "→ Google Sheets" label to plain outcome language | Matches the no-named-vendor instruction in spirit even though Sheets wasn't on the explicit no-list |
 | Nav Reorder (2026-07-03) | Fixed contact.html's missing Blog/AI Services nav items in the same pass rather than shipping the gap | Asked Kaleb directly; he chose "fix it now" — real live bug, safest to resolve while already editing that file's nav block |
+| DogeBeats Links (2026-08-30) | Repointed all 5 portfolio links to `www.dogebeats.com` rather than waiting for the apex to be fixed | The apex 403s and the fix is blocked on a lost Network Solutions login with no ETA; a portfolio link to our own work is high-visibility and could not stay broken while that is sorted |
+| DogeBeats Links (2026-08-30) | Also updated AGENT_BRIEF.md, not just the HTML | The brief is the rebuild source of truth — leaving the apex URL there would have quietly reintroduced the dead link on the next generated pass |
 
 ---
 
