@@ -357,6 +357,62 @@ going to stop working.
 
 ---
 
+### SESSION — 2026-08-30 (cont.) — CLS 40% Poor traced to the 2026-07-02 font fix being scoped to index.html
+
+**Status:** [x] COMPLETE
+
+Cloudflare Web Analytics, last 24h, kansasprairiewebworks.com:
+
+| Metric | Result |
+|---|---|
+| LCP | **100% Good** — P50 616ms, P75 820ms, P90/P99 1,232ms |
+| INP | **100% Good** |
+| CLS | **60% Good / 40% Poor** |
+
+LCP and INP are healthy — note this is real-user field data and is *far* better
+than the 3.2s mobile LCP the lab tool reported on 2026-07-31. Only CLS is a
+problem. Cloudflare named both shifting elements:
+
+```
+#main-content>section.page-hero>div.container.page-hero__content>h1>TEXT
+html>body>nav.navbar>div.navbar__inner>ul.navbar__links>li
+```
+
+**Root cause — the 2026-07-02 hero CLS fix was deliberately scoped to
+`index.html`, and the shift simply moved to every other page.** That session
+correctly diagnosed font-swap text reflow and set `display=optional`, but only
+on the homepage. The remaining 20 pages still carried `display=swap`, which
+*guarantees* a swap: fallback text paints, the webfont loads, the text reflows.
+
+The correlation is exact — `.page-hero` is used by those 20 pages and never by
+`index.html`, which is why the homepage was never flagged. Both named elements
+are text-bearing, headings are `Poppins,sans-serif` (very different metrics from
+the fallback), and the nav is not resizing: `--nav-height` is a fixed 72px, so
+that `<li>` is text reflow inside a stable box. `main.js` only touches the
+navbar for scroll/hamburger/dropdown behaviour — no layout injection on load.
+
+**Fix:** `display=swap` → `display=optional` across all 20 remaining pages —
+the same change already proven on the homepage. `use-cases.html` has two font
+links (a second set for Space Grotesk / IBM Plex / JetBrains Mono); both were
+updated. No other markup touched: 20 files, one line each except use-cases' two.
+
+**Tradeoff, unchanged from 2026-07-02:** `optional` gives the font a ~100ms
+block period and will not swap afterwards, so on a cold slow connection some
+pageviews render entirely in the fallback font. That trade was already accepted
+for the homepage; this makes the site consistent rather than introducing a new
+compromise.
+
+**Verify in ~24h** once Cloudflare accumulates fresh field data — CLS should
+move toward 100% Good. If a residual shift remains on `.page-hero h1`, the next
+lever is a `size-adjust`/`ascent-override` `@font-face` fallback matched to
+Poppins' metrics, which removes the reflow entirely rather than hiding it.
+
+**Left alone:** `sitemap.xml` had uncommitted `lastmod` edits (08-20 → 08-21)
+from a previous session, plus untracked `KPW_WEBSITE_COMPREHENSIVE_OVERHAUL.md`
+and `TEMPLATE_GUIDE.md`. Not mine, not committed.
+
+---
+
 > Claude Code logs any build decisions made that were not in AGENT_BRIEF.md
 
 | Phase | Decision | Reason |
@@ -369,6 +425,8 @@ going to stop working.
 | Nav Reorder (2026-07-03) | Fixed contact.html's missing Blog/AI Services nav items in the same pass rather than shipping the gap | Asked Kaleb directly; he chose "fix it now" — real live bug, safest to resolve while already editing that file's nav block |
 | DogeBeats Links (2026-08-30) | Repointed all 5 portfolio links to `www.dogebeats.com` rather than waiting for the apex to be fixed | The apex 403s and the fix is blocked on a lost Network Solutions login with no ETA; a portfolio link to our own work is high-visibility and could not stay broken while that is sorted |
 | DogeBeats Links (2026-08-30) | Also updated AGENT_BRIEF.md, not just the HTML | The brief is the rebuild source of truth — leaving the apex URL there would have quietly reintroduced the dead link on the next generated pass |
+| CLS Fix (2026-08-30) | Extended `display=optional` sitewide instead of keeping it homepage-only | The 2026-07-02 scoping decision was sound at the time — only index.html had been flagged. Cloudflare is now flagging `.page-hero`, which exists on the other 20 pages and never on index.html, so the same fix applies for the same reason |
+| CLS Fix (2026-08-30) | Changed only the `display=` parameter, not the loading pattern | index.html also uses an async `rel=preload` + `onload` swap; the other pages use a blocking stylesheet. That difference affects render-blocking, not CLS, and LCP is already 100% Good — changing it would have been unrelated scope with real FOUT risk |
 
 ---
 
