@@ -77,6 +77,48 @@ Website: https://kansasprairiewebworks.com
 /sms-signup.html — SMS opt-in signup page for occasional text message
   updates about web design tips and Kansas Prairie Webworks services.
 
+## Tech Brief (/insights/)
+
+Sourced analysis of AI, search, payments, tokenization and the
+infrastructure underneath them, written for a senior reader. Every
+dynamic figure carries a primary source and an as-of date. Published on
+the main domain rather than a subdomain, on purpose.
+
+/insights/index.html — Tech Brief hub, all briefs newest first.
+
+/insights/methodology.html — Editorial method, source tiers, and how
+  dated data is refreshed and marked.
+
+/insights/october-comment-deadlines-sec-crypto-genius-act.html — Treasury's GENIUS Act rule closes for comment October 19, 2026,
+  the SEC's Regulation Crypto Assets October 20. Both are proposals;
+  neither date binds anyone.
+  Published 2026-09-05.
+
+/insights/future-ready-small-business-checklist.html — The real dividing line for small businesses is not old versus new
+  technology. It is whether your systems respond in real time or
+  only in scheduled batches.
+  Published 2026-08-20.
+
+/insights/google-search-console-ai-visibility-bing-citation-share.html — Google and Bing both shipped AI answer visibility reporting in
+  June 2026. Google reports impressions only, no clicks. Bing's
+  Citation Share is not a scoreboard.
+  Published 2026-08-20.
+
+/insights/genius-act-stablecoin-rules-july-18-2026-deadline-missed.html — Congress set July 18, 2026 as the GENIUS Act rulemaking deadline.
+  The public record showed proposals, not final rules, and the
+  effective date still advances.
+  Published 2026-08-19, updated 2026-09-05.
+
+/insights/sec-regulation-crypto-assets-proposal-what-changed.html — The SEC's Regulation Crypto Assets is a proposed rule, not law.
+  What actually changed is the shift from case-by-case enforcement
+  to written compliance pathways.
+  Published 2026-08-19, updated 2026-09-05.
+
+/insights/tokenized-stocks-sec-rules-24-7-equity-markets.html — The SEC approved tokenized share trading on Nasdaq with the same
+  CUSIP and the same shareholder rights. But it also put them on the
+  same order book, which quietly undoes the 24/7 story.
+  Published 2026-08-17, updated 2026-08-19.
+
 ## Service Area
 Salina KS, Saline County, Ottawa County, Lincoln County,
 Dickinson County, Ellsworth County, Cloud County, Central Kansas
