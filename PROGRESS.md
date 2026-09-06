@@ -505,6 +505,26 @@ before moving to next fix."** Correct. The turning point was adding a readout
 of the voice count — one observable number ended four rounds of inference.
 Make the system report its own state before theorising about it.
 
+### Final state, 2026-09-06
+
+- Desktop: many voices, Andrew Online / Ava Online / Aria Online tied at the
+  top of the ranking. Confirmed good by Kaleb.
+- Android: one local voice on his handset, which is a device setting rather
+  than a defect. Declined to install more, which is a fair call for occasional
+  in-car listening.
+- The voice count came back out of the card once it had done its diagnostic
+  job — a reader does not care, and a bare number raised a question the page
+  did not answer. It lives on `#kpw-listen[data-voices]` for debugging, and a
+  single-voice device now gets a plain-language pointer to its own
+  text-to-speech settings instead.
+- Voice choice persists per browser via `localStorage`, so it is a one-time
+  decision, not a per-visit one.
+
+**Known ceiling, not worth further work:** Andrew and Ava are Microsoft neural
+voices available only through Windows and Edge. They cannot be delivered to
+Android by any site-side change. Desktop is as good as the platform allows;
+Android is bounded by whatever voice data is installed on the handset.
+
 ---
 
 ## 2026-09-06 — KANSAS CITY METRO EXPANSION, AND WHY LOCAL SEO WAS NEVER GOING TO WORK
