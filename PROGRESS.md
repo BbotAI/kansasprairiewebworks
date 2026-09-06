@@ -441,6 +441,44 @@ and `TEMPLATE_GUIDE.md`. Not mine, not committed.
 
 ---
 
+## 2026-09-06 — LISTEN (READ-ALOUD) ON EVERY BRIEF AND THE HUB
+
+Kaleb reads the Tech Brief but wanted to listen while driving. Every brief and
+`/insights/` now carry a Listen button.
+
+Browser `SpeechSynthesis`, not a TTS service: no audio files to host, no
+per-article cost, works offline once the page has loaded. Pre-rendered MP3s
+were rejected because briefs get updated when their facts change — two were
+updated the day before this — and each update would mean regenerating and
+re-uploading audio.
+
+**`insights/` is build output. The player lives in
+`kpw-tech-brief/lib/listen.js`** and is imported by both builders, so the hub
+and the articles cannot drift. Do not edit the player in these HTML files; it
+will be overwritten on the next build.
+
+Three things worth remembering, all of them found by testing rather than
+guessed at:
+
+**The first voice was unintelligible.** Not a volume or accent problem — the
+articles are full of `S7-2026-27`, `TREAS-DO-2026-0496`, `$303.2B`, `24/7`,
+`14%` and a wall of acronyms, and a speech engine reads those literally.
+Scanning the six live briefs produced the actual list, and `normalise()`
+rewrites all of it before speaking. `SEC` → `S.E.C.` so it is spelled;
+`GENIUS` stays a word because it is an Act name.
+
+**Voice choice mattered as much as the text.** Browsers were handing back the
+legacy Windows SAPI voices. Voices are now scored, with neural and cloud voices
+ranked far above those, plus a voice picker and speed control that persist per
+device — which good voices exist differs by machine.
+
+**The highlight drifted at speed.** Reported by Kaleb: perfect at 1x, a
+paragraph ahead at 1.3x. The highlight was applied when an utterance was
+queued, and Chrome fires `onend` fractionally before audio finishes; at higher
+rates that fixed lag becomes a whole paragraph. It now moves on `onstart`.
+
+---
+
 ## 2026-09-06 — KANSAS CITY METRO EXPANSION, AND WHY LOCAL SEO WAS NEVER GOING TO WORK
 
 ### The diagnosis that changed direction
