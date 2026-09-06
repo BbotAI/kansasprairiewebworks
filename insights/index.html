@@ -596,12 +596,12 @@
     var hit = voices.filter(function (v) { return v.name === voiceEl.value; })[0];
     if (hit) voice = hit;
     try { localStorage.setItem('kpwVoice', voiceEl.value); } catch (e) {}
-    if (playing) { var at = idx; stopAll(); start(at); }
+    if (playing) { var at = spoken; stopAll(); start(at); }
   });
 
   rateEl.addEventListener('change', function () {
     try { localStorage.setItem('kpwRate', rateEl.value); } catch (e) {}
-    if (playing) { var at = idx; stopAll(); start(at); }
+    if (playing) { var at = spoken; stopAll(); start(at); }
   });
   try {
     var savedRate = localStorage.getItem('kpwRate');
@@ -609,14 +609,19 @@
   } catch (e) {}
 
   /* ── playback ───────────────────────────────────────────────────────────── */
-  var idx = 0, playing = false, cancelling = false, beat = null;
+  // idx is the queue pointer, spoken is what the listener is actually hearing.
+  // They differ by one for a moment at the end of every paragraph, which is
+  // exactly the gap that used to show up as a runaway highlight at speed.
+  // Anything user-facing — the counter, and restarting after a voice or speed
+  // change — uses spoken.
+  var idx = 0, spoken = 0, playing = false, cancelling = false, beat = null;
 
   function clearMark() {
     var m = document.querySelector('.kpw-reading');
     if (m) m.classList.remove('kpw-reading');
   }
   function setStatus() {
-    status.textContent = playing ? ('Part ' + (idx + 1) + ' of ' + nodes.length) : '';
+    status.textContent = playing ? ('Part ' + (spoken + 1) + ' of ' + nodes.length) : '';
   }
   function heartbeat(on) {
     if (beat) { clearInterval(beat); beat = null; }
@@ -630,10 +635,7 @@
   function speakFrom(i) {
     if (i >= nodes.length) { finish(); return; }
     idx = i;
-    clearMark();
     var el = nodes[i];
-    el.classList.add('kpw-reading');
-    setStatus();
 
     var u = new SpeechSynthesisUtterance(normalise(el.textContent));
     if (voice) { u.voice = voice; u.lang = voice.lang; }
@@ -642,9 +644,24 @@
     // A heading should land as a heading.
     if (el.tagName === 'H2' || el.tagName === 'H3') u.rate = Math.max(0.85, u.rate - 0.06);
 
-    u.onend = function () { if (!cancelling && playing) speakFrom(idx + 1); };
+    // The highlight moves on START, not when the utterance is queued.
+    // Chrome fires onend once an utterance leaves the synthesis pipeline,
+    // which is fractionally before its audio finishes playing. Highlighting at
+    // queue time therefore ran ahead of the voice — invisible at 1x, but at
+    // 1.3x the paragraphs are shorter in wall-clock time, so the same fixed
+    // lag became a whole paragraph of drift. onstart fires when the engine
+    // actually begins speaking this node, which is what the reader hears.
+    u.onstart = function () {
+      if (cancelling || !playing) return;
+      spoken = i;
+      clearMark();
+      el.classList.add('kpw-reading');
+      setStatus();
+    };
+
+    u.onend = function () { if (!cancelling && playing) speakFrom(i + 1); };
     // Firefox fires end on cancel(); the flag above guards the chain.
-    u.onerror = function () { if (!cancelling && playing) speakFrom(idx + 1); };
+    u.onerror = function () { if (!cancelling && playing) speakFrom(i + 1); };
     synth.speak(u);
   }
 
@@ -656,13 +673,14 @@
     label.textContent = 'Pause';
     playBtn.querySelector('span[aria-hidden]').innerHTML = '&#9208;&#65039;';
     stopBtn.disabled = false;
+    idx = spoken = (from || 0);
     speakFrom(from || 0);
   }
   function stopAll() {
     cancelling = true; synth.cancel(); playing = false; heartbeat(false); cancelling = false;
   }
   function finish() {
-    playing = false; heartbeat(false); clearMark(); idx = 0;
+    playing = false; heartbeat(false); clearMark(); idx = 0; spoken = 0;
     label.textContent = IDLE;
     playBtn.querySelector('span[aria-hidden]').innerHTML = '&#9654;&#65039;';
     stopBtn.disabled = true; status.textContent = '';
