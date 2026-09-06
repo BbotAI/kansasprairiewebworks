@@ -176,21 +176,21 @@
     .brief-wrap{max-width:820px;margin:0 auto;padding:0 1.25rem}
     .brief-wrap>p,.brief-wrap>ul,.brief-wrap>h2,.brief-wrap>h3{background:transparent}
     .brief-meta{color:var(--text-muted);font-size:.95rem;margin-bottom:1.5rem}
-    /* Listen player. Uses the browser's built-in speech synthesis — no audio
-       files, no API, no cost, and it works offline once the page has loaded.
-       Hidden entirely by JS when the browser has no speechSynthesis, so it
-       never renders a button that cannot do anything. */
-    .kpw-listen{display:none;align-items:center;gap:.75rem;flex-wrap:wrap;background:var(--dark);border-radius:8px;padding:.85rem 1rem;margin:0 0 1.75rem}
+    /* Listen player. Hidden by default and revealed by JS only when the browser
+       actually has speechSynthesis, so no dead button is ever rendered. */
+    .kpw-listen{display:none;align-items:center;gap:.6rem;flex-wrap:wrap;background:var(--dark);border-radius:8px;padding:.85rem 1rem;margin:0 0 1.75rem}
     .kpw-listen.on{display:flex}
     .kpw-listen button{font-family:Poppins,sans-serif;font-weight:600;font-size:.92rem;border:0;border-radius:6px;padding:.5rem .95rem;cursor:pointer;display:inline-flex;align-items:center;gap:.45rem;transition:filter .15s}
     .kpw-listen button:hover{filter:brightness(1.12)}
     .kpw-listen button:disabled{opacity:.4;cursor:default;filter:none}
     .kpw-listen .lp{background:var(--primary);color:#fff}
     .kpw-listen .ls{background:transparent;color:var(--text-light);border:1px solid rgba(255,255,255,.28)}
+    .kpw-listen select{font-family:Inter,sans-serif;font-size:.82rem;background:rgba(255,255,255,.06);color:var(--text-light);border:1px solid rgba(255,255,255,.22);border-radius:6px;padding:.42rem .5rem;max-width:190px}
+    .kpw-listen select option{color:#1A252F}
     .kpw-listen__status{color:var(--text-muted);font-size:.86rem;margin-left:auto;font-family:Inter,sans-serif}
     .kpw-listen__hint{color:var(--text-muted);font-size:.82rem;flex-basis:100%;margin:0}
-    /* Reading highlight — deliberately soft. A hard background would fight the
-       page's own colour system on a long article. */
+    /* Soft on purpose — a hard highlight fights the page's own colour system
+       over a long article. */
     .kpw-reading{background:linear-gradient(90deg,rgba(241,196,15,.22),rgba(230,126,34,.10));border-radius:3px;box-shadow:0 0 0 .28rem rgba(241,196,15,.10)}
     @media(prefers-reduced-motion:reduce){.kpw-listen button{transition:none}}
     .brief-summary{background:var(--dark);border-left:5px solid var(--primary);border-radius:6px;padding:1.5rem 1.75rem;margin:0 0 2rem}
@@ -310,16 +310,24 @@
       <p class="brief-meta">By <strong>Kansas Prairie Webworks</strong> &middot; September 5, 2026 &middot; 5 min read<br>
       <em>Educational technology commentary. Not investment, legal, tax, or financial advice.</em></p>
 
-      <div class="kpw-listen" id="kpw-listen" aria-label="Listen to this brief">
+      <div class="kpw-listen" id="kpw-listen" aria-label="Listen to this page">
         <button type="button" class="lp" id="kpw-listen-play" aria-live="polite">
           <span aria-hidden="true">&#9654;&#65039;</span> <span id="kpw-listen-label">Listen to this brief</span>
         </button>
         <button type="button" class="ls" id="kpw-listen-stop" disabled>
           <span aria-hidden="true">&#9632;</span> Stop
         </button>
+        <select id="kpw-listen-voice" aria-label="Choose a voice"></select>
+        <select id="kpw-listen-rate" aria-label="Reading speed">
+          <option value="0.9">0.9&times;</option>
+          <option value="1" selected>1&times;</option>
+          <option value="1.15">1.15&times;</option>
+          <option value="1.3">1.3&times;</option>
+        </select>
         <span class="kpw-listen__status" id="kpw-listen-status"></span>
         <p class="kpw-listen__hint">Read aloud by your browser. Nothing is downloaded and nothing is sent anywhere.</p>
       </div>
+
 
       <p style="margin:-0.5rem 0 1.5rem;"><a href="#sources" class="btn btn--outline" style="font-size:.9rem;padding:.4rem .9rem;">Sources &amp; verification (4)</a></p>
       <img src="https://kansasprairiewebworks.com/images/insights/october-comment-deadlines-sec-crypto-genius-act.webp" alt="The October Window: Two Digital Asset Comment Deadlines, One Day Apart" title="The October Window: Two Digital Asset Comment Deadlines, One Day Apart &mdash; Kansas Prairie Webworks" width="1200" height="630" style="border-radius:8px;margin-bottom:2rem;">
@@ -472,84 +480,184 @@
   </div>
 </footer>
 <script>
-/* KPW Listen — browser speech synthesis, no dependencies.
-
-   Reads the article body only: headings, paragraphs and list items inside
-   .brief-wrap. Deliberately skips the sources list, the disclosure block and
-   the related-links list, because a citation read aloud as a URL is noise.
-
-   Three browser realities this has to survive:
-   1. getVoices() is empty on first call in Chrome until 'voiceschanged'.
-   2. Chrome silently stops speaking after roughly 15 seconds unless it is
-      nudged, hence the resume() heartbeat.
-   3. Firefox fires 'end' on cancel(), so a cancelling flag guards the chain.
-*/
+/* KPW Listen (article) — browser speech synthesis, no dependencies. */
 (function () {
   var box = document.getElementById('kpw-listen');
   if (!box || !('speechSynthesis' in window)) return;
 
-  var synth = window.speechSynthesis;
+  var synth   = window.speechSynthesis;
   var playBtn = document.getElementById('kpw-listen-play');
   var stopBtn = document.getElementById('kpw-listen-stop');
-  var label = document.getElementById('kpw-listen-label');
-  var status = document.getElementById('kpw-listen-status');
-  var wrap = document.querySelector('.brief-wrap');
-  if (!wrap) return;
+  var label   = document.getElementById('kpw-listen-label');
+  var status  = document.getElementById('kpw-listen-status');
+  var voiceEl = document.getElementById('kpw-listen-voice');
+  var rateEl  = document.getElementById('kpw-listen-rate');
+  var IDLE    = "Listen to this brief";
 
-  var SKIP = '#sources, .brief-sources, .brief-related, .brief-disclosure, .kpw-listen, figcaption, .brief-meta';
-  var skipped = Array.prototype.slice.call(wrap.querySelectorAll(SKIP));
-  var inSkipped = function (el) {
+  var scope = document.querySelector('.brief-wrap') || document;
+  var skipSel = "#sources, .brief-sources, .brief-related, .brief-disclosure, .kpw-listen, figcaption, .brief-meta";
+  var skipped = skipSel ? Array.prototype.slice.call(scope.querySelectorAll(skipSel)) : [];
+  function inSkipped(el) {
     for (var i = 0; i < skipped.length; i++) { if (skipped[i].contains(el)) return true; }
     return false;
-  };
+  }
 
-  var nodes = Array.prototype.slice
-    .call(wrap.querySelectorAll('h2, h3, p, li'))
+  var nodes = Array.prototype.slice.call(scope.querySelectorAll("h2, h3, p, li"))
     .filter(function (el) {
       if (inSkipped(el)) return false;
-      return el.textContent.replace(/s+/g, ' ').trim().length > 1;
+      var txt = el.textContent.replace(/\s+/g, ' ').trim();
+      if (txt.length < 2) return false;
+      if (/^Read the brief/i.test(txt)) return false;
+      if (el.closest && el.closest('.hub-topics')) return false;
+      return true;
     });
   if (!nodes.length) return;
 
-  var idx = 0, playing = false, cancelling = false, voice = null, beat = null;
+  /* ── NORMALISE ────────────────────────────────────────────────────────────
+     Regulatory prose is hostile to a speech engine. Everything here is a real
+     pattern pulled from these briefs, not a hypothetical. */
+  var ACRONYMS = {
+    SEC:'S.E.C.', OCC:'O.C.C.', FDIC:'F.D.I.C.', NPRM:'N.P.R.M.', CUSIP:'CUSIP',
+    DTC:'D.T.C.', ACH:'A.C.H.', API:'A.P.I.', SEO:'S.E.O.', GBP:'G.B.P.',
+    KPW:'K.P.W.', RWA:'R.W.A.', SME:'S.M.E.', OECD:'O.E.C.D.', TCPA:'T.C.P.A.',
+    USDT:'U.S.D.T.', USDC:'U.S.D.C.', ETF:'E.T.F.', ETFs:'E.T.F.s', FAQ:'F.A.Q.',
+    JSON:'JSON', AI:'A.I.', US:'U.S.', ET:'Eastern Time', TA:'T.A.'
+    /* GENIUS is an Act name and is meant to be read as a word, so it is
+       deliberately absent. Same for CUSIP and JSON, which are said aloud. */
+  };
 
-  function pickVoice() {
-    var vs = synth.getVoices() || [];
-    if (!vs.length) return null;
-    var en = vs.filter(function (v) { return /^en(-|_)?/i.test(v.lang); });
-    var pool = en.length ? en : vs;
-    var preferred = ['Google US English', 'Samantha', 'Microsoft Aria', 'Microsoft Jenny', 'Daniel'];
-    for (var i = 0; i < preferred.length; i++) {
-      for (var j = 0; j < pool.length; j++) {
-        if (pool[j].name.indexOf(preferred[i]) !== -1) return pool[j];
-      }
+  function normalise(s) {
+    s = s.replace(/\s+/g, ' ').trim();
+
+    // Em/en dashes are pauses, not characters to announce.
+    s = s.replace(/\s*[\u2014\u2013]\s*/g, ', ');
+
+    // Money with a magnitude suffix: $303.2B -> 303.2 billion dollars
+    s = s.replace(/\$\s?([\d,.]+)\s?([MBK])\b/g, function (_, n, u) {
+      var word = u === 'B' ? 'billion' : (u === 'M' ? 'million' : 'thousand');
+      return n + ' ' + word + ' dollars';
+    });
+    // $190.4 billion -> 190.4 billion dollars   ($ before the number reads badly)
+    s = s.replace(/\$\s?([\d,.]+)\s+(billion|million|trillion|thousand)\b/gi,
+      function (_, n, w) { return n + ' ' + w + ' dollars'; });
+    // plain $8,000 -> 8,000 dollars
+    s = s.replace(/\$\s?([\d][\d,]*(?:\.\d+)?)/g, function (_, n) { return n + ' dollars'; });
+
+    s = s.replace(/([\d.]+)\s?%/g, '$1 percent');
+    s = s.replace(/\b24\/7(?:\/365)?\b/g, 'twenty four seven');
+    s = s.replace(/\b(\d+)x\b/gi, '$1 times');
+
+    // ISO date -> spoken date
+    var MON = ['January','February','March','April','May','June','July',
+               'August','September','October','November','December'];
+    s = s.replace(/\b(20\d{2})-(\d{2})-(\d{2})\b/g, function (_, y, m, d) {
+      return MON[parseInt(m, 10) - 1] + ' ' + parseInt(d, 10) + ', ' + y;
+    });
+
+    // Docket and release numbers: S7-2026-27, TREAS-DO-2026-0496, 33-11434.
+    // Commas turn a run-on string of digits into separate spoken groups. The
+    // prefix may itself be hyphenated (TREAS-DO), so match the whole run.
+    s = s.replace(/\b([A-Z]{1,6}(?:-[A-Z]{1,6})*\d?)-(\d{2,4})-(\d{2,6})\b/g,
+      function (_, pre, a, b) { return pre.replace(/-/g, ' ') + ', ' + a + ', ' + b; });
+    s = s.replace(/\b(\d{2})-(\d{5,6})\b/g, '$1, $2');
+    s = s.replace(/~\s?(?=[\d])/g, 'about ');
+
+    s = s.replace(/\bNos\./g, 'Numbers').replace(/\bNo\.\s?(?=\d|[A-Z])/g, 'Number ');
+    s = s.replace(/\be\.g\./gi, 'for example').replace(/\bi\.e\./gi, 'that is');
+    s = s.replace(/\bvs\.?\b/gi, 'versus');
+    s = s.replace(/\u00a7/g, 'Section ');
+
+    // Acronyms last, so earlier rules still see the originals. Word-boundary
+    // match only, so "Section" is never mangled into "S.E.C.tion".
+    s = s.replace(/\b([A-Za-z]{2,6})\b/g, function (m) {
+      return Object.prototype.hasOwnProperty.call(ACRONYMS, m) ? ACRONYMS[m] : m;
+    });
+
+    // A URL read aloud is noise.
+    s = s.replace(/https?:\/\/\S+/g, 'link');
+
+    return s.replace(/\s+/g, ' ').trim();
+  }
+
+  /* ── voices ─────────────────────────────────────────────────────────────── */
+  var voices = [], voice = null;
+
+  function score(v) {
+    var n = (v.name || '') + ' ' + (v.voiceURI || '');
+    var s = 0;
+    // Neural/cloud voices are dramatically better than the old local ones.
+    if (/natural|neural|online|premium|enhanced/i.test(n)) s += 100;
+    if (v.localService === false) s += 40;
+    if (/google/i.test(n)) s += 30;
+    if (/aria|jenny|guy|ava|emma|samantha|siri/i.test(n)) s += 20;
+    if (/^en-US/i.test(v.lang)) s += 10; else if (/^en/i.test(v.lang)) s += 5;
+    if (/zira|david|mark|hazel/i.test(n)) s -= 15;   // legacy Windows SAPI
+    return s;
+  }
+
+  function loadVoices() {
+    var all = synth.getVoices() || [];
+    if (!all.length) return false;
+    var en = all.filter(function (v) { return /^en/i.test(v.lang); });
+    voices = (en.length ? en : all).slice().sort(function (a, b) { return score(b) - score(a); });
+
+    voiceEl.innerHTML = '';
+    voices.slice(0, 12).forEach(function (v, i) {
+      var o = document.createElement('option');
+      o.value = v.name;
+      o.textContent = v.name.replace(/^Microsoft\s+/, '').replace(/\s*\(.*\)$/, '');
+      if (i === 0) o.selected = true;
+      voiceEl.appendChild(o);
+    });
+
+    var saved = null;
+    try { saved = localStorage.getItem('kpwVoice'); } catch (e) {}
+    if (saved) {
+      var hit = voices.filter(function (v) { return v.name === saved; })[0];
+      if (hit) { voice = hit; voiceEl.value = saved; return true; }
     }
-    return pool[0];
+    voice = voices[0];
+    return true;
   }
-  voice = pickVoice();
+
+  loadVoices();
   if (synth.onvoiceschanged !== undefined) {
-    synth.addEventListener('voiceschanged', function () { voice = pickVoice(); });
+    synth.addEventListener('voiceschanged', loadVoices);
   }
+
+  voiceEl.addEventListener('change', function () {
+    var hit = voices.filter(function (v) { return v.name === voiceEl.value; })[0];
+    if (hit) voice = hit;
+    try { localStorage.setItem('kpwVoice', voiceEl.value); } catch (e) {}
+    if (playing) { var at = idx; stopAll(); start(at); }
+  });
+
+  rateEl.addEventListener('change', function () {
+    try { localStorage.setItem('kpwRate', rateEl.value); } catch (e) {}
+    if (playing) { var at = idx; stopAll(); start(at); }
+  });
+  try {
+    var savedRate = localStorage.getItem('kpwRate');
+    if (savedRate) rateEl.value = savedRate;
+  } catch (e) {}
+
+  /* ── playback ───────────────────────────────────────────────────────────── */
+  var idx = 0, playing = false, cancelling = false, beat = null;
 
   function clearMark() {
-    var m = wrap.querySelector('.kpw-reading');
+    var m = document.querySelector('.kpw-reading');
     if (m) m.classList.remove('kpw-reading');
   }
-
   function setStatus() {
     status.textContent = playing ? ('Part ' + (idx + 1) + ' of ' + nodes.length) : '';
   }
-
   function heartbeat(on) {
     if (beat) { clearInterval(beat); beat = null; }
-    if (on) {
-      beat = setInterval(function () {
-        if (!playing) return;
-        // Chrome's ~15s cutoff: a pause/resume pair keeps the queue alive and
-        // is inaudible. Harmless everywhere else.
-        if (synth.speaking && !synth.paused) { synth.pause(); synth.resume(); }
-      }, 10000);
-    }
+    if (!on) return;
+    // Chrome silently stops after roughly 15s unless nudged. Inaudible.
+    beat = setInterval(function () {
+      if (playing && synth.speaking && !synth.paused) { synth.pause(); synth.resume(); }
+    }, 10000);
   }
 
   function speakFrom(i) {
@@ -560,25 +668,20 @@
     el.classList.add('kpw-reading');
     setStatus();
 
-    var text = el.textContent.replace(/s+/g, ' ').trim();
-    var u = new SpeechSynthesisUtterance(text);
-    if (voice) u.voice = voice;
-    u.rate = 1.0; u.pitch = 1.0; u.lang = (voice && voice.lang) || 'en-US';
-    // A heading should land as a heading, so give it a beat of separation.
-    if (el.tagName === 'H2' || el.tagName === 'H3') u.rate = 0.96;
+    var u = new SpeechSynthesisUtterance(normalise(el.textContent));
+    if (voice) { u.voice = voice; u.lang = voice.lang; }
+    u.rate = parseFloat(rateEl.value) || 1;
+    u.pitch = 1;
+    // A heading should land as a heading.
+    if (el.tagName === 'H2' || el.tagName === 'H3') u.rate = Math.max(0.85, u.rate - 0.06);
 
-    u.onend = function () {
-      if (cancelling || !playing) return;
-      speakFrom(idx + 1);
-    };
-    u.onerror = function () {
-      if (cancelling || !playing) return;
-      speakFrom(idx + 1);
-    };
+    u.onend = function () { if (!cancelling && playing) speakFrom(idx + 1); };
+    // Firefox fires end on cancel(); the flag above guards the chain.
+    u.onerror = function () { if (!cancelling && playing) speakFrom(idx + 1); };
     synth.speak(u);
   }
 
-  function start() {
+  function start(from) {
     synth.cancel();
     cancelling = false;
     playing = true;
@@ -586,18 +689,16 @@
     label.textContent = 'Pause';
     playBtn.querySelector('span[aria-hidden]').innerHTML = '&#9208;&#65039;';
     stopBtn.disabled = false;
-    speakFrom(0);
+    speakFrom(from || 0);
   }
-
+  function stopAll() {
+    cancelling = true; synth.cancel(); playing = false; heartbeat(false); cancelling = false;
+  }
   function finish() {
-    playing = false;
-    heartbeat(false);
-    clearMark();
-    idx = 0;
-    label.textContent = 'Listen to this brief';
+    playing = false; heartbeat(false); clearMark(); idx = 0;
+    label.textContent = IDLE;
     playBtn.querySelector('span[aria-hidden]').innerHTML = '&#9654;&#65039;';
-    stopBtn.disabled = true;
-    status.textContent = '';
+    stopBtn.disabled = true; status.textContent = '';
   }
 
   playBtn.addEventListener('click', function () {
@@ -607,7 +708,7 @@
         label.textContent = 'Pause';
         playBtn.querySelector('span[aria-hidden]').innerHTML = '&#9208;&#65039;';
         setStatus();
-      } else { start(); }
+      } else { start(0); }
     } else {
       synth.pause(); playing = false; heartbeat(false);
       label.textContent = 'Resume';
@@ -616,16 +717,11 @@
     }
   });
 
-  stopBtn.addEventListener('click', function () {
-    cancelling = true;
-    synth.cancel();
-    finish();
-    cancelling = false;
-  });
+  stopBtn.addEventListener('click', function () { stopAll(); finish(); });
 
-  // Leaving the page mid-sentence otherwise keeps talking in some browsers.
-  window.addEventListener('pagehide', function () { cancelling = true; synth.cancel(); });
-  window.addEventListener('beforeunload', function () { cancelling = true; synth.cancel(); });
+  // Some browsers keep talking after navigation otherwise.
+  window.addEventListener('pagehide', function () { stopAll(); });
+  window.addEventListener('beforeunload', function () { stopAll(); });
 
   box.classList.add('on');
 })();
