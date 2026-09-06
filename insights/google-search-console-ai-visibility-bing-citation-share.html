@@ -749,16 +749,23 @@
       if (i === 0) o.selected = true;
     });
 
-    // The picker is ALWAYS shown. Hiding it on single-voice devices was my
-    // idea and it backfired twice: when a bug collapsed the list to one entry
-    // the control vanished, which looked like the feature was broken rather
-    // than like the device had one voice. A visible count is honest and makes
-    // the next bug report diagnosable.
+    // The picker is ALWAYS shown. Hiding it on single-voice devices was tried
+    // and removed: when a bug collapsed the list the control vanished, which
+    // read as a broken feature rather than a device with one voice.
     voiceEl.style.display = '';
+
+    // The count lives in a data attribute, not the page. It was invaluable
+    // while debugging — one number ended four rounds of guessing — but a
+    // reader does not care how many voices exist, only that the list is short.
+    // Inspect with: document.getElementById('kpw-listen').dataset.voices
+    box.setAttribute('data-voices', String(voices.length));
+
+    // A single-voice device is not a fault, and the honest thing is to say so
+    // and point at the fix, which is on the device rather than on this site.
     if (hintEl && hintBase) {
-      hintEl.textContent = hintBase + ' ' +
-        (voices.length === 1 ? 'This device offers 1 voice.'
-                             : voices.length + ' voices available.');
+      hintEl.textContent = voices.length === 1
+        ? hintBase + ' Your device has one voice installed \u2014 you can add more in its text-to-speech settings.'
+        : hintBase;
     }
 
     var saved = null;
