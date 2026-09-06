@@ -477,6 +477,34 @@ paragraph ahead at 1.3x. The highlight was applied when an utterance was
 queued, and Chrome fires `onend` fractionally before audio finishes; at higher
 rates that fixed lag becomes a whole paragraph. It now moves on `onstart`.
 
+### Mobile took four rounds. Worth reading before touching this again.
+
+Desktop was right first time. Mobile was not, and the reason is that three
+separate fixes were shipped on inference instead of evidence:
+
+1. Deduplicating voices on `name` — correct on desktop, wrong on Android,
+   where Google TTS returns several different voices under one name. It
+   collapsed five voices into one.
+2. Hiding the picker on single-voice devices — which then hid the evidence of
+   fix 1 being wrong, so the feature looked broken instead.
+3. A single-class rule for the hint text, which `.brief-wrap p` outranks, so
+   the message was invisible in articles while looking fine on the hub.
+
+**Settled state, confirmed live on both platforms:** voices keyed on
+`voiceURI`; picker always visible; hint reports the voice count; `.brief-wrap`
+scoped CSS at 0,2,0 for the hint, status and buttons; voice list polled on load
+for Android's asynchronous population.
+
+**Outcome:** the phone genuinely has one English voice installed. That is a
+device setting (Android → Accessibility → Text-to-speech → Google Speech
+Services → Install voice data), not a site defect, and the visible count is
+what made that answerable instead of another guess.
+
+**The lesson, in Kaleb's words: "we need to slow down and log when accurate
+before moving to next fix."** Correct. The turning point was adding a readout
+of the voice count — one observable number ended four rounds of inference.
+Make the system report its own state before theorising about it.
+
 ---
 
 ## 2026-09-06 — KANSAS CITY METRO EXPANSION, AND WHY LOCAL SEO WAS NEVER GOING TO WORK
