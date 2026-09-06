@@ -546,6 +546,19 @@
     return s.replace(/\s+/g, ' ').trim();
   }
 
+  /* ── platform ─────────────────────────────────────────────────────────────
+     Mobile speech engines differ from desktop in two ways that matter here,
+     and both are worked around rather than detected per-feature because
+     neither exposes a capability flag:
+
+     1. Chrome for Android has never properly supported pause()/resume(). A
+        pause() there can stop the utterance outright with no way back. The
+        desktop-Chrome 15-second cutoff heartbeat is therefore desktop-only,
+        and Pause on mobile is implemented as cancel-and-remember instead.
+     2. Android and iOS populate getVoices() lazily — often not until after
+        the first speak() — so the list is rescanned after playback starts. */
+  var IS_MOBILE = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || '');
+
   /* ── voices ─────────────────────────────────────────────────────────────── */
   var voices = [], voice = null;
 
@@ -556,34 +569,89 @@
     if (/natural|neural|online|premium|enhanced/i.test(n)) s += 100;
     if (v.localService === false) s += 40;
     if (/google/i.test(n)) s += 30;
-    if (/aria|jenny|guy|ava|emma|samantha|siri/i.test(n)) s += 20;
+    if (/aria|jenny|guy|ava|emma|samantha|siri|karen|moira|daniel/i.test(n)) s += 20;
     if (/^en-US/i.test(v.lang)) s += 10; else if (/^en/i.test(v.lang)) s += 5;
     if (/zira|david|mark|hazel/i.test(n)) s -= 15;   // legacy Windows SAPI
+    if (/compact|eloquence/i.test(n)) s -= 25;       // iOS low-quality set
     return s;
   }
+
+  var REGION = {
+    'en-US': 'US', 'en_US': 'US', 'en-GB': 'UK', 'en_GB': 'UK',
+    'en-AU': 'Australia', 'en-IN': 'India', 'en-IE': 'Ireland',
+    'en-ZA': 'South Africa', 'en-CA': 'Canada', 'en-NZ': 'New Zealand'
+  };
+
+  /* Android reports voices as "English United States" rather than a person's
+     name, so several entries can share one useless label. Build something
+     distinguishable: strip vendor noise, and if the label is generic or
+     duplicated, qualify it with the region and finally a number. */
+  function labelFor(v, seen) {
+    var base = (v.name || 'Voice')
+      .replace(/^(Microsoft|Google|Apple)\s+/i, '')
+      // "Aria Online - English (United States)" -> "Aria Online". The trailing
+      // language clause is what the region suffix below already says.
+      .replace(/\s*[-\u2013]\s*English\s*\([^)]*\)\s*$/i, '')
+      .replace(/\s*\((?:Natural|Enhanced|Premium|Compact)\)\s*/ig, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+
+    // Android names voices after the language, not a person: "English United
+    // States". Those all collapse to the same useless label, so they are
+    // rebuilt from the region instead.
+    var generic = /^english\b/i.test(base) ||
+      /^(united states|united kingdom|default|[a-z]{2}[-_][a-z]{2})$/i.test(base);
+    var region = REGION[v.lang] || (v.lang || '').replace(/^en[-_]?/i, '') || '';
+
+    if (generic) base = region ? ('English (' + region + ')') : 'Device voice';
+    else if (region && !new RegExp(region, 'i').test(base)) base = base + ' (' + region + ')';
+
+    if (seen[base]) { seen[base]++; base = base + ' ' + seen[base]; }
+    else seen[base] = 1;
+    return base;
+  }
+
+  function keyFor(v) { return (v.name || '') + '|' + (v.lang || ''); }
 
   function loadVoices() {
     var all = synth.getVoices() || [];
     if (!all.length) return false;
-    var en = all.filter(function (v) { return /^en/i.test(v.lang); });
-    voices = (en.length ? en : all).slice().sort(function (a, b) { return score(b) - score(a); });
 
+    var en = all.filter(function (v) { return /^en/i.test(v.lang); });
+    var pool = en.length ? en : all;
+
+    // Drop exact duplicates — some Android builds list the same voice twice.
+    var uniq = [], seenKey = {};
+    pool.forEach(function (v) {
+      var k = keyFor(v);
+      if (!seenKey[k]) { seenKey[k] = 1; uniq.push(v); }
+    });
+    voices = uniq.sort(function (a, b) { return score(b) - score(a); });
+
+    var prev = voice ? keyFor(voice) : null;
+    var seen = {};
     voiceEl.innerHTML = '';
     voices.slice(0, 12).forEach(function (v, i) {
       var o = document.createElement('option');
-      o.value = v.name;
-      o.textContent = v.name.replace(/^Microsoft\s+/, '').replace(/\s*\(.*\)$/, '');
-      if (i === 0) o.selected = true;
+      o.value = keyFor(v);              // name alone is not unique on mobile
+      o.textContent = labelFor(v, seen);
       voiceEl.appendChild(o);
+      if (i === 0) o.selected = true;
     });
+
+    // A single-voice device gets no menu — an empty-looking dropdown reads as
+    // broken. The speed control stays either way.
+    voiceEl.style.display = voices.length > 1 ? '' : 'none';
 
     var saved = null;
     try { saved = localStorage.getItem('kpwVoice'); } catch (e) {}
-    if (saved) {
-      var hit = voices.filter(function (v) { return v.name === saved; })[0];
-      if (hit) { voice = hit; voiceEl.value = saved; return true; }
+    var want = prev || saved;
+    if (want) {
+      var hit = voices.filter(function (v) { return keyFor(v) === want; })[0];
+      if (hit) { voice = hit; voiceEl.value = want; return true; }
     }
     voice = voices[0];
+    if (voice) voiceEl.value = keyFor(voice);
     return true;
   }
 
@@ -593,7 +661,7 @@
   }
 
   voiceEl.addEventListener('change', function () {
-    var hit = voices.filter(function (v) { return v.name === voiceEl.value; })[0];
+    var hit = voices.filter(function (v) { return keyFor(v) === voiceEl.value; })[0];
     if (hit) voice = hit;
     try { localStorage.setItem('kpwVoice', voiceEl.value); } catch (e) {}
     if (playing) { var at = spoken; stopAll(); start(at); }
@@ -625,8 +693,11 @@
   }
   function heartbeat(on) {
     if (beat) { clearInterval(beat); beat = null; }
-    if (!on) return;
-    // Chrome silently stops after roughly 15s unless nudged. Inaudible.
+    if (!on || IS_MOBILE) return;
+    // Desktop Chrome silently stops after roughly 15s unless nudged; the
+    // pause/resume pair is inaudible there. NEVER do this on mobile — Chrome
+    // for Android can stop the utterance outright on pause() and not come
+    // back, which is worse than the problem it fixes.
     beat = setInterval(function () {
       if (playing && synth.speaking && !synth.paused) { synth.pause(); synth.resume(); }
     }, 10000);
@@ -675,6 +746,10 @@
     stopBtn.disabled = false;
     idx = spoken = (from || 0);
     speakFrom(from || 0);
+    // Android and iOS often do not populate getVoices() until speech has
+    // actually begun, so the picker is rescanned shortly after the first
+    // start. Harmless on desktop, where the list is already complete.
+    if (IS_MOBILE) { setTimeout(loadVoices, 400); setTimeout(loadVoices, 1500); }
   }
   function stopAll() {
     cancelling = true; synth.cancel(); playing = false; heartbeat(false); cancelling = false;
@@ -686,20 +761,35 @@
     stopBtn.disabled = true; status.textContent = '';
   }
 
-  playBtn.addEventListener('click', function () {
-    if (!playing) {
-      if (synth.paused && synth.speaking) {
-        synth.resume(); playing = true; heartbeat(true);
-        label.textContent = 'Pause';
-        playBtn.querySelector('span[aria-hidden]').innerHTML = '&#9208;&#65039;';
-        setStatus();
-      } else { start(0); }
-    } else {
-      synth.pause(); playing = false; heartbeat(false);
-      label.textContent = 'Resume';
-      playBtn.querySelector('span[aria-hidden]').innerHTML = '&#9654;&#65039;';
-      status.textContent = 'Paused';
+  // Mobile pause is cancel-and-remember, not synth.pause(). Chrome for Android
+  // may never resume from a real pause, and a Resume button that does nothing
+  // is worse than restarting the current paragraph. Desktop keeps true pause,
+  // which resumes mid-sentence.
+  var pausedAt = -1;
+
+  function toPause() {
+    if (IS_MOBILE) { pausedAt = spoken; stopAll(); }
+    else { synth.pause(); playing = false; heartbeat(false); }
+    playing = false;
+    label.textContent = 'Resume';
+    playBtn.querySelector('span[aria-hidden]').innerHTML = '&#9654;&#65039;';
+    status.textContent = 'Paused';
+  }
+
+  function toResume() {
+    if (!IS_MOBILE && synth.paused && synth.speaking) {
+      synth.resume(); playing = true; heartbeat(true);
+      label.textContent = 'Pause';
+      playBtn.querySelector('span[aria-hidden]').innerHTML = '&#9208;&#65039;';
+      setStatus();
+      return;
     }
+    start(pausedAt > -1 ? pausedAt : 0);
+    pausedAt = -1;
+  }
+
+  playBtn.addEventListener('click', function () {
+    if (playing) toPause(); else toResume();
   });
 
   stopBtn.addEventListener('click', function () { stopAll(); finish(); });
