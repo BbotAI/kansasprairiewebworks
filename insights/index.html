@@ -104,6 +104,20 @@
     @media(max-width:900px){.tv-strip{padding-top:calc(64px + .35rem)}}
     .hub-section{background:transparent}
     .hub-wrap{max-width:1100px;margin:0 auto;padding:0 1.25rem}
+    /* Listen player — same component as the article pages. Browser speech
+       synthesis, no audio files, no API, no cost. JS reveals it only when the
+       browser actually supports speechSynthesis. */
+    .kpw-listen{display:none;align-items:center;gap:.75rem;flex-wrap:wrap;background:var(--dark);border-radius:8px;padding:.85rem 1rem;margin:0 0 2rem}
+    .kpw-listen.on{display:flex}
+    .kpw-listen button{font-family:Poppins,sans-serif;font-weight:600;font-size:.92rem;border:0;border-radius:6px;padding:.5rem .95rem;cursor:pointer;display:inline-flex;align-items:center;gap:.45rem;transition:filter .15s}
+    .kpw-listen button:hover{filter:brightness(1.12)}
+    .kpw-listen button:disabled{opacity:.4;cursor:default;filter:none}
+    .kpw-listen .lp{background:var(--primary);color:#fff}
+    .kpw-listen .ls{background:transparent;color:var(--text-light);border:1px solid rgba(255,255,255,.28)}
+    .kpw-listen__status{color:var(--text-muted);font-size:.86rem;margin-left:auto;font-family:Inter,sans-serif}
+    .kpw-listen__hint{color:var(--text-muted);font-size:.82rem;flex-basis:100%;margin:0}
+    .kpw-reading{background:linear-gradient(90deg,rgba(241,196,15,.22),rgba(230,126,34,.10));border-radius:3px;box-shadow:0 0 0 .28rem rgba(241,196,15,.10)}
+    @media(prefers-reduced-motion:reduce){.kpw-listen button{transition:none}}
     /* Buttons are inline-flex with no margin, so two adjacent ones butt
        together. A flex row with a real gap fixes the collision and wraps
        cleanly on narrow screens instead of overlapping. */
@@ -227,6 +241,17 @@
 
   <section class="section hub-section">
     <div class="hub-wrap">
+
+      <div class="kpw-listen" id="kpw-listen" aria-label="Listen to this page">
+        <button type="button" class="lp" id="kpw-listen-play" aria-live="polite">
+          <span aria-hidden="true">&#9654;&#65039;</span> <span id="kpw-listen-label">Listen to the briefs</span>
+        </button>
+        <button type="button" class="ls" id="kpw-listen-stop" disabled>
+          <span aria-hidden="true">&#9632;</span> Stop
+        </button>
+        <span class="kpw-listen__status" id="kpw-listen-status"></span>
+        <p class="kpw-listen__hint">Reads the summary of every brief on this page. Open a brief and press Listen there for the full article.</p>
+      </div>
 
       <div class="hub-topics">
         <a href="#topic-payments-tokenization">Payments &amp; Tokenization</a>
@@ -410,6 +435,129 @@
     </div>
   </div>
 </footer>
+<script>
+/* KPW Listen (hub) — reads the page intro and every brief's summary.
+   Same engine as the article pages; only the selectors differ. The per-article
+   full read lives on the article page itself. */
+(function () {
+  var box = document.getElementById('kpw-listen');
+  if (!box || !('speechSynthesis' in window)) return;
+
+  var synth = window.speechSynthesis;
+  var playBtn = document.getElementById('kpw-listen-play');
+  var stopBtn = document.getElementById('kpw-listen-stop');
+  var label = document.getElementById('kpw-listen-label');
+  var status = document.getElementById('kpw-listen-status');
+
+  var sel = [
+    '.page-hero__content h1',
+    '.page-hero__content .lead',
+    '.hub-featured__body h2', '.hub-featured__body p',
+    '.hub-card h3', '.hub-card p',
+    '.hub-note h2', '.hub-note p'
+  ].join(', ');
+
+  var nodes = Array.prototype.slice.call(document.querySelectorAll(sel)).filter(function (el) {
+    var txt = el.textContent.replace(/s+/g, ' ').trim();
+    if (txt.length < 2) return false;
+    // "Read the brief →" and the topic chips are navigation, not content.
+    if (/^Read the brief/i.test(txt)) return false;
+    if (el.closest && el.closest('.hub-topics')) return false;
+    return true;
+  });
+  if (!nodes.length) return;
+
+  var idx = 0, playing = false, cancelling = false, voice = null, beat = null;
+
+  function pickVoice() {
+    var vs = synth.getVoices() || [];
+    if (!vs.length) return null;
+    var en = vs.filter(function (v) { return /^en(-|_)?/i.test(v.lang); });
+    var pool = en.length ? en : vs;
+    var preferred = ['Google US English', 'Samantha', 'Microsoft Aria', 'Microsoft Jenny', 'Daniel'];
+    for (var i = 0; i < preferred.length; i++) {
+      for (var j = 0; j < pool.length; j++) {
+        if (pool[j].name.indexOf(preferred[i]) !== -1) return pool[j];
+      }
+    }
+    return pool[0];
+  }
+  voice = pickVoice();
+  if (synth.onvoiceschanged !== undefined) {
+    synth.addEventListener('voiceschanged', function () { voice = pickVoice(); });
+  }
+
+  function clearMark() {
+    var m = document.querySelector('.kpw-reading');
+    if (m) m.classList.remove('kpw-reading');
+  }
+  function setStatus() {
+    status.textContent = playing ? ('Part ' + (idx + 1) + ' of ' + nodes.length) : '';
+  }
+  function heartbeat(on) {
+    if (beat) { clearInterval(beat); beat = null; }
+    if (on) {
+      beat = setInterval(function () {
+        if (!playing) return;
+        if (synth.speaking && !synth.paused) { synth.pause(); synth.resume(); }
+      }, 10000);
+    }
+  }
+
+  function speakFrom(i) {
+    if (i >= nodes.length) { finish(); return; }
+    idx = i;
+    clearMark();
+    var el = nodes[i];
+    el.classList.add('kpw-reading');
+    setStatus();
+    var u = new SpeechSynthesisUtterance(el.textContent.replace(/s+/g, ' ').trim());
+    if (voice) u.voice = voice;
+    u.rate = 1.0; u.pitch = 1.0; u.lang = (voice && voice.lang) || 'en-US';
+    u.onend = function () { if (!cancelling && playing) speakFrom(idx + 1); };
+    u.onerror = function () { if (!cancelling && playing) speakFrom(idx + 1); };
+    synth.speak(u);
+  }
+
+  function finish() {
+    playing = false; heartbeat(false); clearMark(); idx = 0;
+    label.textContent = 'Listen to the briefs';
+    playBtn.querySelector('span[aria-hidden]').innerHTML = '&#9654;&#65039;';
+    stopBtn.disabled = true; status.textContent = '';
+  }
+
+  playBtn.addEventListener('click', function () {
+    if (!playing) {
+      if (synth.paused && synth.speaking) {
+        synth.resume(); playing = true; heartbeat(true);
+        label.textContent = 'Pause';
+        playBtn.querySelector('span[aria-hidden]').innerHTML = '&#9208;&#65039;';
+        setStatus();
+      } else {
+        synth.cancel(); cancelling = false; playing = true; heartbeat(true);
+        label.textContent = 'Pause';
+        playBtn.querySelector('span[aria-hidden]').innerHTML = '&#9208;&#65039;';
+        stopBtn.disabled = false;
+        speakFrom(0);
+      }
+    } else {
+      synth.pause(); playing = false; heartbeat(false);
+      label.textContent = 'Resume';
+      playBtn.querySelector('span[aria-hidden]').innerHTML = '&#9654;&#65039;';
+      status.textContent = 'Paused';
+    }
+  });
+
+  stopBtn.addEventListener('click', function () {
+    cancelling = true; synth.cancel(); finish(); cancelling = false;
+  });
+
+  window.addEventListener('pagehide', function () { cancelling = true; synth.cancel(); });
+  window.addEventListener('beforeunload', function () { cancelling = true; synth.cancel(); });
+
+  box.classList.add('on');
+})();
+</script>
 <script src="/main.js?v=4" defer></script>
 </body>
 </html>

@@ -43,6 +43,20 @@
     @media(max-width:900px){.tv-strip{padding-top:calc(64px + .35rem)}}
     .hub-section{background:transparent}
     .hub-wrap{max-width:1100px;margin:0 auto;padding:0 1.25rem}
+    /* Listen player — same component as the article pages. Browser speech
+       synthesis, no audio files, no API, no cost. JS reveals it only when the
+       browser actually supports speechSynthesis. */
+    .kpw-listen{display:none;align-items:center;gap:.75rem;flex-wrap:wrap;background:var(--dark);border-radius:8px;padding:.85rem 1rem;margin:0 0 2rem}
+    .kpw-listen.on{display:flex}
+    .kpw-listen button{font-family:Poppins,sans-serif;font-weight:600;font-size:.92rem;border:0;border-radius:6px;padding:.5rem .95rem;cursor:pointer;display:inline-flex;align-items:center;gap:.45rem;transition:filter .15s}
+    .kpw-listen button:hover{filter:brightness(1.12)}
+    .kpw-listen button:disabled{opacity:.4;cursor:default;filter:none}
+    .kpw-listen .lp{background:var(--primary);color:#fff}
+    .kpw-listen .ls{background:transparent;color:var(--text-light);border:1px solid rgba(255,255,255,.28)}
+    .kpw-listen__status{color:var(--text-muted);font-size:.86rem;margin-left:auto;font-family:Inter,sans-serif}
+    .kpw-listen__hint{color:var(--text-muted);font-size:.82rem;flex-basis:100%;margin:0}
+    .kpw-reading{background:linear-gradient(90deg,rgba(241,196,15,.22),rgba(230,126,34,.10));border-radius:3px;box-shadow:0 0 0 .28rem rgba(241,196,15,.10)}
+    @media(prefers-reduced-motion:reduce){.kpw-listen button{transition:none}}
     /* Buttons are inline-flex with no margin, so two adjacent ones butt
        together. A flex row with a real gap fixes the collision and wraps
        cleanly on narrow screens instead of overlapping. */

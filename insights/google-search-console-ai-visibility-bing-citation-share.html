@@ -176,6 +176,23 @@
     .brief-wrap{max-width:820px;margin:0 auto;padding:0 1.25rem}
     .brief-wrap>p,.brief-wrap>ul,.brief-wrap>h2,.brief-wrap>h3{background:transparent}
     .brief-meta{color:var(--text-muted);font-size:.95rem;margin-bottom:1.5rem}
+    /* Listen player. Uses the browser's built-in speech synthesis — no audio
+       files, no API, no cost, and it works offline once the page has loaded.
+       Hidden entirely by JS when the browser has no speechSynthesis, so it
+       never renders a button that cannot do anything. */
+    .kpw-listen{display:none;align-items:center;gap:.75rem;flex-wrap:wrap;background:var(--dark);border-radius:8px;padding:.85rem 1rem;margin:0 0 1.75rem}
+    .kpw-listen.on{display:flex}
+    .kpw-listen button{font-family:Poppins,sans-serif;font-weight:600;font-size:.92rem;border:0;border-radius:6px;padding:.5rem .95rem;cursor:pointer;display:inline-flex;align-items:center;gap:.45rem;transition:filter .15s}
+    .kpw-listen button:hover{filter:brightness(1.12)}
+    .kpw-listen button:disabled{opacity:.4;cursor:default;filter:none}
+    .kpw-listen .lp{background:var(--primary);color:#fff}
+    .kpw-listen .ls{background:transparent;color:var(--text-light);border:1px solid rgba(255,255,255,.28)}
+    .kpw-listen__status{color:var(--text-muted);font-size:.86rem;margin-left:auto;font-family:Inter,sans-serif}
+    .kpw-listen__hint{color:var(--text-muted);font-size:.82rem;flex-basis:100%;margin:0}
+    /* Reading highlight — deliberately soft. A hard background would fight the
+       page's own colour system on a long article. */
+    .kpw-reading{background:linear-gradient(90deg,rgba(241,196,15,.22),rgba(230,126,34,.10));border-radius:3px;box-shadow:0 0 0 .28rem rgba(241,196,15,.10)}
+    @media(prefers-reduced-motion:reduce){.kpw-listen button{transition:none}}
     .brief-summary{background:var(--dark);border-left:5px solid var(--primary);border-radius:6px;padding:1.5rem 1.75rem;margin:0 0 2rem}
     /* Two-class selector on purpose. .brief-wrap p sets dark ink at the same
        specificity and is declared later, so a plain .brief-summary p loses the
@@ -292,6 +309,17 @@
 
       <p class="brief-meta">By <strong>Kansas Prairie Webworks</strong> &middot; August 20, 2026 &middot; 6 min read<br>
       <em>Educational technology commentary. Not investment, legal, tax, or financial advice.</em></p>
+
+      <div class="kpw-listen" id="kpw-listen" aria-label="Listen to this brief">
+        <button type="button" class="lp" id="kpw-listen-play" aria-live="polite">
+          <span aria-hidden="true">&#9654;&#65039;</span> <span id="kpw-listen-label">Listen to this brief</span>
+        </button>
+        <button type="button" class="ls" id="kpw-listen-stop" disabled>
+          <span aria-hidden="true">&#9632;</span> Stop
+        </button>
+        <span class="kpw-listen__status" id="kpw-listen-status"></span>
+        <p class="kpw-listen__hint">Read aloud by your browser. Nothing is downloaded and nothing is sent anywhere.</p>
+      </div>
 
       <p style="margin:-0.5rem 0 1.5rem;"><a href="#sources" class="btn btn--outline" style="font-size:.9rem;padding:.4rem .9rem;">Sources &amp; verification (10)</a></p>
       <img src="https://kansasprairiewebworks.com/images/insights/google-search-console-ai-visibility-bing-citation-share.webp" alt="AI Search Reporting Arrives: What Google and Bing Now Show You" title="AI Search Reporting Arrives: What Google and Bing Now Show You &mdash; Kansas Prairie Webworks" width="1200" height="630" style="border-radius:8px;margin-bottom:2rem;">
@@ -483,6 +511,165 @@
     </div>
   </div>
 </footer>
+<script>
+/* KPW Listen — browser speech synthesis, no dependencies.
+
+   Reads the article body only: headings, paragraphs and list items inside
+   .brief-wrap. Deliberately skips the sources list, the disclosure block and
+   the related-links list, because a citation read aloud as a URL is noise.
+
+   Three browser realities this has to survive:
+   1. getVoices() is empty on first call in Chrome until 'voiceschanged'.
+   2. Chrome silently stops speaking after roughly 15 seconds unless it is
+      nudged, hence the resume() heartbeat.
+   3. Firefox fires 'end' on cancel(), so a cancelling flag guards the chain.
+*/
+(function () {
+  var box = document.getElementById('kpw-listen');
+  if (!box || !('speechSynthesis' in window)) return;
+
+  var synth = window.speechSynthesis;
+  var playBtn = document.getElementById('kpw-listen-play');
+  var stopBtn = document.getElementById('kpw-listen-stop');
+  var label = document.getElementById('kpw-listen-label');
+  var status = document.getElementById('kpw-listen-status');
+  var wrap = document.querySelector('.brief-wrap');
+  if (!wrap) return;
+
+  var SKIP = '#sources, .brief-sources, .brief-related, .brief-disclosure, .kpw-listen, figcaption, .brief-meta';
+  var skipped = Array.prototype.slice.call(wrap.querySelectorAll(SKIP));
+  var inSkipped = function (el) {
+    for (var i = 0; i < skipped.length; i++) { if (skipped[i].contains(el)) return true; }
+    return false;
+  };
+
+  var nodes = Array.prototype.slice
+    .call(wrap.querySelectorAll('h2, h3, p, li'))
+    .filter(function (el) {
+      if (inSkipped(el)) return false;
+      return el.textContent.replace(/s+/g, ' ').trim().length > 1;
+    });
+  if (!nodes.length) return;
+
+  var idx = 0, playing = false, cancelling = false, voice = null, beat = null;
+
+  function pickVoice() {
+    var vs = synth.getVoices() || [];
+    if (!vs.length) return null;
+    var en = vs.filter(function (v) { return /^en(-|_)?/i.test(v.lang); });
+    var pool = en.length ? en : vs;
+    var preferred = ['Google US English', 'Samantha', 'Microsoft Aria', 'Microsoft Jenny', 'Daniel'];
+    for (var i = 0; i < preferred.length; i++) {
+      for (var j = 0; j < pool.length; j++) {
+        if (pool[j].name.indexOf(preferred[i]) !== -1) return pool[j];
+      }
+    }
+    return pool[0];
+  }
+  voice = pickVoice();
+  if (synth.onvoiceschanged !== undefined) {
+    synth.addEventListener('voiceschanged', function () { voice = pickVoice(); });
+  }
+
+  function clearMark() {
+    var m = wrap.querySelector('.kpw-reading');
+    if (m) m.classList.remove('kpw-reading');
+  }
+
+  function setStatus() {
+    status.textContent = playing ? ('Part ' + (idx + 1) + ' of ' + nodes.length) : '';
+  }
+
+  function heartbeat(on) {
+    if (beat) { clearInterval(beat); beat = null; }
+    if (on) {
+      beat = setInterval(function () {
+        if (!playing) return;
+        // Chrome's ~15s cutoff: a pause/resume pair keeps the queue alive and
+        // is inaudible. Harmless everywhere else.
+        if (synth.speaking && !synth.paused) { synth.pause(); synth.resume(); }
+      }, 10000);
+    }
+  }
+
+  function speakFrom(i) {
+    if (i >= nodes.length) { finish(); return; }
+    idx = i;
+    clearMark();
+    var el = nodes[i];
+    el.classList.add('kpw-reading');
+    setStatus();
+
+    var text = el.textContent.replace(/s+/g, ' ').trim();
+    var u = new SpeechSynthesisUtterance(text);
+    if (voice) u.voice = voice;
+    u.rate = 1.0; u.pitch = 1.0; u.lang = (voice && voice.lang) || 'en-US';
+    // A heading should land as a heading, so give it a beat of separation.
+    if (el.tagName === 'H2' || el.tagName === 'H3') u.rate = 0.96;
+
+    u.onend = function () {
+      if (cancelling || !playing) return;
+      speakFrom(idx + 1);
+    };
+    u.onerror = function () {
+      if (cancelling || !playing) return;
+      speakFrom(idx + 1);
+    };
+    synth.speak(u);
+  }
+
+  function start() {
+    synth.cancel();
+    cancelling = false;
+    playing = true;
+    heartbeat(true);
+    label.textContent = 'Pause';
+    playBtn.querySelector('span[aria-hidden]').innerHTML = '&#9208;&#65039;';
+    stopBtn.disabled = false;
+    speakFrom(0);
+  }
+
+  function finish() {
+    playing = false;
+    heartbeat(false);
+    clearMark();
+    idx = 0;
+    label.textContent = 'Listen to this brief';
+    playBtn.querySelector('span[aria-hidden]').innerHTML = '&#9654;&#65039;';
+    stopBtn.disabled = true;
+    status.textContent = '';
+  }
+
+  playBtn.addEventListener('click', function () {
+    if (!playing) {
+      if (synth.paused && synth.speaking) {
+        synth.resume(); playing = true; heartbeat(true);
+        label.textContent = 'Pause';
+        playBtn.querySelector('span[aria-hidden]').innerHTML = '&#9208;&#65039;';
+        setStatus();
+      } else { start(); }
+    } else {
+      synth.pause(); playing = false; heartbeat(false);
+      label.textContent = 'Resume';
+      playBtn.querySelector('span[aria-hidden]').innerHTML = '&#9654;&#65039;';
+      status.textContent = 'Paused';
+    }
+  });
+
+  stopBtn.addEventListener('click', function () {
+    cancelling = true;
+    synth.cancel();
+    finish();
+    cancelling = false;
+  });
+
+  // Leaving the page mid-sentence otherwise keeps talking in some browsers.
+  window.addEventListener('pagehide', function () { cancelling = true; synth.cancel(); });
+  window.addEventListener('beforeunload', function () { cancelling = true; synth.cancel(); });
+
+  box.classList.add('on');
+})();
+</script>
 <script src="/main.js?v=4" defer></script>
 </body>
 </html>
