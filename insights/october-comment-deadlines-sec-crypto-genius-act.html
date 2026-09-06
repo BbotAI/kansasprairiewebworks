@@ -189,6 +189,14 @@
     .kpw-listen select option{color:#1A252F}
     .kpw-listen__status{color:var(--text-muted);font-size:.86rem;margin-left:auto;font-family:Inter,sans-serif}
     .kpw-listen__hint{color:var(--text-muted);font-size:.82rem;flex-basis:100%;margin:0}
+    /* Two-class selectors, for the same reason .brief-summary needs them:
+       .brief-wrap p sets near-black --ink at specificity 0,1,1 and is declared
+       later in this stylesheet, so a single-class rule loses and the hint
+       renders black-on-navy, i.e. invisible. It only showed up in articles,
+       because the hub has no .brief-wrap. */
+    .brief-wrap .kpw-listen__hint{color:var(--text-muted);font-size:.82rem;line-height:1.5;flex-basis:100%;margin:0}
+    .brief-wrap .kpw-listen__status{color:var(--text-muted);font-size:.86rem;line-height:1.5}
+    .brief-wrap .kpw-listen button{font-size:.92rem;line-height:1.2}
     /* Soft on purpose — a hard highlight fights the page's own colour system
        over a long article. */
     .kpw-reading{background:linear-gradient(90deg,rgba(241,196,15,.22),rgba(230,126,34,.10));border-radius:3px;box-shadow:0 0 0 .28rem rgba(241,196,15,.10)}
@@ -592,6 +600,9 @@
         the first speak() — so the list is rescanned after playback starts. */
   var IS_MOBILE = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || '');
 
+  var hintEl = box.querySelector('.kpw-listen__hint');
+  var hintBase = hintEl ? hintEl.textContent.trim() : '';
+
   /* ── voices ─────────────────────────────────────────────────────────────── */
   var voices = [], voice = null;
 
@@ -698,9 +709,17 @@
       if (i === 0) o.selected = true;
     });
 
-    // A single-voice device gets no menu — an empty-looking dropdown reads as
-    // broken. The speed control stays either way.
-    voiceEl.style.display = voices.length > 1 ? '' : 'none';
+    // The picker is ALWAYS shown. Hiding it on single-voice devices was my
+    // idea and it backfired twice: when a bug collapsed the list to one entry
+    // the control vanished, which looked like the feature was broken rather
+    // than like the device had one voice. A visible count is honest and makes
+    // the next bug report diagnosable.
+    voiceEl.style.display = '';
+    if (hintEl && hintBase) {
+      hintEl.textContent = hintBase + ' ' +
+        (voices.length === 1 ? 'This device offers 1 voice.'
+                             : voices.length + ' voices available.');
+    }
 
     var saved = null;
     try { saved = localStorage.getItem('kpwVoice'); } catch (e) {}
@@ -718,6 +737,19 @@
   if (synth.onvoiceschanged !== undefined) {
     synth.addEventListener('voiceschanged', loadVoices);
   }
+
+  // Android populates getVoices() asynchronously and its voiceschanged event
+  // is unreliable — some builds never fire it. Waiting for the first play was
+  // not enough, because the picker is looked at before anything is played.
+  // Poll briefly on load and stop as soon as a real list arrives.
+  (function pollVoices(tries) {
+    if (tries <= 0) return;
+    setTimeout(function () {
+      var before = voices.length;
+      loadVoices();
+      if (voices.length <= 1 || voices.length !== before) pollVoices(tries - 1);
+    }, 350);
+  })(8);
 
   voiceEl.addEventListener('change', function () {
     var hit = voices.filter(function (v) { return keyFor(v) === voiceEl.value; })[0];

@@ -56,6 +56,14 @@
     .kpw-listen select option{color:#1A252F}
     .kpw-listen__status{color:var(--text-muted);font-size:.86rem;margin-left:auto;font-family:Inter,sans-serif}
     .kpw-listen__hint{color:var(--text-muted);font-size:.82rem;flex-basis:100%;margin:0}
+    /* Two-class selectors, for the same reason .brief-summary needs them:
+       .brief-wrap p sets near-black --ink at specificity 0,1,1 and is declared
+       later in this stylesheet, so a single-class rule loses and the hint
+       renders black-on-navy, i.e. invisible. It only showed up in articles,
+       because the hub has no .brief-wrap. */
+    .brief-wrap .kpw-listen__hint{color:var(--text-muted);font-size:.82rem;line-height:1.5;flex-basis:100%;margin:0}
+    .brief-wrap .kpw-listen__status{color:var(--text-muted);font-size:.86rem;line-height:1.5}
+    .brief-wrap .kpw-listen button{font-size:.92rem;line-height:1.2}
     /* Soft on purpose — a hard highlight fights the page's own colour system
        over a long article. */
     .kpw-reading{background:linear-gradient(90deg,rgba(241,196,15,.22),rgba(230,126,34,.10));border-radius:3px;box-shadow:0 0 0 .28rem rgba(241,196,15,.10)}
