@@ -583,7 +583,10 @@
     if (/network/i.test(v.voiceURI || '')) s += 60;
     if (v.localService === false) s += 40;
     if (/google/i.test(n)) s += 30;
-    if (/aria|jenny|guy|ava|emma|samantha|siri|karen|moira|daniel/i.test(n)) s += 20;
+    // Microsoft's neural set, plus the good Apple ones. Andrew and Brian were
+    // missing, which left Andrew Online ranked below Aria for no reason other
+    // than an incomplete list — it is one of the two best voices Windows has.
+    if (/aria|ava|andrew|brian|emma|christopher|michelle|roger|steffan|jenny|guy|samantha|siri|karen|moira|daniel/i.test(n)) s += 20;
     if (/^en-US/i.test(v.lang)) s += 10; else if (/^en/i.test(v.lang)) s += 5;
     if (/zira|david|mark|hazel/i.test(n)) s -= 15;   // legacy Windows SAPI
     if (/compact|eloquence/i.test(n)) s -= 25;       // iOS low-quality set
