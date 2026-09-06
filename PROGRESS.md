@@ -441,14 +441,119 @@ and `TEMPLATE_GUIDE.md`. Not mine, not committed.
 
 ---
 
+## 2026-09-06 — KANSAS CITY METRO EXPANSION, AND WHY LOCAL SEO WAS NEVER GOING TO WORK
+
+### The diagnosis that changed direction
+
+A full Search Console audit produced one number that reframes everything:
+**all 20 clicks in the last 28 days came from queries Google withheld as too
+rare to name.** Named queries — 854 impressions of them — produced **zero**
+clicks. GSC anonymises rare queries, which is what brand and "near me" searches
+look like. So every click was from someone who already knew the name. Nothing
+in the discovery footprint converted at all.
+
+Impressions broke down like this:
+
+| Bucket | Impressions | Clicks | Positions |
+|---|---|---|---|
+| National head terms | 519 | 0 | 1.0 – 6.7 |
+| Kansas City metro | 230 | 0 | 54 – 95 |
+| **Actual service area** | **92** | 0 | 13 – 33 |
+| Brand | 13 | 0 | — |
+
+**The home turf is ~92 impressions a month.** Three a day. Even ranking #1 for
+everything local, at a strong 30% CTR, that is roughly one or two leads a
+month. Local organic in a market this size cannot fill a pipeline, and no
+title-tag work changes that arithmetic. This is a market-size finding, not a
+quality one — the site is technically clean.
+
+The 519 national impressions (`web development` at position 4.5, `web design`
+at 1.0) produce nothing and are vanity. They are also why impressions "doubled"
+while lead flow did not move.
+
+### What was built
+
+**`web-design-johnson-county-ks.html`** — one page, not three. Google's
+doorway-page guidance targets near-duplicate location pages, and three thin
+city pages from a solo operator is that pattern exactly. Johnson County
+contains Shawnee, Overland Park, Lenexa, Olathe and Leawood, so one substantial
+page covers 185 of the 186 real metro impressions. Split it later only if it
+ranks.
+
+Shawnee alone is 137 of those 226 impressions, at position 82. Impressions at
+that depth massively understate demand, because you only appear when someone
+scrolls eight pages.
+
+The page does not pretend to be local. Its second section is headed "We're in
+Salina, not Shawnee. That's the point," and argues the real case: the distance
+costs the client nothing, and what it saves them is metro agency overhead. That
+honesty is also what makes it genuinely different content rather than a Salina
+page with the city names swapped.
+
+Supporting changes so the site actually claims the geography:
+
+- `index.html` LocalBusiness `areaServed` 12 → 17 entries
+- `faq.html` — 6 replacements across schema and visible copy; "primarily in
+  Central Kansas" became "across Kansas"
+- `service-areas.html` gains a Johnson County section
+- `service-web-design.html` links down to it
+- `sitemap.xml` at priority 0.9, and `llms.txt`
+
+### Two things worth knowing before editing pages again
+
+**`.section` has no background of its own.** It falls through to
+`body{background:var(--white)}` — pure #FFFFFF. A section written as
+`<section class="section">` with no inline background renders as a harsh white
+band between the dark sections. Every content section on a service page needs
+an explicit background. The established rotation, taken from
+`service-local-seo.html`, is:
+
+    page-hero → var(--dark) → #1a2535 → var(--section-alt) →
+    service-areas-strip → #1A252F (FAQ) → var(--dark) → cta-banner
+
+**The FAQ background is forced by CSS, not by the page.** `styles.css` carries
+`section:has(.faq-item){background:var(--dark)!important}` plus a matching
+`!important` white on `section.service-faq .section__header h2`. That is why
+donor pages appear to set `color:var(--dark)` on a dark FAQ heading and still
+render readable. Do not "fix" that inline colour — the stylesheet already wins.
+
+### Voice
+
+The first draft of the new page used no contractions and read like the Tech
+Brief. The main site is warmer: 81 contractions across the service pages.
+Rewritten to match — the marketing site and `/insights/` are two different
+registers and should stay that way.
+
+### Also shipped today
+
+- **Tech Brief article six** — the October comment deadlines
+  (`/insights/october-comment-deadlines-sec-crypto-genius-act.html`), with the
+  SEC and GENIUS briefs updated to carry their now-fixed comment deadlines.
+- **`llms.txt` had no Tech Brief entries at all.** That checklist step had
+  never been done for any of the five existing articles, so the entire
+  authority publication was invisible to the AI crawlers the site explicitly
+  allows. Now covers the hub, methodology and all six briefs.
+- `blog.html` gained a Tech Brief block; it previously only reached the cluster
+  through the nav and footer.
+
+### Open
+
+- **Google Business Profile has 5 reviews.** `aggregateRating` was deliberately
+  NOT added to schema, because the star average was not confirmed and inventing
+  review data is a manual-action risk. Add it once the real rating is known.
+- The new page needs indexing requested in Search Console.
+- Expect 6–12 weeks before the Johnson County page finds its level.
+
+---
+
 ## REMAINING PLACEHOLDERS AFTER BUILD
 > Claude Code confirms which placeholders still need owner replacement
 
 | Placeholder | Location | Owner Action |
 |---|---|---|
 | [KPW_BOOKING_URL] | All CTA buttons | Add Calendly or booking URL |
-| [KPW_GOOGLE_PROFILE_URL] | Google section, footer | Add after GBP is created |
-| [KPW_FORMSPREE_ID] | Contact form, blog intake form | Add after Formspree account created |
+| ~~[KPW_GOOGLE_PROFILE_URL]~~ | Google section, footer | DONE — GBP live, 5 reviews, linked on index + contact |
+| ~~[KPW_FORMSPREE_ID]~~ | Contact form, blog intake form | DONE — Formspree live |
 
 ---
 
