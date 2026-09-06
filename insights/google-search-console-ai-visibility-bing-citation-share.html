@@ -640,13 +640,29 @@
     var s = 0;
     // Neural/cloud voices are dramatically better than the old local ones.
     if (/natural|neural|online|premium|enhanced/i.test(n)) s += 100;
+    // Android Google TTS ships each voice twice, "-network" and "-local". The
+    // network one is markedly less robotic and is what should be offered first.
+    if (/network/i.test(v.voiceURI || '')) s += 60;
     if (v.localService === false) s += 40;
     if (/google/i.test(n)) s += 30;
     if (/aria|jenny|guy|ava|emma|samantha|siri|karen|moira|daniel/i.test(n)) s += 20;
     if (/^en-US/i.test(v.lang)) s += 10; else if (/^en/i.test(v.lang)) s += 5;
     if (/zira|david|mark|hazel/i.test(n)) s -= 15;   // legacy Windows SAPI
     if (/compact|eloquence/i.test(n)) s -= 25;       // iOS low-quality set
+    if (/[-#]local\b|-local$/i.test(v.voiceURI || '')) s -= 10;
     return s;
+  }
+
+  /* Android voiceURIs carry the only thing that distinguishes one voice from
+     another there: "en-us-x-sfg#female_1-local". The name is identical across
+     all of them, so the variant token is what makes a picker meaningful. */
+  function variantOf(v) {
+    var uri = v.voiceURI || '';
+    var m = uri.match(/#([a-z]+)_?(\d+)?/i);
+    if (!m) return '';
+    var who = m[1].toLowerCase();
+    if (who !== 'female' && who !== 'male') return '';
+    return who.charAt(0).toUpperCase() + who.slice(1) + (m[2] ? ' ' + m[2] : '');
   }
 
   var REGION = {
@@ -679,12 +695,22 @@
     if (generic) base = region ? ('English (' + region + ')') : 'Device voice';
     else if (region && !new RegExp(region, 'i').test(base)) base = base + ' (' + region + ')';
 
+    // Append the voiceURI variant whenever there is one. Only Android exposes
+    // it, so desktop and iOS labels are untouched — but on Android it is the
+    // single thing that distinguishes four otherwise identical entries, and
+    // labelling only the clashes would leave the first one bare.
+    var vr = variantOf(v);
+    if (vr) base = base + ' \u2014 ' + vr;
+
     if (seen[base]) { seen[base]++; base = base + ' ' + seen[base]; }
     else seen[base] = 1;
     return base;
   }
 
-  function keyFor(v) { return (v.name || '') + '|' + (v.lang || ''); }
+  // voiceURI is the only genuinely unique identifier. Android returns several
+  // different voices sharing one name, so keying on name would collapse them
+  // into a single entry and hide the choice entirely.
+  function keyFor(v) { return v.voiceURI || ((v.name || '') + '|' + (v.lang || '')); }
 
   function loadVoices() {
     var all = synth.getVoices() || [];
