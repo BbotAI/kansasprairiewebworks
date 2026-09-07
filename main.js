@@ -46,6 +46,27 @@
     mobileMenu.classList.remove('open');
   }
 
+  // Collapsible groups in the mobile menu. The previous markup indented the
+  // service pages under a submenu class but nothing ever collapsed them, so
+  // all 19 rows sat on screen at once and the indent read as decoration.
+  // Groups start closed via the hidden attribute in the markup, so they are
+  // also closed if this script fails to load.
+  mobileMenu.querySelectorAll('.navbar__mgroup-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var panel = document.getElementById(btn.getAttribute('aria-controls'));
+      if (!panel) return;
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+      // One group open at a time — a short menu is the entire point.
+      mobileMenu.querySelectorAll('.navbar__mgroup-toggle').forEach(function (other) {
+        if (other === btn) return;
+        other.setAttribute('aria-expanded', 'false');
+        var p = document.getElementById(other.getAttribute('aria-controls'));
+        if (p) p.hidden = true;
+      });
+      btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      panel.hidden = isOpen;
+    });
+  });
   hamburger.addEventListener('click', function () {
     if (mobileMenu.classList.contains('open')) {
       closeMenu();

@@ -2,3 +2,18 @@
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 /* Hero background per breakpoint. Moved out of an inline style on index.html so only ONE image is ever fetched: as an inline style the desktop webp downloaded on mobile too, before the max-width override could apply. */
 @media (min-width:769px){.hero__image{background-image:url("images/kpw-hero-storm.webp")}}
+
+/* Mobile nav: collapsible groups. Group headers are buttons, not links, so a
+   tap opens the group rather than navigating away — the destination lives
+   inside (Services -> All Services). */
+.navbar__mgroup-toggle{display:flex;align-items:center;justify-content:space-between;width:100%;
+  font-family:Poppins,sans-serif;font-weight:500;font-size:1rem;color:var(--text-light);
+  background:none;border:0;padding:.9rem 1.5rem;cursor:pointer;text-align:left;
+  font:inherit;line-height:inherit}
+.navbar__mgroup-toggle:hover{color:var(--primary);background:rgba(255,255,255,.06)}
+.navbar__mgroup-chev{transition:transform .2s ease;font-size:.8em;opacity:.7;margin-left:.5rem}
+.navbar__mgroup-toggle[aria-expanded="true"]{color:var(--primary)}
+.navbar__mgroup-toggle[aria-expanded="true"] .navbar__mgroup-chev{transform:rotate(180deg)}
+.navbar__mobile-submenu[hidden]{display:none!important}
+.navbar__mobile-actions{display:flex;flex-direction:column;gap:.75rem;padding:1rem 1.5rem 1.5rem}
+.navbar__mobile-actions .btn{width:100%;text-align:center;justify-content:center}
