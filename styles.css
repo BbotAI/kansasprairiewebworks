@@ -3,16 +3,17 @@
 /* Hero background per breakpoint. Moved out of an inline style on index.html so only ONE image is ever fetched: as an inline style the desktop webp downloaded on mobile too, before the max-width override could apply. */
 @media (min-width:769px){.hero__image{background-image:url("images/kpw-hero-storm.webp")}}
 
+
 /* Mobile nav: collapsible groups. Group headers are buttons, not links, so a
-   tap opens the group rather than navigating away — the destination lives
-   inside (Services -> All Services). */
-.navbar__mgroup-toggle{display:flex;align-items:center;justify-content:space-between;width:100%;
-  font-family:Poppins,sans-serif;font-weight:500;font-size:1rem;color:var(--text-light);
-  background:none;border:0;padding:.9rem 1.5rem;cursor:pointer;text-align:left;
-  font:inherit;line-height:inherit}
-.navbar__mgroup-toggle:hover{color:var(--primary);background:rgba(255,255,255,.06)}
-.navbar__mgroup-chev{transition:transform .2s ease;font-size:.8em;opacity:.7;margin-left:.5rem}
-.navbar__mgroup-toggle[aria-expanded="true"]{color:var(--primary)}
+   tap opens the group instead of navigating away — the destination lives
+   inside the group (Services -> All Services).
+   These deliberately mirror `.navbar__mobile-menu ul li a` (Poppins 700 /
+   1.15rem / #fff / 52px min-height / same divider) so a group header reads as
+   a peer of the plain links rather than a different kind of control. */
+.navbar__mobile-menu ul li .navbar__mgroup-toggle{display:flex;align-items:center;justify-content:space-between;width:100%;padding:1rem 1.5rem;font-family:Poppins,sans-serif;font-weight:700;font-size:1.15rem;line-height:1.6;color:#fff;background:none;border:0;border-bottom:1px solid rgba(255,255,255,.05);min-height:52px;cursor:pointer;text-align:left;transition:background .2s,color .2s}
+.navbar__mobile-menu ul li .navbar__mgroup-toggle:hover{background:rgba(230,126,34,.1);color:var(--primary)}
+.navbar__mobile-menu ul li .navbar__mgroup-toggle[aria-expanded="true"]{color:var(--primary)}
+.navbar__mgroup-chev{transition:transform .2s ease;font-size:.8em;opacity:.7;margin-left:.75rem}
 .navbar__mgroup-toggle[aria-expanded="true"] .navbar__mgroup-chev{transform:rotate(180deg)}
 .navbar__mobile-submenu[hidden]{display:none!important}
 .navbar__mobile-actions{display:flex;flex-direction:column;gap:.75rem;padding:1rem 1.5rem 1.5rem}
