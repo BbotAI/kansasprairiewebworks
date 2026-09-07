@@ -684,6 +684,108 @@ registers and should stay that way.
 
 ---
 
+## 2026-09-07 — MOBILE NAV REBUILT SITE-WIDE, AND THE STALE-ASSET TRAP THAT BROKE IT
+
+### What changed
+
+The hamburger menu was a flat list that had grown to 19 rows on the homepage,
+and the menus had drifted apart across pages — 11, 12, 17 and 18 items
+depending on which page you opened. It is now one canonical 8-row menu on all
+30 pages, with three collapsible groups:
+
+| Row | Contents |
+|---|---|
+| Home, About | direct links |
+| **Services** ▾ | All Services, Website Design, Google Business Profile, Facebook Business Page, Local SEO, Monthly Posting, Web App / Custom Build, AI Services |
+| **Our Work** ▾ | Portfolio, Use Cases |
+| Pricing, Service Areas | direct links |
+| **Resources** ▾ | Blog, Tech Brief, FAQ |
+| Contact | direct link |
+| actions | Call Now (solid orange), Get a Quote (orange outline) |
+
+Nothing was removed — all 18 destinations are still reachable, three groups
+just start closed. Group headers are `<button>`, not `<a>`, so a tap opens the
+group instead of navigating away; the landing page for each group lives inside
+it (Services → All Services).
+
+Use Cases was also added to 21 root footers. It had only ever existed in the
+nav, so grouping it behind a tap would have left it near-unlinked.
+
+Root pages keep relative hrefs and `insights/` keeps root-relative ones, so
+local `file://` preview still works in both. The `insights/` footer is a
+slimmer variant with no Portfolio column and was deliberately left alone.
+
+### READ THIS BEFORE CHANGING styles.css OR main.js
+
+**This is the thing that broke the site and cost a round trip.** The markup
+deployed, the CSS and JS did not, and the page rendered new HTML against the
+old stylesheet and old script. The result on a phone: the `<button>` group
+headers fell back to browser defaults — small and black — beside the still
+correctly styled `<a>` links, large and white, and nothing opened because the
+toggle handler did not exist in the script being served.
+
+The cause was cache, not code. `styles.css` was linked with **no cache-buster
+at all**, and `main.js` was left at its existing `?v=4`, so Cloudflare kept
+serving both from edge cache against fresh HTML.
+
+**The rule: any change to `styles.css` or `main.js` must bump the `?v=` on
+every page that links them, and then the Cloudflare cache must be purged.**
+Both files are now at `?v=5` on all 30 pages. Bump to `?v=6` next time —
+site-wide, not on the one page being worked on, or pages fall out of sync with
+each other.
+
+Purge with the zone token already in the `CLOUDFLARE_API_TOKEN` user env var:
+
+```
+POST https://api.cloudflare.com/client/v4/zones/{zone}/purge_cache
+     {"purge_everything": true}
+```
+
+Zone id for kansasprairiewebworks.com: `4dadb99d608feff583e26a7dff1be8b4`.
+Purge **after** the deploy has landed, not before — purging early just refills
+the cache from the old origin content. Verify with `curl` against the live
+URL, not in a browser, because the browser has its own cache on top.
+
+### Two CSS traps hit while building this
+
+- **`.btn--outline` does not exist in this stylesheet.** Only
+  `.btn--outline-orange` does. A `class="btn btn--outline"` silently falls
+  through to base `.btn`, whose border is `2px solid transparent` and whose
+  colour is inherited — so on the dark mobile menu the button was nearly
+  invisible. Check a modifier actually exists before using it; this stylesheet
+  has no build step to catch it.
+- **The `font:` shorthand resets `font-family`, `font-weight` and
+  `font-size`.** The first version of the group-header rule set all three and
+  then declared `font:inherit` afterwards, which wiped them. Order matters.
+
+Group headers are now styled to mirror `.navbar__mobile-menu ul li a` exactly
+(Poppins 700 / 1.15rem / `#fff` / 52px min-height / same divider) and scoped
+to `.navbar__mobile-menu ul li .navbar__mgroup-toggle` so they win on
+specificity without `!important`. That matching is deliberate — a group header
+should read as a peer of the plain links, not a different kind of control.
+
+The dropdown chevron is `1.3em`, full opacity, brand orange. It was `0.8em` at
+`0.7` opacity, which next to 1.15rem bold labels read as a speck rather than
+as the thing that opens the group.
+
+### Legal links stay in the footer — decided, not an oversight
+
+Terms, Privacy and Disclaimer are in the footer on every page and are
+deliberately **not** in the nav dropdown. The nav carries buying intent and
+legal pages carry none; nobody opens a hamburger menu looking for Terms, they
+scroll to the bottom. Adding three legal rows would put dead weight back into
+the menu that was just cut from 19 rows to 8. The exception would be a
+regulated disclosure that has to be surfaced, which does not apply here.
+
+### Verified before push
+
+All 30 pages: 3 toggles / 3 submenus / 3 closed groups each, unique
+`aria-controls` ids, balanced `ul`/`li`/`div`/`button`/`nav`/`footer`, and all
+18 menu link targets resolve on disk. Then zone purged and nine pages
+re-checked live.
+
+---
+
 ## REMAINING PLACEHOLDERS AFTER BUILD
 > Claude Code confirms which placeholders still need owner replacement
 

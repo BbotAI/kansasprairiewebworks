@@ -14,6 +14,36 @@ This repository contains the complete website for Kansas Prairie Webworks, a loc
 
 ---
 
+## Before you edit styles.css or main.js — read this
+
+The site is behind Cloudflare. Both shared assets are versioned with a `?v=`
+query string, currently **`?v=5`**, on all 30 pages that link them.
+
+**Any change to `styles.css` or `main.js` requires two things beyond the edit:**
+
+1. **Bump `?v=` on every page**, not just the page being worked on — otherwise
+   pages fall out of sync and serve different CSS to each other.
+2. **Purge the Cloudflare cache after the deploy lands** (not before — purging
+   early just refills it from the old origin content).
+
+Skipping this ships new HTML against a stale stylesheet and a stale script.
+That failure is silent, invisible in a normal browser reload, and looks like a
+CSS bug rather than a caching one. It happened on 2026-09-07 — see PROGRESS.md
+for the full write-up, the purge call, and the zone id.
+
+Verify with `curl` against the live URL, never a browser, because the browser
+holds its own cache on top of Cloudflare's.
+
+Two traps in this stylesheet, both hit on 2026-09-07:
+
+- `.btn--outline` **does not exist** — only `.btn--outline-orange` does. An
+  unknown modifier fails silently to base `.btn` (transparent border,
+  inherited colour). There is no build step to catch it.
+- The `font:` shorthand **resets** `font-family`, `font-weight` and
+  `font-size`, so `font:inherit` after those three wipes them.
+
+---
+
 ## Site Structure
 
 | File | Description |
