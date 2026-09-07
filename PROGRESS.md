@@ -463,16 +463,19 @@ and one `Code.gs` comment, all correctly describing the console account.
 Client-facing mail already leaves from the business address. See
 `kpw-agency-brain/SYSTEM_STATUS.md`.
 
-**The one place still unverified is Formspree**, because the destination lives
-in their dashboard rather than in the HTML:
+**Formspree checked and clean** (Kaleb, 2026-09-07). The destination lives in
+their dashboard rather than the HTML, so it could not be audited from code:
 
     kpw-build         formspree.io/f/xdavwdpq
     mike's_services   formspree.io/f/xrevelll
 
-The form markup is correct on both sites; where Formspree *delivers* is an
-account setting. If a contact form is ever reported as silent, check that
-destination address first — a misspelling there would swallow leads with no
-error anywhere.
+Only the correctly spelled address is present on the account; the "webowrks"
+variant does not appear there at all. **Every path a contact form or client
+email can take is now confirmed on the correct address** — site markup, Apps
+Script sender, and Formspree delivery.
+
+Still the first place to look if a form is ever reported as silent: a wrong
+destination there swallows submissions with no error anywhere.
 
 (`you@example.com` on Mike's contact form is an input `placeholder` attribute,
 i.e. grey hint text in the empty field. Not a real address, nothing to fix.)
