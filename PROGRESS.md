@@ -441,6 +441,55 @@ and `TEMPLATE_GUIDE.md`. Not mine, not committed.
 
 ---
 
+## 2026-09-06 — EMAIL ADDRESS AUDIT, AND THE SITEMAP/NOINDEX CONFLICT
+
+### Which address the sites use — audited, both clean
+
+There are two Google accounts, and only one of them is a typo:
+
+| Address | What it is |
+|---|---|
+| `kansasprairiewebworks@gmail.com` | the business address, correct spelling |
+| `kansasprairiewebowrks@gmail.com` | **"webowrks"** — a real Google account that owns and deploys the Apps Script project. Not a typo in any file; renaming it would be a migration. |
+
+**Both websites are clean.** `kpw-build` uses the correct spelling in 61
+places with zero misspellings; `mike's_services_llc` carries no KPW address at
+all. Audited across every `.html`, `.js`, `.json`, `.md` and `.txt` in all
+six repos — the only occurrences of "webowrks" are in `kpw-agency-brain` docs
+and one `Code.gs` comment, all correctly describing the console account.
+
+**The Apps Script sender problem was already closed on 2026-08-04** (version
+205, `gmail.settings.basic`, verified `sentAs: kansasprairiewebworks@gmail.com`).
+Client-facing mail already leaves from the business address. See
+`kpw-agency-brain/SYSTEM_STATUS.md`.
+
+**The one place still unverified is Formspree**, because the destination lives
+in their dashboard rather than in the HTML:
+
+    kpw-build         formspree.io/f/xdavwdpq
+    mike's_services   formspree.io/f/xrevelll
+
+The form markup is correct on both sites; where Formspree *delivers* is an
+account setting. If a contact form is ever reported as silent, check that
+destination address first — a misspelling there would swallow leads with no
+error anywhere.
+
+(`you@example.com` on Mike's contact form is an input `placeholder` attribute,
+i.e. grey hint text in the empty field. Not a real address, nothing to fix.)
+
+### terms/privacy/disclaimer: noindex was right, the sitemap was wrong
+
+Search Console reported `terms.html` as "URL is not available to Google —
+Excluded by 'noindex' tag". All three legal pages carry
+`<meta name="robots" content="noindex, follow">`, which is correct for legal
+boilerplate. They were also listed in `sitemap.xml`, which says the opposite.
+Removed the three url blocks, 30 → 27.
+
+**Expect GSC to keep reporting it for weeks.** Google holds the URL until it
+stops recrawling. No validation request needed — there is nothing to validate.
+
+---
+
 ## 2026-09-06 — LISTEN (READ-ALOUD) ON EVERY BRIEF AND THE HUB
 
 Kaleb reads the Tech Brief but wanted to listen while driving. Every brief and
