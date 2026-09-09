@@ -31,3 +31,24 @@
 .tb-latest__ttl{flex:1 1 260px;font-weight:600;line-height:1.45;color:var(--white)}
 .tb-latest__go{flex:0 0 auto;color:var(--primary);font-weight:700}
 @media (max-width:480px){.tb-latest{padding:.8rem 1rem}}
+
+
+/* ── Blog pagination ──────────────────────────────────────────────────────
+   Driven by blog-pagination.js, which activates only on a grid carrying
+   data-blog-pager. The hide class needs !important: .service-card sets
+   display:flex at the same specificity and later in this file, so a plain
+   display:none rule (or the [hidden] attribute) loses to it. */
+.blog-pager-hide{display:none!important}
+.blog-pager{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.4rem;margin:2.5rem auto 0}
+.blog-pager__btn{font-family:Poppins,sans-serif;font-size:.9rem;font-weight:600;line-height:1;color:var(--text);background:var(--white);border:1px solid rgba(44,62,80,.22);border-radius:6px;padding:.6rem .85rem;min-width:2.6rem;transition:background .15s ease,border-color .15s ease,color .15s ease}
+.blog-pager__btn:hover:not(:disabled){border-color:var(--primary);color:var(--primary)}
+.blog-pager__btn:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.blog-pager__btn.is-active{background:var(--primary-cta);border-color:var(--primary-cta);color:var(--white)}
+.blog-pager__btn:disabled{opacity:.4;cursor:default}
+.blog-pager__btn--edge{padding-left:1rem;padding-right:1rem}
+.blog-pager__gap{padding:0 .25rem;color:var(--text-muted)}
+@media (max-width:520px){
+  .blog-pager{gap:.3rem}
+  .blog-pager__btn{padding:.55rem .7rem;min-width:2.3rem;font-size:.85rem}
+  .blog-pager__btn--edge{padding-left:.8rem;padding-right:.8rem}
+}
