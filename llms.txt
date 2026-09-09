@@ -93,6 +93,11 @@ the main domain rather than a subdomain, on purpose.
 /insights/methodology.html — Editorial method, source tiers, and how
   dated data is refreshed and marked.
 
+/insights/clarity-act-senate-cloture-vote-september-15.html — The Senate's September 15, 2026 vote is cloture on the motion to
+  proceed to H.R. 3633, not a vote on the CLARITY Act itself and not
+  passage. What still has to happen after it.
+  Published 2026-09-09.
+
 /insights/october-comment-deadlines-sec-crypto-genius-act.html — Treasury's GENIUS Act rule closes for comment October 19, 2026,
   the SEC's Regulation Crypto Assets October 20. Both are proposals;
   neither date binds anyone.
