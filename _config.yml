@@ -20,3 +20,4 @@ exclude:
   - "*.md.txt"
   - .claude/
   - .github/
+  - blog-drafts/

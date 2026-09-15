@@ -2,3 +2,8 @@
 Thumbs.db
 *.log
 node_modules/
+
+# Blog drafts are internal. They are pasted into Blogger by hand and must
+# never reach the published site - Jekyll would serve them as real pages and
+# create a duplicate of a post that has not gone out yet.
+blog-drafts/
