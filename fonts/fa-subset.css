@@ -1,5 +1,5 @@
 /*!
- * Font Awesome 6.5.0 subset — self-hosted, 52 icons actually used on this site
+ * Font Awesome 6.5.0 subset — self-hosted, 55 icons actually used on this site
  * Source: Font Awesome Free (https://fontawesome.com)
  * License: Icons CC BY 4.0, Fonts SIL OFL 1.1, Code MIT — https://fontawesome.com/license/free
  * Subset generated 2026-07-10 — replaces the ~400KB CDN bundle
@@ -10,7 +10,7 @@
   font-style: normal;
   font-weight: 900;
   font-display: block;
-  src: url("fa-solid-900.woff2") format("woff2");
+  src: url("fa-solid-900.woff2?v=2") format("woff2");
 }
 
 @font-face {
@@ -18,7 +18,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: block;
-  src: url("fa-brands-400.woff2") format("woff2");
+  src: url("fa-brands-400.woff2?v=2") format("woff2");
 }
 
 .fa, .fas, .fa-solid, .fab, .fa-brands {
@@ -35,6 +35,9 @@
 .fab, .fa-brands { font-family: "Font Awesome 6 Brands"; font-weight: 400; }
 
 .fa-arrow-right:before { content: "\f061"; }
+.fa-desktop:before { content: "\f108"; }
+.fa-flag:before { content: "\f024"; }
+.fa-map-pin:before { content: "\f276"; }
 .fa-bolt:before { content: "\f0e7"; }
 .fa-brain:before { content: "\f5dc"; }
 .fa-briefcase:before { content: "\f0b1"; }

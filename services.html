@@ -2,13 +2,36 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-14W9B5KVEE"></script>
+  <!-- Analytics, loaded off the critical path.
+       gtag.js is 168 KB - the heaviest single request on this site - and
+       PageSpeed reports 71 KiB of it unused. Loaded normally it competes for a
+       phone's bandwidth and main thread during first paint, which is most of
+       why mobile sat far below desktop.
+       It now loads on whichever comes first: the visitor's first interaction,
+       or 3 seconds after the load event. A real visit is still counted; only a
+       bounce inside the first few seconds is missed. Nothing in the KPW
+       toolchain reads Analytics - the monthly client reports and kpw_seo_check
+       are built entirely from Search Console and PageSpeed. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-14W9B5KVEE');
+    (function () {
+      var loaded = false;
+      function loadGtag() {
+        if (loaded) return;
+        loaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-14W9B5KVEE';
+        document.head.appendChild(s);
+        gtag('js', new Date());
+        gtag('config', 'G-14W9B5KVEE');
+      }
+      ['scroll','pointerdown','keydown','touchstart'].forEach(function (e) {
+        window.addEventListener(e, loadGtag, { once: true, passive: true });
+      });
+      window.addEventListener('load', function () { setTimeout(loadGtag, 3000); });
+    })();
   </script>
 
   <meta charset="UTF-8">
@@ -36,7 +59,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=optional" rel="stylesheet">
-  <link rel="stylesheet" href="fonts/fa-subset.css">
+  <link rel="stylesheet" href="fonts/fa-subset.css?v=2">
   <link rel="stylesheet" href="styles.css?v=7">
   <link rel="author" href="https://blog.kansasprairiewebworks.com">
   <script type="application/ld+json">
