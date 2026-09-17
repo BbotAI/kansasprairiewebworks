@@ -799,3 +799,21 @@ re-checked live.
 
 *PROGRESS.md — auto-maintained by Claude Code during build*
 *Kansas Prairie Webworks — kansasprairiewebworks.com*
+
+---
+
+## 2026-09-16 — GSC: home links pointed at /index.html; the blog theme has an empty canonical
+
+- **"Alternate page with proper canonical tag" failed validation** on the one URL
+  left, `/index.html`. Every page linked `index.html` 4 times (logo, Home x2,
+  footer), so Google kept rediscovering it. All 31 pages now use `href="/"`,
+  and so does `kpw-tech-brief/lib/chrome.js`, so rebuilds keep it.
+- **blog.kansasprairiewebworks.com** emits `<link href='' rel='canonical'/>` on
+  every post from a hand-added theme snippet. That causes the blog's Redirect
+  error, Page with redirect and Duplicate without user-selected canonical.
+  Manual removal in Blogger: `BLOGGER_CANONICAL_FIX.md` (rewritten).
+  `KPW_CANONICAL_FIX_SKILL.md` STEP 4 is now verify-only.
+- Duplicate post `2026/07/mobile-app-vs-better-website-kansas-business_01643798843.html`
+  is still live and in the sitemap. Delete it in Blogger.
+- Cloudflare `always_use_https` is off; `http://` serves 200. Not changed.
+- Full record: kpw-agency-brain `SYSTEM_STATUS.md`, 2026-09-16.

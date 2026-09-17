@@ -14,10 +14,10 @@ Three GSC issues all caused by missing or incorrect canonical tags:
    as a duplicate. Fix: canonical on every HTML page must point to the
    clean URL without `/index.html`.
 
-2. **Blogger ?m=1 mobile URL duplicates**
+2. **Blogger ?m=1 mobile URL duplicates** (verify only — see STEP 4; never edit the theme)
    Blogger auto-generates `?m=1` mobile versions of every post.
-   Google sees both as separate pages. Fix: add canonical pointing to
-   the non-?m=1 URL in the Blogger theme/template.
+   Blogger already canonicalises them to the clean URL. Adding a
+   canonical to the theme BREAKS this (see STEP 4).
 
 3. **Duplicate without user-selected canonical**
    Pages with no canonical tag at all. Fix: every HTML page must have
@@ -66,6 +66,10 @@ NOT:
 ```html
 <link rel="canonical" href="https://[DOMAIN]/index.html">
 ```
+
+And every link to the homepage (logo, Home, footer) must be `href="/"`,
+never `href="index.html"`. The canonical alone does not stop Google
+discovering and filing `/index.html` (kansasprairiewebworks.com, 2026-09-16).
 
 **For all other pages (about.html, services.html, etc.):**
 ```html
@@ -132,53 +136,28 @@ If no sitemap exists — create one:
 
 ---
 
-## STEP 4 — FIX BLOGGER ?m=1 DUPLICATE ISSUE
+## STEP 4 — BLOGGER ?m=1: DO NOT EDIT THE THEME. VERIFY ONLY.
 
-This fix goes in the **Blogger theme**, not in the repo HTML files.
-The repo cannot fix Blogger — this requires a manual step in Blogger dashboard.
+> **Rewritten 2026-09-16.** This step used to tell you to paste a
+> `<b:if>` canonical block using `data:post.url` into the Blogger theme head.
+> That block renders `<link href='' rel='canonical'/>` on every post, because
+> post data is not in scope in `<head>`. It was added to three client blogs
+> and produced "Duplicate without user-selected canonical", "Page with
+> redirect" and "Redirect error" across all of them. Full write-up and the
+> removal steps: `BLOGGER_CANONICAL_FIX.md`.
 
-**Document the manual fix instructions:**
+Blogger's own `all-head-content` include already emits a correct canonical on
+every page type, `?m=1` included. The only job here is to confirm there is
+exactly one:
 
-Create a file called `BLOGGER_CANONICAL_FIX.md` in the repo:
-
-```markdown
-# Blogger Canonical Fix — Manual Step Required
-
-## Problem
-Google Search Console shows blog.kansasprairiewebworks.com/?m=1 URLs
-as duplicate pages with "Alternate page with proper canonical tag" error.
-Blogger auto-generates ?m=1 mobile URLs for every post.
-
-## Fix Required in Blogger Dashboard
-
-1. Go to blogger.com → [Blog Name] → Theme
-2. Click "Edit HTML" (pencil icon)
-3. Find the <head> section in the theme HTML
-4. Look for any existing canonical tag
-5. Add or replace with this code INSIDE <head>:
-
-<b:if cond='data:blog.pageType == &quot;item&quot;'>
-  <link rel='canonical' expr:href='data:post.url'/>
-<b:else/>
-  <link rel='canonical' expr:href='data:blog.canonicalUrl'/>
-</b:if>
-
-6. Save the theme
-7. Go to Google Search Console → URL Inspection
-8. Test a ?m=1 URL to confirm it now shows the non-mobile URL as canonical
-9. Request reindexing on the affected pages
-
-## After Fix
-- All ?m=1 URLs will correctly point canonical to the non-mobile version
-- Google will stop treating them as duplicates
-- The "Alternate page with proper canonical tag" errors will clear
-  within 2-4 weeks after Google recrawls
-
-## Apply to all blogs:
-- blog.kansasprairiewebworks.com
-- blog.mikeservicesllc.com
-- blog.procleaningsalinaks.com
+```bash
+curl -s -A "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"   "https://blog.[DOMAIN]/<a post>.html?m=1" | grep -io "<link[^>]*canonical[^>]*>"
 ```
+
+- One tag, clean post URL -> nothing to do. "Alternate page with proper
+  canonical tag" on `?m=1` URLs is the correct state; do not validate it.
+- Two tags, one `href=''` -> the hand-added block is present. Remove it
+  (steps in `BLOGGER_CANONICAL_FIX.md`). Never add one.
 
 ---
 

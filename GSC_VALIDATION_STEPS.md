@@ -1,4 +1,19 @@
 # Google Search Console — Validation Steps
+
+> **2026-09-16 — this file's July conclusions were partly wrong. Read this first.**
+> Step 1's "all three blogs already emit a correct canonical" and Step 4's
+> "HTTP 200, no redirect, stale" were both checked with a **desktop**
+> user-agent. Blogger 302s posts to `?m=1` for mobile crawlers, and every post on
+> blog.kansasprairiewebworks.com now emits a second, **empty** canonical from a
+> theme snippet the 07-28 skill prescribed. That is the real cause of the
+> blog's Redirect error / Page with redirect / Duplicate without user-selected
+> canonical. Fix and verify steps: `BLOGGER_CANONICAL_FIX.md`. Full diagnosis
+> and the click list: kpw-agency-brain `SYSTEM_STATUS.md`, 2026-09-16 entry.
+>
+> Also 2026-09-16: "Alternate page with proper canonical tag" on this site
+> failed validation because every page linked `index.html`. All home links
+> are now `href="/"`. **Don't re-validate that issue.** It's Google working
+> correctly and it clears on its own.
 # After the 2026-07-28 GSC cleanup pass — follow these steps
 
 ## Step 1 — Already done (verified live, not just assumed):
