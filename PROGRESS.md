@@ -814,6 +814,9 @@ re-checked live.
   Manual removal in Blogger: `BLOGGER_CANONICAL_FIX.md` (rewritten).
   `KPW_CANONICAL_FIX_SKILL.md` STEP 4 is now verify-only.
 - Duplicate post `2026/07/mobile-app-vs-better-website-kansas-business_01643798843.html`
-  is still live and in the sitemap. Delete it in Blogger.
+  **deleted in Blogger 2026-09-17** (404, out of the sitemap). `blog.html` had
+  carded *both* copies — the July note claiming otherwise was wrong — so the
+  card and its BlogPosting schema were removed and the BLOG-n slots renumbered.
+  38 cards, 38 posts. Check for BOTH URLs, not just the clean one, if this recurs.
 - Cloudflare `always_use_https` is off; `http://` serves 200. Not changed.
 - Full record: kpw-agency-brain `SYSTEM_STATUS.md`, 2026-09-16.
