@@ -93,10 +93,11 @@ the main domain rather than a subdomain, on purpose.
 /insights/methodology.html — Editorial method, source tiers, and how
   dated data is refreshed and marked.
 
-/insights/clarity-act-senate-cloture-vote-september-15.html — The Senate's September 15, 2026 vote is cloture on the motion to
-  proceed to H.R. 3633, not a vote on the CLARITY Act itself and not
-  passage. What still has to happen after it.
-  Published 2026-09-09.
+/insights/clarity-act-senate-cloture-vote-september-15.html — On September 15, 2026 the Senate rejected cloture on the motion to
+  proceed to H.R. 3633, 49 to 50 against a threshold of 60, so the
+  CLARITY Act was never taken up. Who voted how, what the rejection
+  forecloses, and which deadlines still run.
+  Published 2026-09-09, updated 2026-09-17.
 
 /insights/october-comment-deadlines-sec-crypto-genius-act.html — Treasury's GENIUS Act rule closes for comment October 19, 2026,
   the SEC's Regulation Crypto Assets October 20. Both are proposals;
@@ -123,10 +124,10 @@ the main domain rather than a subdomain, on purpose.
   to written compliance pathways.
   Published 2026-08-19, updated 2026-09-05.
 
-/insights/tokenized-stocks-sec-rules-24-7-equity-markets.html — The SEC approved tokenized share trading on Nasdaq with the same
-  CUSIP and the same shareholder rights. But it also put them on the
-  same order book, which quietly undoes the 24/7 story.
-  Published 2026-08-17, updated 2026-08-19.
+/insights/tokenized-stocks-sec-rules-24-7-equity-markets.html — The SEC approved tokenized Nasdaq shares with the same CUSIP and the
+  same shareholder rights, then put them on the same order book, which
+  undoes the 24/7 story.
+  Published 2026-08-17, updated 2026-09-17.
 
 ## Service Area
 Salina KS, Saline County, Ottawa County, Lincoln County,
