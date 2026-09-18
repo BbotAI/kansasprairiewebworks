@@ -631,9 +631,10 @@
      neither exposes a capability flag:
 
      1. Chrome for Android has never properly supported pause()/resume(). A
-        pause() there can stop the utterance outright with no way back. The
-        desktop-Chrome 15-second cutoff heartbeat is therefore desktop-only,
-        and Pause on mobile is implemented as cancel-and-remember instead.
+        pause() there can stop the utterance outright with no way back, so
+        Pause on mobile is implemented as cancel-and-remember instead. (The
+        desktop keep-alive that used to be mentioned here was removed on
+        2026-09-17; see the note above speakFrom.)
      2. Android and iOS populate getVoices() lazily — often not until after
         the first speak() — so the list is rescanned after playback starts. */
   var IS_MOBILE = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || '');
@@ -821,7 +822,7 @@
   // exactly the gap that used to show up as a runaway highlight at speed.
   // Anything user-facing — the counter, and restarting after a voice or speed
   // change — uses spoken.
-  var idx = 0, spoken = 0, playing = false, cancelling = false, beat = null;
+  var idx = 0, spoken = 0, playing = false, cancelling = false;
 
   function clearMark() {
     var m = document.querySelector('.kpw-reading');
@@ -830,24 +831,75 @@
   function setStatus() {
     status.textContent = playing ? ('Part ' + (spoken + 1) + ' of ' + nodes.length) : '';
   }
-  function heartbeat(on) {
-    if (beat) { clearInterval(beat); beat = null; }
-    if (!on || IS_MOBILE) return;
-    // Desktop Chrome silently stops after roughly 15s unless nudged; the
-    // pause/resume pair is inaudible there. NEVER do this on mobile — Chrome
-    // for Android can stop the utterance outright on pause() and not come
-    // back, which is worse than the problem it fixes.
-    beat = setInterval(function () {
-      if (playing && synth.speaking && !synth.paused) { synth.pause(); synth.resume(); }
-    }, 10000);
+  /* The 15-second problem, and why there is no longer a heartbeat.
+     Desktop Chrome stops speaking after roughly 15 seconds. This used to be
+     handled with a 10-second setInterval calling synth.pause() then
+     synth.resume(), which is the workaround everyone copies. It has a defect
+     that is obvious once heard: Chrome restarts the CURRENT utterance from its
+     beginning on resume, so any paragraph longer than the interval was read
+     twice before playback moved on. Reported from the car, 2026-09-17, and
+     reproduced in the source: one utterance per paragraph, some paragraphs
+     over 10 seconds, a nudge landing in the middle of them.
+     The fix is upstream of the cutoff. Paragraphs are now split into
+     sentence-sized utterances by chunksFor(), each well under the limit, so
+     nothing is ever speaking long enough to need nudging. Do not reintroduce a
+     pause/resume timer: with short chunks it is unnecessary, and it is what
+     caused the double-read. */
+
+  /* Split one paragraph into utterance-sized pieces, breaking on sentence
+     ends. CHUNK_MAX is characters, chosen so a chunk lands around eight
+     seconds at rate 1 and stays clear of the cutoff even at 0.9. A sentence
+     longer than the limit on its own is split at a comma, and failing that is
+     left alone: a slightly long chunk is better than one severed mid-word. */
+  var CHUNK_MAX = 170;
+  function chunksFor(text) {
+    var parts = text.match(/[^.!?]+[.!?]+["')\]]*\s*|[^.!?]+$/g) || [text];
+    var out = [], cur = '';
+    /* Emit a piece that is already known to be too long, split on spaces so a
+       word is never severed. Reached only by prose with no sentence end and no
+       comma for over CHUNK_MAX characters. */
+    function pushLong(piece) {
+      var words = piece.split(/\s+/), line = '';
+      for (var k = 0; k < words.length; k++) {
+        if (!line) { line = words[k]; continue; }
+        if ((line + ' ' + words[k]).length <= CHUNK_MAX) line += ' ' + words[k];
+        else { out.push(line); line = words[k]; }
+      }
+      if (line) out.push(line);
+    }
+    function push(piece) {
+      if (!piece) return;
+      if (piece.trim().length > CHUNK_MAX) {
+        if (cur.trim()) { out.push(cur.trim()); cur = ''; }
+        pushLong(piece.trim());
+        return;
+      }
+      if (!cur) { cur = piece; return; }
+      if ((cur + piece).length <= CHUNK_MAX) cur += piece;
+      else { out.push(cur.trim()); cur = piece; }
+    }
+    for (var i = 0; i < parts.length; i++) {
+      var p = parts[i];
+      if (p.length <= CHUNK_MAX) { push(p); continue; }
+      if (cur.trim()) { out.push(cur.trim()); cur = ''; }
+      var commas = p.match(/[^,]+,\s*|[^,]+$/g) || [p];
+      for (var j = 0; j < commas.length; j++) push(commas[j]);
+    }
+    if (cur.trim()) out.push(cur.trim());
+    return out.filter(function (c) { return c.length; });
   }
 
   function speakFrom(i) {
     if (i >= nodes.length) { finish(); return; }
     idx = i;
     var el = nodes[i];
+    var pieces = chunksFor(normalise(el.textContent));
+    if (!pieces.length) { speakFrom(i + 1); return; }
+    speakChunk(i, el, pieces, 0);
+  }
 
-    var u = new SpeechSynthesisUtterance(normalise(el.textContent));
+  function speakChunk(i, el, pieces, c) {
+    var u = new SpeechSynthesisUtterance(pieces[c]);
     if (voice) { u.voice = voice; u.lang = voice.lang; }
     u.rate = parseFloat(rateEl.value) || 1;
     u.pitch = 1;
@@ -861,17 +913,25 @@
     // 1.3x the paragraphs are shorter in wall-clock time, so the same fixed
     // lag became a whole paragraph of drift. onstart fires when the engine
     // actually begins speaking this node, which is what the reader hears.
+    // The highlight belongs to the paragraph, so it moves on the first chunk
+    // only. Later chunks of the same paragraph must not re-run it, or the
+    // counter flickers through parts that are not paragraph boundaries.
     u.onstart = function () {
-      if (cancelling || !playing) return;
+      if (cancelling || !playing || c !== 0) return;
       spoken = i;
       clearMark();
       el.classList.add('kpw-reading');
       setStatus();
     };
 
-    u.onend = function () { if (!cancelling && playing) speakFrom(i + 1); };
+    function next() {
+      if (cancelling || !playing) return;
+      if (c + 1 < pieces.length) speakChunk(i, el, pieces, c + 1);
+      else speakFrom(i + 1);
+    }
+    u.onend = next;
     // Firefox fires end on cancel(); the flag above guards the chain.
-    u.onerror = function () { if (!cancelling && playing) speakFrom(i + 1); };
+    u.onerror = next;
     synth.speak(u);
   }
 
@@ -879,7 +939,6 @@
     synth.cancel();
     cancelling = false;
     playing = true;
-    heartbeat(true);
     label.textContent = 'Pause';
     playBtn.querySelector('span[aria-hidden]').innerHTML = '&#9208;&#65039;';
     stopBtn.disabled = false;
@@ -891,10 +950,10 @@
     if (IS_MOBILE) { setTimeout(loadVoices, 400); setTimeout(loadVoices, 1500); }
   }
   function stopAll() {
-    cancelling = true; synth.cancel(); playing = false; heartbeat(false); cancelling = false;
+    cancelling = true; synth.cancel(); playing = false; cancelling = false;
   }
   function finish() {
-    playing = false; heartbeat(false); clearMark(); idx = 0; spoken = 0;
+    playing = false; clearMark(); idx = 0; spoken = 0;
     label.textContent = IDLE;
     playBtn.querySelector('span[aria-hidden]').innerHTML = '&#9654;&#65039;';
     stopBtn.disabled = true; status.textContent = '';
@@ -908,7 +967,7 @@
 
   function toPause() {
     if (IS_MOBILE) { pausedAt = spoken; stopAll(); }
-    else { synth.pause(); playing = false; heartbeat(false); }
+    else { synth.pause(); playing = false; }
     playing = false;
     label.textContent = 'Resume';
     playBtn.querySelector('span[aria-hidden]').innerHTML = '&#9654;&#65039;';
@@ -917,7 +976,7 @@
 
   function toResume() {
     if (!IS_MOBILE && synth.paused && synth.speaking) {
-      synth.resume(); playing = true; heartbeat(true);
+      synth.resume(); playing = true;
       label.textContent = 'Pause';
       playBtn.querySelector('span[aria-hidden]').innerHTML = '&#9208;&#65039;';
       setStatus();
