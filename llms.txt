@@ -99,6 +99,13 @@ the main domain rather than a subdomain, on purpose.
   forecloses, and which deadlines still run.
   Published 2026-09-09, updated 2026-09-17.
 
+/insights/october-comment-files-what-has-been-filed.html — Counted on September 17, 2026, five weeks before the deadlines:
+  Treasury's stablecoin docket held 26 comments and the SEC's Regulation
+  Crypto Assets file held 30 entries, two of which are memoranda recording
+  meetings with Coinbase and Digital Asset, Inc. rather than comment letters.
+  No national trade association had filed in either.
+  Published 2026-09-17.
+
 /insights/october-comment-deadlines-sec-crypto-genius-act.html — Treasury's GENIUS Act rule closes for comment October 19, 2026,
   the SEC's Regulation Crypto Assets October 20. Both are proposals;
   neither date binds anyone.
