@@ -820,3 +820,75 @@ re-checked live.
   38 cards, 38 posts. Check for BOTH URLs, not just the clean one, if this recurs.
 - Cloudflare `always_use_https` is off; `http://` serves 200. Not changed.
 - Full record: kpw-agency-brain `SYSTEM_STATUS.md`, 2026-09-16.
+---
+
+## 2026-09-18 — why the phone is not ringing, with the arithmetic
+
+Kaleb: still no calls. One contact-form enquiry arrived 09-18, replied to, no
+answer yet. Worth being precise about what the numbers can and cannot explain.
+
+### The volume problem, stated honestly
+
+The site got **15 clicks in 28 days**. Even a very good local service site
+converts somewhere around 2 to 5 percent of clicks into a call or a form. On 15
+clicks that is **zero or one enquiry a month**, which is exactly what happened.
+Nothing on the site is broken. There is simply not enough traffic for the
+conversion rate to express itself.
+
+So the question is not "why doesn't the site convert", it is "where do the next
+hundred relevant visitors come from". Ranked by what actually moves a phone in
+a town this size:
+
+### 1. Google reviews, which we have almost certainly under-used
+
+The homepage carries **three genuine recommendations, all from Facebook**: Pro
+Cleaning, Diehl's Trucking Service, Mike's Services. The GBP exists
+(`cid=16085744185558604384`) and the review link is live on the homepage,
+contact page and the Johnson County page.
+
+**Those same three clients have not obviously been asked for the Google
+version.** In the local pack, Google review count and recency are among the few
+ranking inputs a small business controls directly, and the local pack is where
+a "web design salina" searcher actually taps a phone number. Three real reviews
+is a different profile from zero.
+
+No `aggregateRating` markup is claimed anywhere on the site, which is correct
+and should stay that way until there are real Google reviews to reflect.
+
+### 2. Get the service pages crawled
+
+Seven are `Discovered - currently not indexed`, `Last crawl: N/A`. They are the
+pages that would rank for the services themselves. Request Indexing per URL,
+in progress, quota hit 09-18.
+
+### 3. Accept what the Salina market is
+
+`web design salina ks` drew **19 impressions in a month** at position 25. Even
+at position 1, that term alone is a handful of clicks. The local market for
+this phrase is small, and no amount of on-page work changes its size. Ranking
+for it is worth having, but it will not by itself produce a weekly call.
+
+### 4. The Johnson County question
+
+`web-design-johnson-county-ks.html` draws ~295 impressions at position 72 from
+Overland Park and Shawnee. Competing there from Salina, with no local signal in
+that market, is what the 2026-09-13 audit already called a hard sell. It is
+also the single reason the site's average position reads 42 instead of ~20.
+Either commit to that market properly or stop paying for it in reporting noise.
+
+### 5. The channel the data cannot see
+
+Both paying clients came through people, not search. The three testimonials are
+from a trucking firm, a cleaner and an excavator, all local, all relationship
+led. The honest read of 90 days of Search Console is that **search is not yet a
+lead channel for KPW and will not be one this quarter**. It is worth building,
+because the Tech Brief and the service pages compound. It is not worth waiting
+on.
+
+### What was actually fixed today
+
+- Sitemap `lastmod` dates corrected on 21 entries, several of which claimed
+  2026-06-11 for pages edited 09-13 and 09-16, and the sitemap resubmitted. It
+  had not been resubmitted since 2026-06-25.
+- The Tech Brief was checked for cannibalisation and cleared: business-side
+  clicks went 12 to 25 in the window the briefs went live.
