@@ -93,6 +93,15 @@ the main domain rather than a subdomain, on purpose.
 /insights/methodology.html — Editorial method, source tiers, and how
   dated data is refreshed and marked.
 
+/insights/who-moved-money-on-chain-what-the-filings-required.html — BlackRock, Franklin Templeton and JPMorgan all run tokenized
+  cash products on public blockchains. The exemption filings underneath
+  the institutional versions are private placements: a Form D amended
+  October 6, 2026 claims Investment Company Act section 3(c)(7), reports
+  no non-accredited investors and a $5,000,000 minimum, and records zero
+  sold. Citadel Securities has separately asked the SEC not to grant
+  broad exemptive relief for tokenized equities.
+  Published 2026-10-08.
+
 /insights/clarity-act-senate-cloture-vote-september-15.html — On September 15, 2026 the Senate rejected cloture on the motion to
   proceed to H.R. 3633, 49 to 50 against a threshold of 60, so the
   CLARITY Act was never taken up. Who voted how, what the rejection
