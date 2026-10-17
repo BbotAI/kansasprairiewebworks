@@ -93,7 +93,7 @@ the main domain rather than a subdomain, on purpose.
 /insights/methodology.html — Editorial method, source tiers, and how
   dated data is refreshed and marked.
 
-/insights/what-i-think-is-going-on-with-tokenization.html — Kaleb Diehl's signed
+/insights/what-i-think-is-going-on-with-tokenization.html — Kaleb's signed
   opinion piece on tokenization. Why the institutions and regulators
   picked Canton Network, Chainlink, Quant and Ripple, what is confirmed
   live (DTCC production trades July 15, 2026; ECB Pontes; Swift's

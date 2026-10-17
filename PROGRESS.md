@@ -892,3 +892,33 @@ on.
   had not been resubmitted since 2026-06-25.
 - The Tech Brief was checked for cannibalisation and cleared: business-side
   clicks went 12 to 25 in the window the briefs went live.
+
+## 2026-10-17 — share button when opened from the home-screen icon
+
+**Why:** saved to a phone's home screen, the site opens as an app with no
+browser bar, so there was no way to share or copy the page link. Desktop and
+the normal phone browser were never affected.
+
+**Fix:** a self-contained block appended to the end of `main.js` adds a round
+Share button bottom-left, above the Call/Text bar, **only** when
+`(display-mode: standalone)` matches or `navigator.standalone` is true. Tap
+opens the phone's share sheet (`navigator.share`) with the canonical URL;
+where that is missing it copies the link and shows "Link copied", with a
+`prompt()` as the last fallback. Button colour #aa5a13 (CTA orange). `main.js` cache query
+bumped to `?v=6` on every page, because Cloudflare would otherwise serve
+the old script for hours (see the stale-asset trap). Same code on
+kansasprairiewebworks.com, mikeservicesllc.com and procleaningsalinaks.com.
+
+**Tested** at 390px in headless Edge with `navigator.standalone` forced on all
+three sites. Not yet confirmed on a real phone: open from the home-screen
+icon, tap Share.
+
+**Tech Brief pages:** `build-article.js` and `build-hub.js` in kpw-tech-brief
+now emit `/main.js?v=6` too, so a rebuild does not undo the bump. Before
+this, insights pages loaded `?v=4` and the rest of the site `?v=5`.
+
+**Also 2026-10-17:** Kaleb's last name removed from the tokenization thesis
+(byline, Person schema, meta description, llms.txt). It is a crypto opinion
+piece that says he provides liquidity, and full name + town + "holds crypto"
+is the combination worth not publishing. The name stays on about.html,
+founder schema and the blog author schema, where it is the business identity.
