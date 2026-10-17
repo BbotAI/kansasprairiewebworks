@@ -93,6 +93,15 @@ the main domain rather than a subdomain, on purpose.
 /insights/methodology.html — Editorial method, source tiers, and how
   dated data is refreshed and marked.
 
+/insights/what-i-think-is-going-on-with-tokenization.html — Kaleb Diehl's signed
+  opinion piece on tokenization. Why the institutions and regulators
+  picked Canton Network, Chainlink, Quant and Ripple, what is confirmed
+  live (DTCC production trades July 15, 2026; ECB Pontes; Swift's
+  ledger), how each network does or does not create token demand, and
+  where the author could be wrong. 54 sources listed. Opinion, not
+  investment advice.
+  Published 2026-10-17.
+
 /insights/who-moved-money-on-chain-what-the-filings-required.html — BlackRock, Franklin Templeton and JPMorgan all run tokenized
   cash products on public blockchains. The exemption filings underneath
   the institutional versions are private placements: a Form D amended
