@@ -922,3 +922,11 @@ this, insights pages loaded `?v=4` and the rest of the site `?v=5`.
 piece that says he provides liquidity, and full name + town + "holds crypto"
 is the combination worth not publishing. The name stays on about.html,
 founder schema and the blog author schema, where it is the business identity.
+
+🔴 **Cache trap, hit again on 2026-10-17.** A deploy check requested
+`main.js?v=6` (and Mike's `?v=3`, Pro's `?v=5`) seconds after the push.
+GitHub Pages still had the old main.js, so Cloudflare cached the OLD script
+under the NEW version key for 4 hours. Fixed by purging those URLs through
+the Cloudflare API (`CLOUDFLARE_API_TOKEN`, purge_cache by file) after the
+HTML showed the deploy had landed. **Poll the HTML for deploy, never the
+versioned asset.**
