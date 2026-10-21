@@ -269,6 +269,12 @@
     .brief-source__meta{display:block;color:var(--text-muted);font-size:.85rem;margin:.3rem 0}
     .brief-source__claim{display:block;color:var(--text);font-size:.9rem;font-style:italic}
     .brief-bridge a,.brief-summary a{color:var(--secondary)}
+    .brief-wrap sup.cite{font-size:.68em;line-height:0;vertical-align:super;margin-left:2px;white-space:nowrap}
+    .brief-wrap sup.cite a{color:var(--primary);font-weight:700;text-decoration:none;padding:0 2px}
+    .brief-wrap sup.cite a:hover,.brief-wrap sup.cite a:focus-visible{text-decoration:underline}
+    .brief-source{scroll-margin-top:96px;transition:box-shadow .3s,background-color .3s}
+    .brief-source:target{background:#FFF8E8;box-shadow:0 0 0 2px var(--primary)}
+    .brief-source__back{float:right;text-transform:none;letter-spacing:0;font-size:.8rem;color:var(--primary)}
   </style>
 </head>
 <body>
@@ -390,7 +396,7 @@
       <p style="margin:-0.5rem 0 1.5rem;"><a href="#sources" class="btn btn--outline" style="font-size:.9rem;padding:.4rem .9rem;">Sources &amp; verification (64)</a></p>
       <img src="https://kansasprairiewebworks.com/images/insights/what-i-think-is-going-on-with-tokenization.webp?v=2" alt="Large cast-iron gears and a drive shaft meshing inside an old Kansas grain elevator, warm light from a high window falling across their teeth" title="What I Think Is Going On With Tokenization &mdash; Kansas Prairie Webworks" width="1200" height="630" style="border-radius:8px;margin-bottom:2rem;">
       <h2 data-n="01">Why These Networks</h2>
-<p>I want to be clear up front about how this list came together. I didn't pick these networks because I like them. I followed the institutions and the regulators. These are the networks that the biggest banks, market utilities and financial regulators have named in their own announcements, filings and rulings as current information.</p><ul><li>Canton Network: chosen by DTCC for live tokenized Treasury trades. Goldman Sachs built GS DAP on it, BNY and Goldman run tokenized money market funds on it, and J.P. Morgan deployed JPM Coin there. Visa, DTCC, Nasdaq, Circle, Broadridge, Tradeweb and Franklin Templeton help run the network as Super Validators.</li><li>Chainlink: chosen by Swift for connecting banks to blockchains, and by DTCC for its Collateral AppChain. UBS, Euroclear and J.P. Morgan's Kinexys have used it.</li><li>Quant: chosen by The Clearing House, which is owned by the largest U.S. banks, for its On-Chain Money network connected to RTP and CHIPS. Seven major UK banks used it for live tokenized pound payments. Quant's founder started the ISO committee for blockchain standards, ISO TC 307.</li><li>Ripple and the XRP Ledger: given a national trust bank charter approval by the OCC, holds more than 85 licenses worldwide including full approval across all 30 European Economic Area countries, and the XRP Ledger is where Standard Chartered just started custody of Ripple's dollar stablecoin.</li></ul><p>And on the regulatory side, the SEC and CFTC now formally treat XRP, LINK and HBAR as digital commodities, not securities.</p><p>That's the starting point for everything below. The institutions made these choices. My job is figuring out what those choices mean for the tokens.</p>
+<p>I want to be clear up front about how this list came together. I didn't pick these networks because I like them. I followed the institutions and the regulators. These are the networks that the biggest banks, market utilities and financial regulators have named in their own announcements, filings and rulings as current information.</p><ul><li>Canton Network: chosen by DTCC for live tokenized Treasury trades. Goldman Sachs built GS DAP on it, BNY and Goldman run tokenized money market funds on it, and J.P. Morgan deployed JPM Coin there. Visa, DTCC, Nasdaq, Circle, Broadridge, Tradeweb and Franklin Templeton help run the network as Super Validators.<sup class="cite"><a href="#src-2" aria-label="Source 2">2</a>,<a href="#src-3" aria-label="Source 3">3</a>,<a href="#src-4" aria-label="Source 4">4</a></sup></li><li>Chainlink: chosen by Swift for connecting banks to blockchains, and by DTCC for its Collateral AppChain. UBS, Euroclear and J.P. Morgan's Kinexys have used it.<sup class="cite"><a href="#src-5" aria-label="Source 5">5</a>,<a href="#src-6" aria-label="Source 6">6</a></sup></li><li>Quant: chosen by The Clearing House, which is owned by the largest U.S. banks, for its On-Chain Money network connected to RTP and CHIPS. Seven major UK banks used it for live tokenized pound payments. Quant's founder started the ISO committee for blockchain standards, ISO TC 307.<sup class="cite"><a href="#src-7" aria-label="Source 7">7</a>,<a href="#src-8" aria-label="Source 8">8</a></sup></li><li>Ripple and the XRP Ledger: given a national trust bank charter approval by the OCC, holds more than 85 licenses worldwide including full approval across all 30 European Economic Area countries, and the XRP Ledger is where Standard Chartered just started custody of Ripple's dollar stablecoin.<sup class="cite"><a href="#src-9" aria-label="Source 9">9</a>,<a href="#src-10" aria-label="Source 10">10</a>,<a href="#src-11" aria-label="Source 11">11</a>,<a href="#src-32" aria-label="Source 32">32</a></sup></li></ul><p>And on the regulatory side, the SEC and CFTC now formally treat XRP, LINK and HBAR as digital commodities, not securities.<sup class="cite"><a href="#src-1" aria-label="Source 1">1</a></sup></p><p>That's the starting point for everything below. The institutions made these choices. My job is figuring out what those choices mean for the tokens.</p>
 
       <div class="brief-summary">
         <strong class="lbl">The short version</strong>
@@ -409,19 +415,19 @@
       </div>
 
       <h2 data-n="02">Where the Regulators Stand</h2>
-<p>On March 17, 2026, the SEC and CFTC put out a joint 68-page interpretation that sorts crypto assets into five categories. They named 16 digital commodities that aren't securities: APT, AVAX, BTC, BCH, ADA, LINK, DOGE, ETH, HBAR, LTC, DOT, SHIB, SOL, XLM, XTZ and XRP.</p><p>What makes XRP different is that it has both. It went through five years of litigation with the SEC, got a court ruling that XRP itself isn't a security when sold on exchanges, the case closed in 2025, and now it's on the joint commodity list too. No other token on that list went through a full court fight and came out with that kind of record. In October the CFTC also proposed trading rules that list XRP as a commodity.</p><p>Three things I'd keep in mind:</p><ul><li>LINK and HBAR are on the same list, so XRP isn't the only one with clarity. It's the one with the most tested clarity.</li><li>QNT and Canton Coin aren't on the list. The SEC said the list isn't complete, so that doesn't make them securities. It just means they haven't been named yet.</li><li>The release binds both agencies, but it's an interpretation, not a law. A future commission could revise it. The CLARITY Act in Congress would lock it in, and it's still pending.</li></ul>
+<p>On March 17, 2026, the SEC and CFTC put out a joint 68-page interpretation that sorts crypto assets into five categories. They named 16 digital commodities that aren't securities: APT, AVAX, BTC, BCH, ADA, LINK, DOGE, ETH, HBAR, LTC, DOT, SHIB, SOL, XLM, XTZ and XRP.<sup class="cite"><a href="#src-1" aria-label="Source 1">1</a>,<a href="#src-12" aria-label="Source 12">12</a></sup></p><p>What makes XRP different is that it has both. It went through five years of litigation with the SEC, got a court ruling that XRP itself isn't a security when sold on exchanges, the case closed in 2025, and now it's on the joint commodity list too. No other token on that list went through a full court fight and came out with that kind of record. In October the CFTC also proposed trading rules that list XRP as a commodity.<sup class="cite"><a href="#src-13" aria-label="Source 13">13</a></sup></p><p>Three things I'd keep in mind:</p><ul><li>LINK and HBAR are on the same list, so XRP isn't the only one with clarity. It's the one with the most tested clarity.</li><li>QNT and Canton Coin aren't on the list. The SEC said the list isn't complete, so that doesn't make them securities. It just means they haven't been named yet.</li><li>The release binds both agencies, but it's an interpretation, not a law. A future commission could revise it. The CLARITY Act in Congress would lock it in, and it's still pending.<sup class="cite"><a href="#src-14" aria-label="Source 14">14</a></sup></li></ul>
 
       <h2 data-n="03">Ripple: What They've Been Building</h2>
-<p>When you add up what they've bought and the licenses they've stacked, Ripple is building a regulated financial institution, not just a crypto company.</p><h3>The acquisitions:</h3><ul><li>Metaco (May 2023, about $250 million): Swiss custody technology. This became Ripple Custody, which banks use to hold digital assets.</li><li>Standard Custody &amp; Trust (2024): a New York chartered trust company. This gave Ripple a regulated U.S. custodian.</li><li>Hidden Road (announced April 2025, $1.25 billion, closed October 2025): a prime broker that clears about $3 trillion a year for 300 plus institutional clients. Now called Ripple Prime.</li><li>Rail (August 2025, about $200 million): stablecoin payments infrastructure.</li><li>GTreasury (October 2025, about $1 billion): corporate treasury software that handles about $12.5 trillion in annual payment volume for companies like American Airlines and Volvo.</li><li>Palisade (November 2025): wallet and custody technology for institutions.</li></ul><p>That's about $2.7 billion in disclosed prices, and reports put it close to $4 billion counting everything.</p><h3>The bank charter:</h3><p>On December 12, 2025, the OCC gave conditional approval for Ripple National Trust Bank, in the same batch as Circle, BitGo, Paxos and Fidelity Digital Assets. A national trust bank can do custody and hold the reserves for Ripple's stablecoin under federal supervision. It can't take regular deposits or make loans, and it isn't FDIC insured. Ripple has until around mid-2027 to open. Ripple has also reportedly applied for a Federal Reserve master account, which would let it hold money directly at the Fed. I've only seen that reported secondhand, so I'd treat it as unconfirmed. Small banks have sued to block these charters, so it isn't a done deal.</p><h3>The licenses:</h3><ul><li>More than 85 licenses worldwide.</li><li>55 plus U.S. money transmitter licenses, including Kansas.</li><li>New York BitLicense and the New York trust charter.</li><li>UK FCA electronic money license (January 2026).</li><li>Full MiCA license across all 30 European Economic Area countries (July 2026).</li><li>Singapore MAS and Dubai DFSA licenses.</li></ul><h3>Custody clients:</h3><p>Ripple Custody is used by banks including BBVA, DBS, DZ Bank and Intesa Sanpaolo. HSBC, BNP Paribas Securities Services and Societe Generale's digital unit also show up on client lists.</p><h3>RLUSD, Ripple's dollar stablecoin:</h3><ul><li>About $2.4 to $2.5 billion in circulation.</li><li>Backed by about $2.6 billion in reserves, with BNY as the reserve custodian and Deloitte doing the attestations.</li><li>On October 12, 2026, Standard Chartered began custody of RLUSD on the XRP Ledger.</li></ul><h3>Ripple Prime:</h3><ul><li>Revenue has tripled since Ripple bought it.</li><li>Raised a $200 million facility from Neuberger Berman and $275 million in BBB rated notes.</li><li>Won a multi-asset brokerage mandate from Brevan Howard in October.</li><li>Launched round-the-clock perpetual swaps on real-world assets with Virtu on October 15, using RLUSD as collateral.</li><li>Clients can post RLUSD, XRP or tokenized assets as collateral.</li></ul><h3>The company itself:</h3><p>Ripple raised $500 million at a $40 billion valuation in November 2025 from Fortress, Citadel Securities, Brevan Howard, Marshall Wace, Galaxy and Pantera. A share buyback in March 2026 valued it at $50 billion. Revenue was about $1.2 billion, and Ripple Payments has processed over $100 billion.</p><h3>What that means for XRP, honestly:</h3><p>This is the strongest case I've seen for Ripple as a company. It now has custody, a prime broker, treasury software for big corporations, payment licenses almost everywhere, a stablecoin with a top U.S. custodian and a bank charter on the way. That's a full stack.</p><p>The open question is how much of that business has to touch XRP.</p><ul><li>Most of the new products settle in RLUSD or regular dollars, not XRP. The Virtu product uses RLUSD as collateral.</li><li>Ripple Prime accepting XRP as collateral is a real use, and so is the XRP Ledger being the home for RLUSD.</li><li>Reports say funds estimate about 90% of Ripple's net asset value comes from its XRP holdings. So Ripple's spending is largely funded by XRP, and Ripple has every reason to want XRP to matter.</li><li>Ripple still controls about 31.4 to 31.8 billion XRP in escrow plus several billion in its own wallets. It releases 1 billion a month and usually puts about 700 million back. In October the net release was 300 million.</li></ul><p>If GTreasury's corporate clients, Ripple Prime's hedge fund clients and Ripple's bank partners start routing payments and collateral through XRP on the XRP Ledger, that changes everything. Ripple now owns the businesses that could make that happen.</p>
+<p>When you add up what they've bought and the licenses they've stacked, Ripple is building a regulated financial institution, not just a crypto company.</p><h3>The acquisitions:</h3><ul><li>Metaco (May 2023, about $250 million): Swiss custody technology. This became Ripple Custody, which banks use to hold digital assets.</li><li>Standard Custody &amp; Trust (2024): a New York chartered trust company. This gave Ripple a regulated U.S. custodian.</li><li>Hidden Road (announced April 2025, $1.25 billion, closed October 2025): a prime broker that clears about $3 trillion a year for 300 plus institutional clients. Now called Ripple Prime.</li><li>Rail (August 2025, about $200 million): stablecoin payments infrastructure.</li><li>GTreasury (October 2025, about $1 billion): corporate treasury software that handles about $12.5 trillion in annual payment volume for companies like American Airlines and Volvo.</li><li>Palisade (November 2025): wallet and custody technology for institutions.<sup class="cite"><a href="#src-15" aria-label="Source 15">15</a>,<a href="#src-16" aria-label="Source 16">16</a>,<a href="#src-17" aria-label="Source 17">17</a></sup></li></ul><p>That's about $2.7 billion in disclosed prices, and reports put it close to $4 billion counting everything.<sup class="cite"><a href="#src-18" aria-label="Source 18">18</a>,<a href="#src-19" aria-label="Source 19">19</a></sup></p><h3>The bank charter:</h3><p>On December 12, 2025, the OCC gave conditional approval for Ripple National Trust Bank, in the same batch as Circle, BitGo, Paxos and Fidelity Digital Assets. A national trust bank can do custody and hold the reserves for Ripple's stablecoin under federal supervision. It can't take regular deposits or make loans, and it isn't FDIC insured. Ripple has until around mid-2027 to open. Ripple has also reportedly applied for a Federal Reserve master account, which would let it hold money directly at the Fed. I've only seen that reported secondhand, so I'd treat it as unconfirmed. Small banks have sued to block these charters, so it isn't a done deal.<sup class="cite"><a href="#src-9" aria-label="Source 9">9</a>,<a href="#src-20" aria-label="Source 20">20</a>,<a href="#src-21" aria-label="Source 21">21</a>,<a href="#src-22" aria-label="Source 22">22</a></sup></p><h3>The licenses:</h3><ul><li>More than 85 licenses worldwide.<sup class="cite"><a href="#src-32" aria-label="Source 32">32</a></sup></li><li>55 plus U.S. money transmitter licenses, including Kansas.</li><li>New York BitLicense and the New York trust charter.</li><li>UK FCA electronic money license (January 2026).</li><li>Full MiCA license across all 30 European Economic Area countries (July 2026).</li><li>Singapore MAS and Dubai DFSA licenses.<sup class="cite"><a href="#src-10" aria-label="Source 10">10</a>,<a href="#src-23" aria-label="Source 23">23</a>,<a href="#src-24" aria-label="Source 24">24</a>,<a href="#src-25" aria-label="Source 25">25</a></sup></li></ul><h3>Custody clients:</h3><p>Ripple Custody is used by banks including BBVA, DBS, DZ Bank and Intesa Sanpaolo. HSBC, BNP Paribas Securities Services and Societe Generale's digital unit also show up on client lists.<sup class="cite"><a href="#src-26" aria-label="Source 26">26</a>,<a href="#src-27" aria-label="Source 27">27</a></sup></p><h3>RLUSD, Ripple's dollar stablecoin:</h3><ul><li>About $2.4 to $2.5 billion in circulation.</li><li>Backed by about $2.6 billion in reserves, with BNY as the reserve custodian and Deloitte doing the attestations.</li><li>On October 12, 2026, Standard Chartered began custody of RLUSD on the XRP Ledger.<sup class="cite"><a href="#src-11" aria-label="Source 11">11</a>,<a href="#src-28" aria-label="Source 28">28</a>,<a href="#src-29" aria-label="Source 29">29</a></sup></li></ul><h3>Ripple Prime:</h3><ul><li>Revenue has tripled since Ripple bought it.</li><li>Raised a $200 million facility from Neuberger Berman and $275 million in BBB rated notes.</li><li>Won a multi-asset brokerage mandate from Brevan Howard in October.</li><li>Launched round-the-clock perpetual swaps on real-world assets with Virtu on October 15, using RLUSD as collateral.</li><li>Clients can post RLUSD, XRP or tokenized assets as collateral.<sup class="cite"><a href="#src-30" aria-label="Source 30">30</a>,<a href="#src-31" aria-label="Source 31">31</a>,<a href="#src-32" aria-label="Source 32">32</a>,<a href="#src-33" aria-label="Source 33">33</a></sup></li></ul><h3>The company itself:</h3><p>Ripple raised $500 million at a $40 billion valuation in November 2025 from Fortress, Citadel Securities, Brevan Howard, Marshall Wace, Galaxy and Pantera. A share buyback in March 2026 valued it at $50 billion. Revenue was about $1.2 billion, and Ripple Payments has processed over $100 billion.<sup class="cite"><a href="#src-34" aria-label="Source 34">34</a>,<a href="#src-35" aria-label="Source 35">35</a>,<a href="#src-36" aria-label="Source 36">36</a></sup></p><h3>What that means for XRP, honestly:</h3><p>This is the strongest case I've seen for Ripple as a company. It now has custody, a prime broker, treasury software for big corporations, payment licenses almost everywhere, a stablecoin with a top U.S. custodian and a bank charter on the way. That's a full stack.</p><p>The open question is how much of that business has to touch XRP.</p><ul><li>Most of the new products settle in RLUSD or regular dollars, not XRP. The Virtu product uses RLUSD as collateral.</li><li>Ripple Prime accepting XRP as collateral is a real use, and so is the XRP Ledger being the home for RLUSD.</li><li>Reports say funds estimate about 90% of Ripple's net asset value comes from its XRP holdings. So Ripple's spending is largely funded by XRP, and Ripple has every reason to want XRP to matter.<sup class="cite"><a href="#src-37" aria-label="Source 37">37</a></sup></li><li>Ripple still controls about 31.4 to 31.8 billion XRP in escrow plus several billion in its own wallets. It releases 1 billion a month and usually puts about 700 million back. In October the net release was 300 million.<sup class="cite"><a href="#src-38" aria-label="Source 38">38</a>,<a href="#src-39" aria-label="Source 39">39</a></sup></li></ul><p>If GTreasury's corporate clients, Ripple Prime's hedge fund clients and Ripple's bank partners start routing payments and collateral through XRP on the XRP Ledger, that changes everything. Ripple now owns the businesses that could make that happen.</p>
 
       <h2 data-n="04">What I've Confirmed Is Real</h2>
-<h3>In the U.S.:</h3><p>DTCC ran production trades in tokenized Treasuries on July 15, 2026, including repo, collateral pledges and securities lending. They did it on Canton Network and on their own private network, Besu, and Chainlink says it powered the collateral workflows. DTC takes the Treasuries it already holds, makes a digital copy, and delivers it to each firm's registered wallet. Those wallets are screened against sanctions lists, and firms can send tokens directly to each other. The SEC approval covers Treasuries, Russell 1000 stocks and the major index ETFs for three years. <a href="#sources">[40]</a></p><p>DTCC is also building a Collateral AppChain on Chainlink for round-the-clock collateral management, using Chainlink's workflow software (CRE), its cross-chain system (CCIP) and its market data. It was targeted for late 2026, but recent reporting says early 2027.</p><p>The Clearing House picked Quant on September 24 to run its On-Chain Money Initiative. That's tokenized bank deposits connected to RTP and CHIPS, opening to banks in the first half of 2027. About 25 large banks are behind it.</p><h3>Globally, through Swift:</h3><p>Swift connects more than 11,000 banks, and it has worked with Chainlink for over seven years.</p><ul><li>2023: tested moving tokenized assets across blockchains using Chainlink's CCIP, starting from regular Swift messages.</li><li>January 2026: BNP Paribas, Intesa Sanpaolo and Societe Generale settled tokenized bonds through Swift and Chainlink.</li><li>July 9, 2026: Swift's blockchain ledger, built with Consensys, went live with 17 banks piloting tokenized deposit payments around the clock.</li><li>September 28, 2026: Chainlink announced it's connecting banks to the Swift ledger and launched CCIP 2.0 with compliance checks built in.</li></ul><p>Chainlink takes a bank's standard ISO 20022 payment message and turns it into instructions a blockchain can carry out. Final settlement still happens through each country's payment system, like Fedwire.</p><h3>In the UK:</h3><p>Barclays, HSBC, Lloyds, NatWest, Santander, Nationwide and Monzo completed live customer transactions in tokenized pounds on Quant's platform, including mortgage closings and a marketplace purchase. They plan three digital bonds in early 2027.</p><h3>In Europe:</h3><p>The ECB launched Pontes on September 21. It lets banks settle tokenized deals in central bank money through T2. Deutsche Bank, Santander, Societe Generale and others are connected.</p><h3>The size of it:</h3><p>As of October 17, 2026, RWA.xyz shows about $39.3 billion in tokenized assets that can move between wallets, about 0.03% of the $114 trillion at DTC. Tokenized Treasuries are about $14.7 billion. Stablecoins are around $291.7 billion. <a href="#sources">[55]</a> <a href="#sources">[40]</a></p>
+<h3>In the U.S.:</h3><p>DTCC ran production trades in tokenized Treasuries on July 15, 2026, including repo, collateral pledges and securities lending. They did it on Canton Network and on their own private network, Besu, and Chainlink says it powered the collateral workflows. DTC takes the Treasuries it already holds, makes a digital copy, and delivers it to each firm's registered wallet. Those wallets are screened against sanctions lists, and firms can send tokens directly to each other. The SEC approval covers Treasuries, Russell 1000 stocks and the major index ETFs for three years.<sup class="cite"><a href="#src-40" aria-label="Source 40">40</a></sup></p><p>DTCC is also building a Collateral AppChain on Chainlink for round-the-clock collateral management, using Chainlink's workflow software (CRE), its cross-chain system (CCIP) and its market data. It was targeted for late 2026, but recent reporting says early 2027.</p><p>The Clearing House picked Quant on September 24 to run its On-Chain Money Initiative. That's tokenized bank deposits connected to RTP and CHIPS, opening to banks in the first half of 2027. About 25 large banks are behind it.<sup class="cite"><a href="#src-7" aria-label="Source 7">7</a></sup></p><h3>Globally, through Swift:</h3><p>Swift connects more than 11,000 banks, and it has worked with Chainlink for over seven years.</p><ul><li>2023: tested moving tokenized assets across blockchains using Chainlink's CCIP, starting from regular Swift messages.</li><li>January 2026: BNP Paribas, Intesa Sanpaolo and Societe Generale settled tokenized bonds through Swift and Chainlink.</li><li>July 9, 2026: Swift's blockchain ledger, built with Consensys, went live with 17 banks piloting tokenized deposit payments around the clock.<sup class="cite"><a href="#src-5" aria-label="Source 5">5</a></sup></li><li>September 28, 2026: Chainlink announced it's connecting banks to the Swift ledger and launched CCIP 2.0 with compliance checks built in.</li></ul><p>Chainlink takes a bank's standard ISO 20022 payment message and turns it into instructions a blockchain can carry out. Final settlement still happens through each country's payment system, like Fedwire.</p><h3>In the UK:</h3><p>Barclays, HSBC, Lloyds, NatWest, Santander, Nationwide and Monzo completed live customer transactions in tokenized pounds on Quant's platform, including mortgage closings and a marketplace purchase. They plan three digital bonds in early 2027.<sup class="cite"><a href="#src-8" aria-label="Source 8">8</a></sup></p><h3>In Europe:</h3><p>The ECB launched Pontes on September 21. It lets banks settle tokenized deals in central bank money through T2. Deutsche Bank, Santander, Societe Generale and others are connected.<sup class="cite"><a href="#src-41" aria-label="Source 41">41</a></sup></p><h3>The size of it:</h3><p>As of October 17, 2026, RWA.xyz shows about $39.3 billion in tokenized assets that can move between wallets, about 0.03% of the $114 trillion at DTC. Tokenized Treasuries are about $14.7 billion. Stablecoins are around $291.7 billion.<sup class="cite"><a href="#src-55" aria-label="Source 55">55</a>,<a href="#src-40" aria-label="Source 40">40</a></sup></p>
 
       <h2 data-n="05">The Working Gears, Part 1: Who Does What</h2>
 <p>Every system needs five layers:</p><ol><li>Standards: ISO 20022 for messages, and ISO TC 307 for how blockchains work and connect. Quant's founder started TC 307.</li><li>Messaging and orchestration: Swift's ledger, Chainlink CCIP and CRE, Quant Overledger and QuantNet.</li><li>Data: Chainlink price feeds and valuations.</li><li>Ledgers: Canton, Besu, the XRP Ledger, Ethereum and the banks' own ledgers.</li><li>Settlement money: tokenized deposits, stablecoins like RLUSD, central bank money and the currency-swap step for cross-border payments.</li></ol><p>Chainlink and Quant compete in places. Swift and DTCC picked Chainlink. The Clearing House and the UK banks picked Quant. Ripple sits mostly in layers 4 and 5, plus custody and brokerage on top.</p>
 
       <h2 data-n="06">The Working Gears, Part 2: How Each Network Rewards Holding, Staking and Liquidity</h2>
-<p>This is the part I think matters most for the tokens. A token only gets lasting demand if the network makes someone hold it, lock it, stake it, burn it or keep it in a pool to do business. Here's what each one actually does today.</p><h3>Canton Coin (CC): a real lockup is already live</h3><ul><li>Fees on the public network are priced in dollars but paid by burning CC. New CC is minted every 10 minutes as rewards.</li><li>Rewards go to three groups: Super Validators who run the core network, validators who process transactions, and featured apps that drive activity. Since January 2026, featured apps can mint up to 62% of the rewards.</li><li>Validators used to get paid just for being online. That ended April 30, 2026. Now they only earn in proportion to the fees their users burn. So rewards now follow real usage.</li><li>The big one: under CIP-0105, approved in March 2026, Super Validators have to lock 70% of all the CC they've ever earned to keep their status and rewards. Under CIP-0116, approved in May, featured apps have to keep CC locked too.</li><li>A business has already formed around this. Canton Strategic Holdings, a public company, lends its own CC to Super Validators and apps to meet their lock requirement, and gets paid interest or a share of rewards. That's a yield market built on a required lockup.</li><li>Visa is a Super Validator with the top weight of 10. DTCC, Nasdaq, Circle, Chainlink, Broadridge, Tradeweb, Franklin Templeton and SBI are among 56 listed Super Validators.</li><li>The catch: new CC issuance keeps stepping down but never stops. It settles at about 2.5 billion CC a year. So the question is still whether burning plus locking outruns new coins.</li></ul><p>To me this is the closest thing to what I've been describing. The biggest institutions running Canton have to hold and lock the token to keep their seat.</p><h3>Chainlink (LINK): set the bar</h3><ul><li>Chainlink lets customers pay in stablecoins or regular dollars, then converts that money into LINK through a Uniswap pool and puts it in the Chainlink Reserve. Chainlink says it doesn't plan to withdraw from the Reserve for years.</li><li>The Reserve crossed about 6 million LINK in September, adding about 374,000 that month. Protocol fees were about $30 million in the first half of 2026.</li><li>Staking: a 45 million LINK pool paying around 4.3%, with a 28-day wait to unstake. Today the rewards come from a pre-funded pool, not from fees yet.</li><li>The catch: the Reserve holds LINK, it doesn't burn it, and up to about 70 million LINK can unlock each year. So new supply still outweighs Reserve buying.</li></ul><p>Why I say Chainlink set the bar: it proved a company can take dollar revenue from banks that never want to touch a token, and still turn that revenue into buying the token on the open market. The banks never hold LINK. Chainlink does it for them behind the scenes. Any of the other networks could copy that model.</p><h3>Quant (QNT): the pieces are built, the rules aren't public yet</h3><ul><li>Fusion went live on mainnet June 2, 2026, connecting 74 networks. QNT is Fusion's native gas token, the way ETH is Ethereum's.</li><li>Staking is designed for approved, identity-checked node operators who stake QNT against the nodes they run. Quant's documents also list the amount of QNT staked as a factor in which nodes get routed transactions.</li><li>No slashing is planned. Unreliable nodes just lose their rewards.</li><li>What's not live or not published: the minimum stake, reward rate, lock period and launch date. The next step is testnet staking in Quant Connect.</li><li>On the license fees, community researchers describe it this way: banks pay in dollars, Quant's treasury converts that into QNT and locks it for the license term. The lock is a dollar amount, rebalanced at renewal. If that's accurate, it's company policy, not code, and the terms are confidential.</li><li>With only about 14.88 million QNT that will ever exist, a real fee or staking requirement would hit hard.</li></ul><p>Quant has the parts. What I want to see is the Chainlink move: a public, verifiable way that bank fees become QNT that gets bought and locked.</p><h3>XRP and the XRP Ledger: liquidity tools, no staking</h3><ul><li>There's no staking on the XRP Ledger, and validators aren't paid. Banks and others run validators because they use the network.</li><li>Every transaction burns a tiny bit of XRP. Only about 14.4 million has been burned in total, so that isn't a supply driver.</li><li>Built-in AMM liquidity pools have been live since 2024. Liquidity providers earn trading fees.</li><li>A members-only exchange for regulated institutions went live February 18, 2026, with 82% of validators approving. Early pairs include Mexican peso and euro stablecoins against RLUSD.</li><li>A built-in lending protocol is waiting on a validator vote. It has 19 of the 35 votes and needs 29 held for two weeks. Firms like Evernorth plan to lend once it activates.</li><li>About 1.19 billion XRP sits in U.S. spot ETFs, about 473 million in corporate treasuries and about 408 million in DeFi.</li></ul><p>XRP's demand path isn't fees or staking. It's liquidity. If Ripple's payment, treasury and prime brokerage clients need XRP as the bridge or as collateral, market makers have to hold real inventory in those pools. The members-only exchange and lending protocol are exactly the kind of gears that would make that possible for regulated money.</p><h3>Ethereum (ETH): where most tokenized assets already live</h3><ul><li>Ethereum holds more tokenized assets than any other network. RWA.xyz showed about $16.7 billion in distributed asset value on Ethereum on October 21, 2026. Against the roughly $39.3 billion total from October 17, that's a little over 40%. Ethereum also carries about $146.8 billion in stablecoins, around half of all stablecoins. <a href="#sources">[56]</a></li><li>BlackRock launched its first tokenized fund, BUIDL, on Ethereum in March 2024. Securitize is the transfer agent and BNY is the custodian. <a href="#sources">[57]</a></li><li>DTCC's private network, Besu, is built on Ethereum technology. <a href="#sources">[40]</a></li><li>J.P. Morgan rolled out its JPMD deposit token to institutional clients on Base, a network built on top of Ethereum, in November 2025, as reported by The Block. <a href="#sources">[58]</a></li><li>Smart contracts: every fund token, app and pool on Ethereum pays its fees (gas) in ETH, and part of every fee, the base fee, is burned. <a href="#sources">[59]</a></li><li>Staking: Bitwise counted a record 40.2 million ETH staked in July 2026, about 33% of supply. It said most of the new stake came from institutions like staking ETFs and corporate treasuries. <a href="#sources">[60]</a></li><li>The SEC's Division of Corporation Finance said in May 2025 that protocol staking isn't a securities offering. That's a staff view, not a rule. <a href="#sources">[61]</a></li></ul><p>ETH already has the gears the others are still building: gas that has to be paid in the token, a burn and staking. The catch is the same one I see everywhere else. Banks on private Ethereum-based networks like Besu don't pay in ETH. The ETH demand happens on the public network.</p><h3>Solana (SOL): institutions are paying attention</h3><ul><li>Western Union launched its USDPT dollar stablecoin on Solana on May 4, 2026, issued by Anchorage Digital Bank. <a href="#sources">[62]</a></li><li>Visa started letting U.S. banks settle with it in USDC over Solana in December 2025. Cross River Bank and Lead Bank were first. <a href="#sources">[63]</a></li><li>The Solana Foundation counts about $3.7 billion in tokenized assets on Solana as of late July 2026, not counting stablecoins. That includes BlackRock's BUIDL, Franklin Templeton's BENJI, and a State Street and Galaxy fund launched in May 2026. That's the foundation's own count. <a href="#sources">[64]</a></li><li>Bitwise puts Solana's staking ratio at 68%. <a href="#sources">[60]</a></li><li>SOL is on the same SEC and CFTC commodity list.</li></ul><p>I didn't find Solana in the DTCC, Swift or Clearing House choices I followed. Where it shows up is payments and stablecoins. That's real institutional attention and worth watching, but most of that flow settles in stablecoins, not SOL. It's the same question I have for XRP.</p><h3>Hedera (HBAR): worth a note</h3><ul><li>HBAR is on the same SEC and CFTC commodity list.</li><li>SaucerSwap's Auto Pools are a good example of how to make providing liquidity easier for regular people: you deposit one token and the vault manages the price range. It reduces permanent loss but doesn't eliminate it.</li></ul>
+<p>This is the part I think matters most for the tokens. A token only gets lasting demand if the network makes someone hold it, lock it, stake it, burn it or keep it in a pool to do business. Here's what each one actually does today.</p><h3>Canton Coin (CC): a real lockup is already live</h3><ul><li>Fees on the public network are priced in dollars but paid by burning CC. New CC is minted every 10 minutes as rewards.<sup class="cite"><a href="#src-42" aria-label="Source 42">42</a></sup></li><li>Rewards go to three groups: Super Validators who run the core network, validators who process transactions, and featured apps that drive activity. Since January 2026, featured apps can mint up to 62% of the rewards.<sup class="cite"><a href="#src-42" aria-label="Source 42">42</a>,<a href="#src-43" aria-label="Source 43">43</a></sup></li><li>Validators used to get paid just for being online. That ended April 30, 2026. Now they only earn in proportion to the fees their users burn. So rewards now follow real usage.<sup class="cite"><a href="#src-42" aria-label="Source 42">42</a></sup></li><li>The big one: under CIP-0105, approved in March 2026, Super Validators have to lock 70% of all the CC they've ever earned to keep their status and rewards. Under CIP-0116, approved in May, featured apps have to keep CC locked too.<sup class="cite"><a href="#src-44" aria-label="Source 44">44</a></sup></li><li>A business has already formed around this. Canton Strategic Holdings, a public company, lends its own CC to Super Validators and apps to meet their lock requirement, and gets paid interest or a share of rewards. That's a yield market built on a required lockup.<sup class="cite"><a href="#src-45" aria-label="Source 45">45</a></sup></li><li>Visa is a Super Validator with the top weight of 10. DTCC, Nasdaq, Circle, Chainlink, Broadridge, Tradeweb, Franklin Templeton and SBI are among 56 listed Super Validators.<sup class="cite"><a href="#src-3" aria-label="Source 3">3</a>,<a href="#src-4" aria-label="Source 4">4</a></sup></li><li>The catch: new CC issuance keeps stepping down but never stops. It settles at about 2.5 billion CC a year. So the question is still whether burning plus locking outruns new coins.<sup class="cite"><a href="#src-46" aria-label="Source 46">46</a></sup></li></ul><p>To me this is the closest thing to what I've been describing. The biggest institutions running Canton have to hold and lock the token to keep their seat.</p><h3>Chainlink (LINK): set the bar</h3><ul><li>Chainlink lets customers pay in stablecoins or regular dollars, then converts that money into LINK through a Uniswap pool and puts it in the Chainlink Reserve. Chainlink says it doesn't plan to withdraw from the Reserve for years.<sup class="cite"><a href="#src-6" aria-label="Source 6">6</a></sup></li><li>The Reserve crossed about 6 million LINK in September, adding about 374,000 that month. Protocol fees were about $30 million in the first half of 2026.</li><li>Staking: a 45 million LINK pool paying around 4.3%, with a 28-day wait to unstake. Today the rewards come from a pre-funded pool, not from fees yet.</li><li>The catch: the Reserve holds LINK, it doesn't burn it, and up to about 70 million LINK can unlock each year. So new supply still outweighs Reserve buying.</li></ul><p>Why I say Chainlink set the bar: it proved a company can take dollar revenue from banks that never want to touch a token, and still turn that revenue into buying the token on the open market. The banks never hold LINK. Chainlink does it for them behind the scenes. Any of the other networks could copy that model.</p><h3>Quant (QNT): the pieces are built, the rules aren't public yet</h3><ul><li>Fusion went live on mainnet June 2, 2026, connecting 74 networks. QNT is Fusion's native gas token, the way ETH is Ethereum's.<sup class="cite"><a href="#src-47" aria-label="Source 47">47</a></sup></li><li>Staking is designed for approved, identity-checked node operators who stake QNT against the nodes they run. Quant's documents also list the amount of QNT staked as a factor in which nodes get routed transactions.<sup class="cite"><a href="#src-47" aria-label="Source 47">47</a>,<a href="#src-48" aria-label="Source 48">48</a></sup></li><li>No slashing is planned. Unreliable nodes just lose their rewards.</li><li>What's not live or not published: the minimum stake, reward rate, lock period and launch date. The next step is testnet staking in Quant Connect.<sup class="cite"><a href="#src-47" aria-label="Source 47">47</a></sup></li><li>On the license fees, community researchers describe it this way: banks pay in dollars, Quant's treasury converts that into QNT and locks it for the license term. The lock is a dollar amount, rebalanced at renewal. If that's accurate, it's company policy, not code, and the terms are confidential.<sup class="cite"><a href="#src-49" aria-label="Source 49">49</a></sup></li><li>With only about 14.88 million QNT that will ever exist, a real fee or staking requirement would hit hard.</li></ul><p>Quant has the parts. What I want to see is the Chainlink move: a public, verifiable way that bank fees become QNT that gets bought and locked.</p><h3>XRP and the XRP Ledger: liquidity tools, no staking</h3><ul><li>There's no staking on the XRP Ledger, and validators aren't paid. Banks and others run validators because they use the network.</li><li>Every transaction burns a tiny bit of XRP. Only about 14.4 million has been burned in total, so that isn't a supply driver.<sup class="cite"><a href="#src-38" aria-label="Source 38">38</a></sup></li><li>Built-in AMM liquidity pools have been live since 2024. Liquidity providers earn trading fees.</li><li>A members-only exchange for regulated institutions went live February 18, 2026, with 82% of validators approving. Early pairs include Mexican peso and euro stablecoins against RLUSD.<sup class="cite"><a href="#src-50" aria-label="Source 50">50</a>,<a href="#src-51" aria-label="Source 51">51</a></sup></li><li>A built-in lending protocol is waiting on a validator vote. It has 19 of the 35 votes and needs 29 held for two weeks. Firms like Evernorth plan to lend once it activates.<sup class="cite"><a href="#src-52" aria-label="Source 52">52</a>,<a href="#src-53" aria-label="Source 53">53</a></sup></li><li>About 1.19 billion XRP sits in U.S. spot ETFs, about 473 million in corporate treasuries and about 408 million in DeFi.<sup class="cite"><a href="#src-38" aria-label="Source 38">38</a>,<a href="#src-39" aria-label="Source 39">39</a></sup></li></ul><p>XRP's demand path isn't fees or staking. It's liquidity. If Ripple's payment, treasury and prime brokerage clients need XRP as the bridge or as collateral, market makers have to hold real inventory in those pools. The members-only exchange and lending protocol are exactly the kind of gears that would make that possible for regulated money.</p><h3>Ethereum (ETH): where most tokenized assets already live</h3><ul><li>Ethereum holds more tokenized assets than any other network. RWA.xyz showed about $16.7 billion in distributed asset value on Ethereum on October 21, 2026. Against the roughly $39.3 billion total from October 17, that's a little over 40%. Ethereum also carries about $146.8 billion in stablecoins, around half of all stablecoins.<sup class="cite"><a href="#src-56" aria-label="Source 56">56</a></sup></li><li>BlackRock launched its first tokenized fund, BUIDL, on Ethereum in March 2024. Securitize is the transfer agent and BNY is the custodian.<sup class="cite"><a href="#src-57" aria-label="Source 57">57</a></sup></li><li>DTCC's private network, Besu, is built on Ethereum technology.<sup class="cite"><a href="#src-40" aria-label="Source 40">40</a></sup></li><li>J.P. Morgan rolled out its JPMD deposit token to institutional clients on Base, a network built on top of Ethereum, in November 2025, as reported by The Block.<sup class="cite"><a href="#src-58" aria-label="Source 58">58</a></sup></li><li>Smart contracts: every fund token, app and pool on Ethereum pays its fees (gas) in ETH, and part of every fee, the base fee, is burned.<sup class="cite"><a href="#src-59" aria-label="Source 59">59</a></sup></li><li>Staking: Bitwise counted a record 40.2 million ETH staked in July 2026, about 33% of supply. It said most of the new stake came from institutions like staking ETFs and corporate treasuries.<sup class="cite"><a href="#src-60" aria-label="Source 60">60</a></sup></li><li>The SEC's Division of Corporation Finance said in May 2025 that protocol staking isn't a securities offering. That's a staff view, not a rule.<sup class="cite"><a href="#src-61" aria-label="Source 61">61</a></sup></li></ul><p>ETH already has the gears the others are still building: gas that has to be paid in the token, a burn and staking. The catch is the same one I see everywhere else. Banks on private Ethereum-based networks like Besu don't pay in ETH. The ETH demand happens on the public network.</p><h3>Solana (SOL): institutions are paying attention</h3><ul><li>Western Union launched its USDPT dollar stablecoin on Solana on May 4, 2026, issued by Anchorage Digital Bank.<sup class="cite"><a href="#src-62" aria-label="Source 62">62</a></sup></li><li>Visa started letting U.S. banks settle with it in USDC over Solana in December 2025. Cross River Bank and Lead Bank were first.<sup class="cite"><a href="#src-63" aria-label="Source 63">63</a></sup></li><li>The Solana Foundation counts about $3.7 billion in tokenized assets on Solana as of late July 2026, not counting stablecoins. That includes BlackRock's BUIDL, Franklin Templeton's BENJI, and a State Street and Galaxy fund launched in May 2026. That's the foundation's own count.<sup class="cite"><a href="#src-64" aria-label="Source 64">64</a></sup></li><li>Bitwise puts Solana's staking ratio at 68%.<sup class="cite"><a href="#src-60" aria-label="Source 60">60</a></sup></li><li>SOL is on the same SEC and CFTC commodity list.</li></ul><p>I didn't find Solana in the DTCC, Swift or Clearing House choices I followed. Where it shows up is payments and stablecoins. That's real institutional attention and worth watching, but most of that flow settles in stablecoins, not SOL. It's the same question I have for XRP.</p><h3>Hedera (HBAR): worth a note</h3><ul><li>HBAR is on the same SEC and CFTC commodity list.<sup class="cite"><a href="#src-1" aria-label="Source 1">1</a></sup></li><li>SaucerSwap's Auto Pools are a good example of how to make providing liquidity easier for regular people: you deposit one token and the vault manages the price range. It reduces permanent loss but doesn't eliminate it.</li></ul>
 
       <h2 data-n="07">The Pattern I See</h2>
 <p>Right now the gears are lined up like this:</p><ul><li>Required lockup: Canton (live, for operators).</li><li>Fees converted into the token: Chainlink (live, still small).</li><li>Gas token and node staking: Quant Fusion (gas live, staking coming).</li><li>Institutional liquidity pools and lending: XRP Ledger (pools and members-only exchange live, lending pending).</li></ul><p>Chainlink showed that institutions don't have to hold a token for the token to benefit from their business. Canton showed that a network run by institutions can still require them to lock up the token. I think those two models are the template, and I expect more networks to move that way once they leave the sandbox.</p>
@@ -436,7 +442,7 @@
 <p>I've been providing liquidity for several years, so I know how powerful it is and how it can hurt you.</p><p>Institutions are moving toward pools:</p><ul><li>Uniswap added permissioned pools for screened traders.</li><li>The SEC's September exemption allows AMM pools for tokenized stocks.</li><li>BlackRock's Treasury fund trades on-chain through UniswapX.</li><li>The XRP Ledger's members-only exchange is built for regulated firms.</li></ul><p>Most institutional pools today pair tokenized Treasuries, stocks and stablecoins, not these tokens. Chainlink is the exception, since fees flow through a pool into LINK.</p><p>What I'd be honest about:</p><ul><li>Pools sell the token as the price rises and buy as it falls, so they calm the price more than push it up.</li><li>Yield is only real if it comes from trading fees. Yield paid in new tokens is dilution.</li><li>Permanent loss is real when one side moves hard.</li><li>The CFTC charges brokers 20% capital on volatile crypto versus 2% on stablecoins, which keeps institutions in stable pairs for now.</li></ul><p>On Coinbase: it's connecting U.S. and international derivatives traders into one regulated liquidity pool after folding in Deribit. That's an order book for futures and options, not a yield pool. It means deeper trading and bigger moves, not required token use.</p>
 
       <h2 data-n="11">Where I Land on Each Token</h2>
-<h3>Chainlink (LINK):</h3><p>About $9.7 billion market value. The most proven link between institutional revenue and token buying. The test is whether DTCC's collateral system and the Swift connection grow the Reserve faster than new supply.</p><h3>Canton Coin (CC):</h3><p>The strongest built-in mechanics: fees burn CC, and the biggest operators must lock 70% of their earnings. The test is whether usage burns and locks more than the network keeps minting.</p><h3>Quant (QNT):</h3><p>About 14.88 million total supply and around $2.7 billion market value. Fusion gas and node staking are the real hooks. The test is The Clearing House fee schedule and whether its network runs on Fusion.</p><h3>XRP:</h3><p>About $1.33 to $1.50 this week, roughly $85 billion market value, about 63 billion circulating. The most regulatory clarity of the group, and the company behind it has spent close to $4 billion building a regulated financial firm. The test is whether Ripple routes its own clients' payments and collateral through XRP liquidity.</p>
+<h3>Chainlink (LINK):</h3><p>About $9.7 billion market value. The most proven link between institutional revenue and token buying. The test is whether DTCC's collateral system and the Swift connection grow the Reserve faster than new supply.</p><h3>Canton Coin (CC):</h3><p>The strongest built-in mechanics: fees burn CC, and the biggest operators must lock 70% of their earnings. The test is whether usage burns and locks more than the network keeps minting.</p><h3>Quant (QNT):</h3><p>About 14.88 million total supply and around $2.7 billion market value. Fusion gas and node staking are the real hooks. The test is The Clearing House fee schedule and whether its network runs on Fusion.</p><h3>XRP:</h3><p>About $1.33 to $1.50 this week, roughly $85 billion market value, about 63 billion circulating. The most regulatory clarity of the group, and the company behind it has spent close to $4 billion building a regulated financial firm. The test is whether Ripple routes its own clients' payments and collateral through XRP liquidity.<sup class="cite"><a href="#src-38" aria-label="Source 38">38</a>,<a href="#src-54" aria-label="Source 54">54</a></sup></p>
 
       <h2 data-n="12">My Thesis</h2>
 <p>Every idea has to be built and tested. Nobody pays full production fees in a sandbox. Pilots run on test money and negotiated terms. So, I don't read today's lack of token use as the final answer.</p><p>When these networks go into full production in 2026 and 2027, operators can start charging real fees. If those fees are paid in the token, or converted into it, and the tokens get burned, locked or staked, then token demand ties directly to network volume.</p><p>That's not just theory anymore. Chainlink is converting institutional fees into LINK. Canton is making its institutional operators lock CC. Quant has made QNT the gas for Fusion. Ripple has bought the clients and licenses that could make XRP the bridge. Chainlink set the bar, and I think many will follow.</p><p>On top of that, if a network needs the token in liquidity pools for payments and trades to flow, market makers have to hold real inventory. That takes tokens off the open market for as long as they sit there.</p>
@@ -483,449 +489,449 @@
       <p>Every factual claim above traces to one of these. Tiers are defined on our
       <a href="/insights/methodology.html">methodology page</a>.</p>
       <div class="brief-sources">
-        <div class="brief-source">
-          <span class="brief-source__tier tier-1">Tier 1 — Government, regulator, legislation, official filing</span>
+        <div class="brief-source" id="src-1">
+          <span class="brief-source__tier tier-1">Tier 1 — Government, regulator, legislation, official filing <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.sec.gov/files/rules/interp/2026/33-11412.pdf" target="_blank" rel="noopener noreferrer">[1] SEC and CFTC joint interpretive release, March 17, 2026</a>
           <span class="brief-source__pub">U.S. Securities and Exchange Commission and Commodity Futures Trading Commission</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: The joint SEC and CFTC interpretation of March 17, 2026, its five categories, and the 16 named digital commodities including XRP, LINK and HBAR.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-3">Tier 3 — Institutional research or data platform</span>
+        <div class="brief-source" id="src-2">
+          <span class="brief-source__tier tier-3">Tier 3 — Institutional research or data platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://canton.wiki/learn/banks-on-canton-network" target="_blank" rel="noopener noreferrer">[2] Canton institutions overview</a>
           <span class="brief-source__pub">canton.wiki</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Which institutions build on and run Canton Network.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform</span>
+        <div class="brief-source" id="src-3">
+          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://investor.visa.com/news/news-details/2026/Visa-to-Bring-Privacy-Preserving-Payments-to-Canton-Network/default.aspx" target="_blank" rel="noopener noreferrer">[3] Visa joins Canton as Super Validator</a>
           <span class="brief-source__pub">Visa</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Visa joining Canton as a Super Validator.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-3">Tier 3 — Institutional research or data platform</span>
+        <div class="brief-source" id="src-4">
+          <span class="brief-source__tier tier-3">Tier 3 — Institutional research or data platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.intersticedigital.io/research/validators-and-super-validators-on-canton" target="_blank" rel="noopener noreferrer">[4] Canton Super Validator list (Interstice Digital)</a>
           <span class="brief-source__pub">Interstice Digital</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: The Canton Super Validator list and weights.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-5">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://genfinity.io/2026/07/09/swift-blockchain-ledger-live-17-banks-chainlink-ccip/" target="_blank" rel="noopener noreferrer">[5] Swift ledger goes live with 17 banks (Genfinity)</a>
           <span class="brief-source__pub">Genfinity</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Swift's blockchain ledger going live with 17 banks on July 9, 2026.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform</span>
+        <div class="brief-source" id="src-6">
+          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://chain.link/blog/chainlink-reserve-strategic-link-reserve" target="_blank" rel="noopener noreferrer">[6] Chainlink Reserve</a>
           <span class="brief-source__pub">Chainlink</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Chainlink converting service fees into LINK held in the Chainlink Reserve, with no planned withdrawals for years.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform</span>
+        <div class="brief-source" id="src-7">
+          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.theclearinghouse.org/payment-systems/Articles/2026/09/The-Clearing-House-Partners-with-Quant-to-Advance-the--On-Chain-Money-Initiative" target="_blank" rel="noopener noreferrer">[7] The Clearing House partners with Quant</a>
           <span class="brief-source__pub">The Clearing House</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: The Clearing House selecting Quant for its On-Chain Money Initiative, connected to RTP and CHIPS.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform</span>
+        <div class="brief-source" id="src-8">
+          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.ukfinance.org.uk/news-and-insight/press-release/uk-banks-complete-first-live-customer-transactions-using-tokenised" target="_blank" rel="noopener noreferrer">[8] UK Finance tokenised sterling deposits</a>
           <span class="brief-source__pub">UK Finance</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: UK banks completing live customer transactions in tokenized sterling deposits.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-1">Tier 1 — Government, regulator, legislation, official filing</span>
+        <div class="brief-source" id="src-9">
+          <span class="brief-source__tier tier-1">Tier 1 — Government, regulator, legislation, official filing <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.occ.gov/news-issuances/news-releases/2025/nr-occ-2025-125.html" target="_blank" rel="noopener noreferrer">[9] OCC conditional trust bank approvals</a>
           <span class="brief-source__pub">Office of the Comptroller of the Currency</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: The OCC conditional approval of Ripple National Trust Bank, in the same release as BitGo, Fidelity Digital Assets, Paxos and First National Digital Currency Bank.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform</span>
+        <div class="brief-source" id="src-10">
+          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://ripple.com/ripple-press/ripple-receives-full-eu-mica-casp-license/" target="_blank" rel="noopener noreferrer">[10] Ripple full MiCA license</a>
           <span class="brief-source__pub">Ripple</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Ripple's full MiCA license across all 30 European Economic Area countries, July 2026.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-11">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://cryptoticker.io/en/rlusd-custody-standard-chartered/" target="_blank" rel="noopener noreferrer">[11] Standard Chartered RLUSD custody (CryptoTicker)</a>
           <span class="brief-source__pub">CryptoTicker</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Standard Chartered beginning custody of RLUSD on the XRP Ledger.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-1">Tier 1 — Government, regulator, legislation, official filing</span>
+        <div class="brief-source" id="src-12">
+          <span class="brief-source__tier tier-1">Tier 1 — Government, regulator, legislation, official filing <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.sec.gov/newsroom/speeches-statements/atkins-remarks-regulation-crypto-assets-031726" target="_blank" rel="noopener noreferrer">[12] SEC Chairman Atkins remarks, March 17, 2026</a>
           <span class="brief-source__pub">U.S. Securities and Exchange Commission</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: SEC Chairman Atkins on the March 17, 2026 interpretation.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-13">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://247wallst.com/investing/cryptocurrency/2026/10/07/the-cftc-lists-xrp-and-stellar-as-digital-commodities-alongside-bitcoin-and-ethereum-is-xrp-officially-not-a-security/" target="_blank" rel="noopener noreferrer">[13] CFTC lists XRP as a digital commodity (24/7 Wall St.)</a>
           <span class="brief-source__pub">24/7 Wall St.</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: The CFTC listing XRP as a digital commodity in October 2026.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-14">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://crypto.news/xrp-is-a-commodity-until-the-sec-changes-its-mind/" target="_blank" rel="noopener noreferrer">[14] XRP is a commodity until the SEC changes its mind (crypto.news)</a>
           <span class="brief-source__pub">crypto.news</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: That the interpretation could be revised by a future commission.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-15">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://247wallst.com/investing/2026/02/18/ripple-spent-nearly-3-billion-on-acquisitions-how-each-one-could-boost-xrp-price/" target="_blank" rel="noopener noreferrer">[15] Ripple acquisitions (24/7 Wall St.)</a>
           <span class="brief-source__pub">24/7 Wall St.</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Ripple's acquisitions and their disclosed prices.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform</span>
+        <div class="brief-source" id="src-16">
+          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://ripple.com/ripple-press/ripple-breaks-into-corporate-treasury-with-gtreasury-acquisition/" target="_blank" rel="noopener noreferrer">[16] Ripple breaks into corporate treasury with $1B GTreasury acquisition</a>
           <span class="brief-source__pub">Ripple</span>
           <span class="brief-source__meta">Published October 16, 2025 &middot; Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Ripple's $1 billion acquisition of GTreasury on October 16, 2025, described as its third major acquisition of 2025 after Hidden Road and Rail.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-3">Tier 3 — Institutional research or data platform</span>
+        <div class="brief-source" id="src-17">
+          <span class="brief-source__tier tier-3">Tier 3 — Institutional research or data platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://coinlaw.io/ripple-labs-statistics/" target="_blank" rel="noopener noreferrer">[17] Ripple statistics (CoinLaw)</a>
           <span class="brief-source__pub">CoinLaw</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Ripple company statistics.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-18">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.dlnews.com/articles/markets/ripple-acquisitions-to-slow-in-2026-ceo-says/" target="_blank" rel="noopener noreferrer">[18] Ripple acquisitions to slow in 2026 (DL News)</a>
           <span class="brief-source__pub">DL News</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Ripple's CEO on the pace of acquisitions in 2026.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-19">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.financemagnates.com/tag/ripple/" target="_blank" rel="noopener noreferrer">[19] Ripple coverage (Finance Magnates)</a>
           <span class="brief-source__pub">Finance Magnates</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Ripple coverage, including Ripple Prime.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-20">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.reuters.com/sustainability/boards-policy-regulation/us-regulator-grants-crypto-firms-initial-approval-launch-trust-banks-2025-12-12/" target="_blank" rel="noopener noreferrer">[20] Reuters on crypto trust bank approvals</a>
           <span class="brief-source__pub">Reuters</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: The December 12, 2025 OCC trust bank approvals.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-21">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.moketchups.com/p/fed-master-account-ripple/" target="_blank" rel="noopener noreferrer">[21] Ripple Fed master account report (secondary source)</a>
           <span class="brief-source__pub">secondary source</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: A report that Ripple applied for a Federal Reserve master account. Secondhand, treated as unconfirmed in the text.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-22">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://gizmodo.com/small-banks-sue-to-block-bank-charters-for-coinbase-ripple-and-other-crypto-companies-2000821762" target="_blank" rel="noopener noreferrer">[22] Small banks sue over crypto charters (Gizmodo)</a>
           <span class="brief-source__pub">Gizmodo</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Small banks suing to block crypto trust bank charters.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform</span>
+        <div class="brief-source" id="src-23">
+          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://ripple.com/legal/money-transfer-license/" target="_blank" rel="noopener noreferrer">[23] Ripple money transmitter licenses</a>
           <span class="brief-source__pub">Ripple</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Ripple's U.S. money transmitter licenses, including Kansas.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform</span>
+        <div class="brief-source" id="src-24">
+          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://ripple.com/legal/compliance/" target="_blank" rel="noopener noreferrer">[24] Ripple compliance and licenses</a>
           <span class="brief-source__pub">Ripple</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Ripple's licenses and registrations worldwide.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-25">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.coindesk.com/policy/2026/07/06/ripple-s-preliminary-crypto-asset-provider-license-in-luxembourg-upgraded-to-fully-compliant" target="_blank" rel="noopener noreferrer">[25] Ripple Luxembourg license upgrade (CoinDesk)</a>
           <span class="brief-source__pub">CoinDesk</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Ripple's Luxembourg crypto-asset service provider license upgrade.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform</span>
+        <div class="brief-source" id="src-26">
+          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://ripple.com/insights/ripple-custody-is-the-foundation-of-institutional-digital-asset-adoption/" target="_blank" rel="noopener noreferrer">[26] Ripple Custody</a>
           <span class="brief-source__pub">Ripple</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Ripple Custody and its use by banks.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-27">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://custodyproviders.com/ripple-custody-provider" target="_blank" rel="noopener noreferrer">[27] Ripple Custody client list (CustodyProviders)</a>
           <span class="brief-source__pub">CustodyProviders</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Ripple Custody client names.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-28">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.jewelswap.io/blog/what-is-rlusd" target="_blank" rel="noopener noreferrer">[28] RLUSD overview (JewelSwap)</a>
           <span class="brief-source__pub">JewelSwap</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: RLUSD circulation, reserves, custodian and attestations.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-29">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.tradingnews.com/news/xrp-usd-1-52-usd-coils-under-155-usd-ceiling-as-whale-add-1b-usd-tokens" target="_blank" rel="noopener noreferrer">[29] XRP and RLUSD market update (TradingNews)</a>
           <span class="brief-source__pub">TradingNews</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: XRP and RLUSD market figures.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-30">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.coindesk.com/business/2026/05/11/ripple-raises-usd200-million-from-neuberger-berman-to-expand-its-ripple-prime-platform" target="_blank" rel="noopener noreferrer">[30] Ripple Prime Neuberger Berman facility (CoinDesk)</a>
           <span class="brief-source__pub">CoinDesk</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: The $200 million Neuberger Berman facility for Ripple Prime.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-31">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.disruptionbanking.com/2026/10/14/ripple-prime-wins-multi-asset-brokerage-mandate-from-brevan-howard/" target="_blank" rel="noopener noreferrer">[31] Ripple Prime Brevan Howard mandate (Disruption Banking)</a>
           <span class="brief-source__pub">Disruption Banking</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Ripple Prime winning a multi-asset brokerage mandate from Brevan Howard.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform</span>
+        <div class="brief-source" id="src-32">
+          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://ripple.com/ripple-press/ripple-launches-support-for-institutions-to-access-real-world-asset-perpetual-swaps/" target="_blank" rel="noopener noreferrer">[32] Ripple real-world asset perpetual swaps</a>
           <span class="brief-source__pub">Ripple</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Ripple Prime launching real-world asset perpetual swaps with Virtu on October 15, 2026, with RLUSD as collateral, and Ripple's count of over 85 licenses worldwide.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform</span>
+        <div class="brief-source" id="src-33">
+          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://ripple.com/products/prime-brokerage/" target="_blank" rel="noopener noreferrer">[33] Ripple Prime product page</a>
           <span class="brief-source__pub">Ripple</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Ripple Prime products and accepted collateral.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-34">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.coindesk.com/business/2026/03/11/ripple-s-share-buyback-program-values-the-firm-at-usd50-billion-bloomberg" target="_blank" rel="noopener noreferrer">[34] Ripple $50 billion buyback valuation (CoinDesk)</a>
           <span class="brief-source__pub">CoinDesk</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: The March 2026 share buyback valuing Ripple at $50 billion.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-3">Tier 3 — Institutional research or data platform</span>
+        <div class="brief-source" id="src-35">
+          <span class="brief-source__tier tier-3">Tier 3 — Institutional research or data platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://multiples.vc/private-comps/ripple" target="_blank" rel="noopener noreferrer">[35] Ripple revenue and valuation (multiples.vc)</a>
           <span class="brief-source__pub">multiples.vc</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Ripple revenue and valuation.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-36">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.chaincatcher.com/en/article/2296813" target="_blank" rel="noopener noreferrer">[36] Ripple Payments volume (ChainCatcher)</a>
           <span class="brief-source__pub">ChainCatcher</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Ripple Payments processed volume.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-37">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.financemagnates.com/tag/ripple/" target="_blank" rel="noopener noreferrer">[37] Ripple net asset value and XRP (Finance Magnates)</a>
           <span class="brief-source__pub">Finance Magnates</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Reports that most of Ripple's net asset value comes from its XRP holdings.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-3">Tier 3 — Institutional research or data platform</span>
+        <div class="brief-source" id="src-38">
+          <span class="brief-source__tier tier-3">Tier 3 — Institutional research or data platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://xrp-insights.com/xrp-radar/supply" target="_blank" rel="noopener noreferrer">[38] XRP supply breakdown (xrp-insights)</a>
           <span class="brief-source__pub">xrp-insights</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: XRP held in escrow, ETFs, corporate treasuries and DeFi.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-39">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://finance.yahoo.com/markets/crypto/articles/ripple-releases-1-billion-xrp-201221436.html" target="_blank" rel="noopener noreferrer">[39] October escrow release (Yahoo Finance)</a>
           <span class="brief-source__pub">Yahoo Finance</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: The October 2026 escrow release.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform</span>
+        <div class="brief-source" id="src-40">
+          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.dtcc.com/press-releases/2026/dtcc-turns-tokenization-into-reality" target="_blank" rel="noopener noreferrer">[40] DTCC turns tokenization into reality</a>
           <span class="brief-source__pub">DTCC</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: DTCC production trades in DTC-tokenized securities on July 15, 2026, on Besu and Canton. Also the $114 trillion in securities DTC holds in custody.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-1">Tier 1 — Government, regulator, legislation, official filing</span>
+        <div class="brief-source" id="src-41">
+          <span class="brief-source__tier tier-1">Tier 1 — Government, regulator, legislation, official filing <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.pr260921~e754847a7b.sk.html" target="_blank" rel="noopener noreferrer">[41] ECB Pontes launch</a>
           <span class="brief-source__pub">European Central Bank</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: The ECB launching Pontes on September 21, 2026, and the institutions connected.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform</span>
+        <div class="brief-source" id="src-42">
+          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://docs.canton.network/overview/reference/canton-coin-tokenomics" target="_blank" rel="noopener noreferrer">[42] Canton Coin tokenomics</a>
           <span class="brief-source__pub">Canton Network</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Canton Coin fees, minting rounds and reward groups.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform</span>
+        <div class="brief-source" id="src-43">
+          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.canton.network/blog/earn-with-every-transaction-continuous-transaction-based-revenue-for-apps-and-assets-on-canton" target="_blank" rel="noopener noreferrer">[43] Canton transaction-based revenue for apps</a>
           <span class="brief-source__pub">Canton Network</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Canton rewards for featured apps based on transactions.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform</span>
+        <div class="brief-source" id="src-44">
+          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.nasdaq.com/press-release/canton-strategic-holdings-inc-announces-launch-locking-service-support-network" target="_blank" rel="noopener noreferrer">[44] Canton locking service and CIP-0105 (Nasdaq)</a>
           <span class="brief-source__pub">Canton Strategic Holdings (via Nasdaq press release)</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: CIP-0105 (70% lock for Super Validators, March 2026), CIP-0116 (May 2026), and the Canton Strategic Holdings locking service.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-1">Tier 1 — Government, regulator, legislation, official filing</span>
+        <div class="brief-source" id="src-45">
+          <span class="brief-source__tier tier-1">Tier 1 — Government, regulator, legislation, official filing <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.sec.gov/Archives/edgar/data/0001861657/000149315226038508/ex99-1.htm" target="_blank" rel="noopener noreferrer">[45] Canton Strategic Holdings SEC exhibit</a>
           <span class="brief-source__pub">U.S. Securities and Exchange Commission (EDGAR)</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Canton Strategic Holdings SEC filing exhibit.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-3">Tier 3 — Institutional research or data platform</span>
+        <div class="brief-source" id="src-46">
+          <span class="brief-source__tier tier-3">Tier 3 — Institutional research or data platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://app.tokenomics.com/tokenomics/canton-network" target="_blank" rel="noopener noreferrer">[46] Canton Coin allocation and issuance schedule (Tokenomics.com)</a>
           <span class="brief-source__pub">Tokenomics.com</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Canton Coin allocation and issuance schedule.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-47">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.bitrue.com/blog/quant-network-airdrop" target="_blank" rel="noopener noreferrer">[47] Quant staking and Fusion overview (Bitrue)</a>
           <span class="brief-source__pub">Bitrue</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Quant Fusion and staking design.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-48">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.binance.com/en/square/post/359966248508099" target="_blank" rel="noopener noreferrer">[48] Quant routing and staked QNT (Binance Square)</a>
           <span class="brief-source__pub">Binance Square</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Staked QNT as a routing factor.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-49">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://x.com/DutchAlchemist/status/2106007503373041912" target="_blank" rel="noopener noreferrer">[49] Quant license fee lock explanation (Dutch Alchemist on X)</a>
           <span class="brief-source__pub">Dutch Alchemist on X</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: A community description of Quant license fees converted into QNT and locked. Described in the text as community research, not confirmed policy.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-50">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.coindesk.com/tech/2026/02/18/xrp-ledger-rolls-out-members-only-dex-for-regulated-institutions" target="_blank" rel="noopener noreferrer">[50] XRP Ledger members-only DEX (CoinDesk)</a>
           <span class="brief-source__pub">CoinDesk</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: The XRP Ledger members-only exchange for regulated institutions, February 18, 2026.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-3">Tier 3 — Institutional research or data platform</span>
+        <div class="brief-source" id="src-51">
+          <span class="brief-source__tier tier-3">Tier 3 — Institutional research or data platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://blockworks.com/api/investor-report/state-of-xrp-q2-2026/pdf" target="_blank" rel="noopener noreferrer">[51] State of XRP Q2 2026 (Blockworks)</a>
           <span class="brief-source__pub">Blockworks</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: State of XRP, Q2 2026.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-3">Tier 3 — Institutional research or data platform</span>
+        <div class="brief-source" id="src-52">
+          <span class="brief-source__tier tier-3">Tier 3 — Institutional research or data platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://xrpldashboard.com/amendments" target="_blank" rel="noopener noreferrer">[52] XRP Ledger amendment votes (xrpldashboard)</a>
           <span class="brief-source__pub">xrpldashboard</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: XRP Ledger amendment votes, including the lending protocol.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-53">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.gate.com/news/detail/XRP/xrp-ledger-amendments-gain-validator-support-but-remain-below-activation-24976519" target="_blank" rel="noopener noreferrer">[53] XRP Ledger lending amendment support (Gate)</a>
           <span class="brief-source__pub">Gate</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Validator support for the XRP Ledger lending amendment.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-54">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://finance.biggo.com/news/75b56f8d-3c4f-4f78-8479-cedb60a88d39" target="_blank" rel="noopener noreferrer">[54] XRP market share and price (BigGo Finance)</a>
           <span class="brief-source__pub">BigGo Finance</span>
           <span class="brief-source__meta">Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: XRP market share and price.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-3">Tier 3 — Institutional research or data platform</span>
+        <div class="brief-source" id="src-55">
+          <span class="brief-source__tier tier-3">Tier 3 — Institutional research or data platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://app.rwa.xyz/networks" target="_blank" rel="noopener noreferrer">[55] RWA.xyz Networks, Tokenized U.S. Treasury Funds and Stablecoins dashboards</a>
           <span class="brief-source__pub">RWA.xyz</span>
           <span class="brief-source__meta">Published October 17, 2026 &middot; Checked October 17, 2026</span>
           <span class="brief-source__claim">Supports: Distributed asset value $39.29B, up 1.96% over 30 days; tokenized U.S. Treasury funds distributed value $14.69B, down 2.09%; stablecoin value $291.66B, down 0.25%. Read from app.rwa.xyz/networks, /treasuries and /stablecoins on October 17, 2026.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-3">Tier 3 — Institutional research or data platform</span>
+        <div class="brief-source" id="src-56">
+          <span class="brief-source__tier tier-3">Tier 3 — Institutional research or data platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://app.rwa.xyz/networks/ethereum" target="_blank" rel="noopener noreferrer">[56] RWA.xyz Ethereum network page</a>
           <span class="brief-source__pub">RWA.xyz</span>
           <span class="brief-source__meta">Published October 21, 2026 &middot; Checked October 21, 2026</span>
           <span class="brief-source__claim">Supports: Ethereum distributed asset value $16.70B, up 0.27% over 30 days; represented asset value $70.97M; 285,844 RWA holders; stablecoin market cap on Ethereum $146.77B. Read from RWA.xyz on October 21, 2026.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform</span>
+        <div class="brief-source" id="src-57">
+          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.businesswire.com/news/home/20240320771318/en/BlackRock-Launches-Its-First-Tokenized-Fund-BUIDL-on-the-Ethereum-Network" target="_blank" rel="noopener noreferrer">[57] BlackRock launches its first tokenized fund, BUIDL, on the Ethereum network</a>
           <span class="brief-source__pub">BlackRock and Securitize (Business Wire)</span>
           <span class="brief-source__meta">Published March 20, 2024 &middot; Checked October 21, 2026</span>
           <span class="brief-source__claim">Supports: BUIDL launched on Ethereum, with Securitize as transfer agent and tokenization platform and BNY Mellon as custodian.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting</span>
+        <div class="brief-source" id="src-58">
+          <span class="brief-source__tier tier-4">Tier 4 — Contextual reporting <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.theblock.co/post/378493/jpmorgan-deposit-token-jpm-coin" target="_blank" rel="noopener noreferrer">[58] JPMorgan rolls out JPMD deposit token on Base (The Block)</a>
           <span class="brief-source__pub">The Block</span>
           <span class="brief-source__meta">Published November 2025 &middot; Checked October 21, 2026</span>
           <span class="brief-source__claim">Supports: J.P. Morgan rolling out its JPMD deposit token to institutional clients on Base, an Ethereum layer 2.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform</span>
+        <div class="brief-source" id="src-59">
+          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://ethereum.org/en/developers/docs/gas/" target="_blank" rel="noopener noreferrer">[59] Gas and fees (ethereum.org)</a>
           <span class="brief-source__pub">ethereum.org</span>
           <span class="brief-source__meta">Checked October 21, 2026</span>
           <span class="brief-source__claim">Supports: Gas fees must be paid in ETH, and the base fee is burned when the block is created (EIP-1559).</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-3">Tier 3 — Institutional research or data platform</span>
+        <div class="brief-source" id="src-60">
+          <span class="brief-source__tier tier-3">Tier 3 — Institutional research or data platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://bitwiseinvestments.com/crypto-market-insights/the-bitwise-staking-report-q3-2026" target="_blank" rel="noopener noreferrer">[60] The Bitwise Staking Report, Q3 2026</a>
           <span class="brief-source__pub">Bitwise</span>
           <span class="brief-source__meta">Published July 23, 2026 &middot; Checked October 21, 2026</span>
           <span class="brief-source__claim">Supports: A record 40.2M ETH, 33% of supply, staked, with most new stake from institutions such as staking ETFs and corporate treasuries; Solana staking ratio 68%.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-1">Tier 1 — Government, regulator, legislation, official filing</span>
+        <div class="brief-source" id="src-61">
+          <span class="brief-source__tier tier-1">Tier 1 — Government, regulator, legislation, official filing <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.sec.gov/newsroom/speeches-statements/statement-certain-protocol-staking-activities-052925" target="_blank" rel="noopener noreferrer">[61] SEC statement on certain protocol staking activities</a>
           <span class="brief-source__pub">U.S. Securities and Exchange Commission, Division of Corporation Finance</span>
           <span class="brief-source__meta">Published May 29, 2025 &middot; Checked October 21, 2026</span>
           <span class="brief-source__claim">Supports: The Division's view that covered protocol staking activities do not involve the offer and sale of securities.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform</span>
+        <div class="brief-source" id="src-62">
+          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://ir.westernunion.com/news/archived-press-releases/press-release-details/2026/Western-Union-Launches-USDPT-on-Solana-Advancing-Regulated-Digital-Infrastructure-for-Global-Payments/default.aspx" target="_blank" rel="noopener noreferrer">[62] Western Union launches USDPT on Solana</a>
           <span class="brief-source__pub">Western Union</span>
           <span class="brief-source__meta">Published May 4, 2026 &middot; Checked October 21, 2026</span>
           <span class="brief-source__claim">Supports: USDPT, a U.S. dollar payment stablecoin issued by Anchorage Digital Bank N.A. and built on Solana.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform</span>
+        <div class="brief-source" id="src-63">
+          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://www.businesswire.com/news/home/20251216483172/en" target="_blank" rel="noopener noreferrer">[63] Visa brings USDC settlement to the U.S.</a>
           <span class="brief-source__pub">Visa (Business Wire)</span>
           <span class="brief-source__meta">Published December 16, 2025 &middot; Checked October 21, 2026</span>
           <span class="brief-source__claim">Supports: U.S. issuer and acquirer partners settling with Visa in USDC over Solana, with Cross River Bank and Lead Bank first.</span>
         </div>
-        <div class="brief-source">
-          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform</span>
+        <div class="brief-source" id="src-64">
+          <span class="brief-source__tier tier-2">Tier 2 — Exchange, issuer, transfer agent, custodian, official platform <a class="brief-source__back" href="#sources" onclick="history.back();return false;">&#8617; back to text</a></span>
           <a class="brief-source__name" href="https://solana.com/news/overview-of-institutional-real-world-assets-on-solana" target="_blank" rel="noopener noreferrer">[64] Overview of institutional real world assets on Solana</a>
           <span class="brief-source__pub">Solana Foundation</span>
           <span class="brief-source__meta">Published July 2026 &middot; Checked October 21, 2026</span>
