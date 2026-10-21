@@ -930,3 +930,11 @@ under the NEW version key for 4 hours. Fixed by purging those URLs through
 the Cloudflare API (`CLOUDFLARE_API_TOKEN`, purge_cache by file) after the
 HTML showed the deploy had landed. **Poll the HTML for deploy, never the
 versioned asset.**
+
+## 2026-10-21 — thesis updated: Ethereum and Solana
+
+Rebuilt `insights/what-i-think-is-going-on-with-tokenization.html` from the
+kpw-tech-brief JSON: new Ethereum and Solana subsections, sources 56-64
+(64 total), dated Update box, dateModified 2026-10-21. check-article and
+check-schema pass. Details in kpw-tech-brief/docs/TASKS.md. Kaleb: request
+indexing for the thesis URL in Search Console.
