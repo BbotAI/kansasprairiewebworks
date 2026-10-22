@@ -938,3 +938,13 @@ kpw-tech-brief JSON: new Ethereum and Solana subsections, sources 56-64
 (64 total), dated Update box, dateModified 2026-10-21. check-article and
 check-schema pass. Details in kpw-tech-brief/docs/TASKS.md. Kaleb: request
 indexing for the thesis URL in Search Console.
+
+## 2026-10-21 — next brief drafted, NOT published: ISO 20022
+
+Draft JSON: `kpw-tech-brief/articles/drafts/iso-20022-standards-tokenized-assets-payment-flows.json`
+(28 sources, passes check-article). Private preview:
+https://claude.ai/artifact/7hxpS9mJMZu3NbmDRW4mFk . Before it goes live:
+Kaleb reviews; hero image; swap the Wikipedia XAU source for the official
+ISO 4217 list; confirm IOSCO wording against IOSCO's PDF. Full checklist in
+kpw-tech-brief/docs/TASKS.md. Kaleb plans to work on it 2026-10-22, after
+the UCM call.
