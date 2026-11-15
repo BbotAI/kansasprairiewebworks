@@ -914,6 +914,11 @@ Indexing before the quota ran out on 09-18. **Kaleb: GSC -> URL Inspection ->
 paste each of the four URLs above -> Request Indexing.** Only a signed-in owner
 can do this. The API is read-only.
 
+**✅ Requested by Kaleb 2026-11-15 for all four.** Expect a first crawl within
+days to about 2 weeks. **Check:** URL Inspection on the four, from about
+11-22. If any is still "Discovered" by 12-01, the page itself is the
+question (thin or overlapping service copy), not the request.
+
 **The report's "improved 14%" was a mix effect in our favour.**
 `web-design-johnson-county-ks.html` (193 impressions at 72 last period) has
 drawn **zero impressions since about 10-04**, and that removed the far-off
