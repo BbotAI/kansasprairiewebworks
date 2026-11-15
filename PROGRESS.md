@@ -893,6 +893,46 @@ on.
 - The Tech Brief was checked for cannibalisation and cleared: business-side
   clicks went 12 to 25 in the window the briefs went live.
 
+## 2026-11-15 — November report read; four money pages still not indexed
+
+GSC, 10-15 to 11-12 vs 09-17 to 10-14. 974 impressions (down 11%), 13 clicks
+(up from 9).
+
+**🔴 The real problem: four core pages are still "Discovered - currently not
+indexed", with no crawl ever.** URL Inspection today:
+
+    service-web-design.html     Discovered - currently not indexed   never crawled
+    service-web-app.html        Discovered - currently not indexed   never crawled
+    service-google-profile.html Discovered - currently not indexed   never crawled
+    services.html               Discovered - currently not indexed   never crawled
+
+The other service pages from the 09-18 list are now indexed (local-seo,
+monthly-posting, facebook-page, service-areas, pricing, portfolio), most of
+them crawled 10-19 to 11-09. Internal linking is not the cause: all eight are
+linked from 35 pages. The ones that got indexed most likely got their Request
+Indexing before the quota ran out on 09-18. **Kaleb: GSC -> URL Inspection ->
+paste each of the four URLs above -> Request Indexing.** Only a signed-in owner
+can do this. The API is read-only.
+
+**The report's "improved 14%" was a mix effect in our favour.**
+`web-design-johnson-county-ks.html` (193 impressions at 72 last period) has
+drawn **zero impressions since about 10-04**, and that removed the far-off
+Overland Park and Shawnee searches from the average. The page is still
+indexed (URL Inspection PASS, crawled 11-02). Google has simply stopped
+showing it, which fits section 4 above ("commit to that market properly or
+stop paying for it in reporting noise"). **Left alone.** Like-for-like, the
+repeat searches went 38.7 -> 40.2 (about flat). `web development` 4.8 -> 3.8
+and `web hosting` 5.6 -> 4.2 improved. `web development kansas` flips daily
+between #1 and #72-87.
+
+**"65 pages showing in Google" was wrong.** The GBP booking button lands on
+`contact.html?rwg_token=<unique>`, and GSC lists every token as its own URL
+(about 40 of them). contact.html canonicals to the clean URL, so the site is
+fine. The report now strips query strings before counting: 65 -> 26. Fixed in
+`kpw_credentials/kpw_monthly_report.js`. Dry-run on today's data: 26 pages,
+and "slipped from 38.7 to 40.2 on the searches you showed up for in both
+months". The sent 11-15 copy was restored.
+
 ## 2026-10-17 — share button when opened from the home-screen icon
 
 **Why:** saved to a phone's home screen, the site opens as an app with no
