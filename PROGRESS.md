@@ -993,3 +993,15 @@ Kaleb reviews; hero image; swap the Wikipedia XAU source for the official
 ISO 4217 list; confirm IOSCO wording against IOSCO's PDF. Full checklist in
 kpw-tech-brief/docs/TASKS.md. Kaleb plans to work on it 2026-10-22, after
 the UCM call.
+
+## 2026-11-24 — brief thirteen published: the comment files closed
+
+`insights/comment-files-closed-genius-act-sec-crypto-record.html` (commit 12e3e84).
+Treasury's GENIUS Act docket closed with 162 comments and the SEC's Regulation
+Crypto Assets file lists 256 entries; the OCC's final GENIUS rule (effective
+2027-01-18) was found and three older briefs got dated `updates` entries
+(genius-act, october-comment-files, october-comment-deadlines). Home
+latest-brief, `blog.html` Tech Brief panel and `llms.txt` point at it.
+Details and open items in kpw-tech-brief/docs/TASKS.md (2026-11-24).
+Kaleb: Search Console → Request Indexing for the new URL. ISO 20022 draft
+still waiting on Kaleb's read.
