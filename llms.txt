@@ -93,6 +93,17 @@ the main domain rather than a subdomain, on purpose.
 /insights/methodology.html — Editorial method, source tiers, and how
   dated data is refreshed and marked.
 
+/insights/comment-files-closed-genius-act-sec-crypto-record.html — Both
+  October comment files have closed. Counted on November 24, 2026:
+  Treasury's GENIUS Act docket holds 162 comments, 84 posted on October
+  20, and the SEC's Regulation Crypto Assets file lists 256 entries, half
+  dated in the final week. The banking and securities trade associations,
+  Coinbase, Circle and three state officials filed at the deadline. Both
+  agencies kept meeting outsiders after the deadlines. The OCC published
+  the first final GENIUS Act rule on October 23, 2026, effective January
+  18, 2027; Treasury's section 3 rule is still a proposal.
+  Published 2026-11-24.
+
 /insights/what-i-think-is-going-on-with-tokenization.html — Kaleb's signed
   opinion piece on tokenization. Why the institutions and regulators
   picked Canton Network, Chainlink, Quant and Ripple, what is confirmed
@@ -122,7 +133,7 @@ the main domain rather than a subdomain, on purpose.
   Crypto Assets file held 30 entries, two of which are memoranda recording
   meetings with Coinbase and Digital Asset, Inc. rather than comment letters.
   No national trade association had filed in either.
-  Published 2026-09-17.
+  Published 2026-09-17, updated 2026-11-24 (files closed; see the follow-up).
 
 /insights/october-comment-deadlines-sec-crypto-genius-act.html — Treasury's GENIUS Act rule closes for comment October 19, 2026,
   the SEC's Regulation Crypto Assets October 20. Both are proposals;
